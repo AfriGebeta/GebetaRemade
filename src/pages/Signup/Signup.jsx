@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 
-function Signup({ footer }) {
+function Signup({ signupintosignin }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -109,7 +109,7 @@ function Signup({ footer }) {
                     </div>
 
                     <div className="w-full mt-[10%] md:mb-[5%] text-center">
-                        <p>Already have an account? LOGIN HERE</p>
+                        <p onClick={()=>{signupintosignin()}}>Already have an account? LOGIN HERE</p>
                     </div>
 
                 </div>

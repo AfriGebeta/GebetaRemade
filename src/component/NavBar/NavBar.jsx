@@ -15,13 +15,24 @@ import Modal from "../Modal/Modal";
 const NavBar =  () => {
 
     const [state, setState] = useState(false)
-    const [aboutDropDownStatus, setAbout] = useState(true);
-    const [communityDropDownStatus, setCommunity] = useState(true);
     const [signinModal, setSigninModal] = useState(false);
     const [signupModal, setSignUpModal] = useState(false);
     const [clicked, setClicked] = useState(false);
-   
-  
+    const [aboutDropDownStatus, setAbout] = useState(true);
+    const [communityDropDownStatus, setCommunity] = useState(true);
+
+    const fromSignIntoSignUp = () => {
+        setSignUpModal(true)
+        setSigninModal(false)
+    }
+
+    const fromSignupIntoSignIn = () => {
+        setSignUpModal(false)
+        setSigninModal(true)
+    }
+
+
+
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -40,10 +51,10 @@ const NavBar =  () => {
 
 
     const navigation = [
-        {type : "text" , title: "Features", path: "javascript:void(0)" },
-        {type : "text" , title: "Integrations", path: "javascript:void(0)" },
-        {type : "text" , title: "Customers", path: "javascript:void(0)" },
         {type : "text" , title: "Pricing", path: "javascript:void(0)" },
+        {type : "text" , title: "Products", path: "javascript:void(0)" },
+        {type : "text" , title: "Documentation", path: "javascript:void(0)" },
+        {type : "text" , title: "Blog", path: "javascript:void(0)" },
         {
             type : "component",
             component: <DualDropdowns dropdown1={[{ text: "About us" }, { text: "Contact Us" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
@@ -51,17 +62,21 @@ const NavBar =  () => {
    ]
 
     return (
+
+
+        
+        
         <>
             <Modal
                 open={signinModal}
                 close={() => setSigninModal(false)}
-                elem={<Signin />}
+                elem={<Signin  signintosignup={fromSignIntoSignUp} />}
             />
 
             <Modal
                     open={signupModal}
                     close={() => setSignUpModal(false)}
-                    elem={<Signup />}
+                    elem={<Signup signupintosignin={fromSignupIntoSignIn} />}
             />
         
         <nav className="bg-Dark border-b w-full md:static md:text-sm md:border-none">
