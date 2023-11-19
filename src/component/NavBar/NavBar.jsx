@@ -12,7 +12,7 @@ import Modal from "../Modal/Modal";
 
 
 
-const NavBar =  () => {
+const NavBar =  ({color  ,textColor}) => {
 
     const [state, setState] = useState(false)
     const [signinModal, setSigninModal] = useState(false);
@@ -57,7 +57,7 @@ const NavBar =  () => {
         {type : "text" , title: "Blog", path: "javascript:void(0)" },
         {
             type : "component",
-            component: <DualDropdowns dropdown1={[{ text: "About us" }, { text: "Contact Us" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
+            component: <DualDropdowns  textColor = {textColor} dropdown1={[{ text: "About us" }, { text: "Contact Us" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
         }
    ]
 
@@ -79,7 +79,7 @@ const NavBar =  () => {
                     elem={<Signup signupintosignin={fromSignupIntoSignIn} />}
             />
         
-        <nav className="bg-Dark border-b w-full md:static md:text-sm md:border-none">
+        <nav className={`bg-${color} border-b w-full font-bold  md:static md:text-sm md:border-none`}>
             <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <a href="javascript:void(0)">
@@ -114,7 +114,7 @@ const NavBar =  () => {
                             navigation.map((item, idx) => {
                                 if (item.type == "text")
                                 return (
-                                    <li key={idx} className="text-white hover:text-GebetaMain">
+                                    <li key={idx} className={`text-${textColor} hover:text-GebetaMain`}>
                                         <a href={item.path} className="block">
                                             {item.title}
                                         </a>
@@ -127,7 +127,7 @@ const NavBar =  () => {
                         <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
                         <div className='space-y-3 items-center gap-x-6 md:flex md:space-y-0'>
                             <li>
-                                <p className="block py-3 text-center text-white hover:text-GebetaMain border rounded-lg md:border-none"
+                                <p className={`hover:text-GebetaMain block py-3 text-center text-${textColor} hover:text-GebetaMain border rounded-lg md:border-none`}
                                     onClick={() => setSigninModal(true)}
                                 >
                                     Log in

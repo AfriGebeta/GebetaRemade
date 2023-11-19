@@ -6,7 +6,7 @@ import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
 
-const DualDropdowns = ({dropdown1 , dropdown2}) => {
+const DualDropdowns = ({textColor ,dropdown1 , dropdown2}) => {
     const [isDropdown1Open, setDropdown1Open] = useState(false);
     const [isDropdown2Open, setDropdown2Open] = useState(false);
    
@@ -48,7 +48,7 @@ const DualDropdowns = ({dropdown1 , dropdown2}) => {
           <p 
             
             onClick={toggleDropdown1}
-            class="flex text-white inline-flex  justify-center gap-x-1.5    font-semibold " id="menu-button" aria-expanded="true" aria-haspopup="true">
+            class={`flex hover:text-GebetaMain text-${textColor} inline-flex  justify-center gap-x-1.5    font-semibold " id="menu-button" aria-expanded="true" aria-haspopup="true"`}>
                 About
               <svg class="font-bold -mr-1 h-5 w-8 " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
@@ -62,7 +62,7 @@ const DualDropdowns = ({dropdown1 , dropdown2}) => {
               <ul>
                 {
                     dropdown1.map((item)=>{
-                       return (<li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">{item.text}</li>)
+                       return (<li className="hover:text-GebetaMain py-2 px-4 hover:bg-gray-100 cursor-pointer">{item.text}</li>)
                     })
                 }
                 
@@ -76,7 +76,7 @@ const DualDropdowns = ({dropdown1 , dropdown2}) => {
             <p 
             
             onClick={toggleDropdown2}
-            class="flex items-center  text-white inline-flex  justify-center gap-x-1.5    font-semibold " id="menu-button" aria-expanded="true" aria-haspopup="true">
+            class={`flex items-center hover:text-GebetaMain  text-${textColor} inline-flex  justify-center gap-x-1.5    font-semibold " id="menu-button" aria-expanded="true" aria-haspopup="true"`}>
                 Community
               <svg class="font-bold -mr-1 h-5 w-8 " viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
@@ -88,7 +88,7 @@ const DualDropdowns = ({dropdown1 , dropdown2}) => {
               <ul>
               {
                     dropdown2.map((item)=>{
-                       return (<li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">{item.text}</li>)
+                       return (<li className="hover:text-GebetaMain py-2 px-4 hover:bg-gray-100 cursor-pointer">{item.text}</li>)
                     })
                 }
               </ul>

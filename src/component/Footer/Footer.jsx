@@ -4,24 +4,24 @@ import { FaGoogle } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = ({color , textColor}) => {
     return (
-        <div className=" relative w-full mt-[5%]  py-[1%] text-[#A0AABA] bg-[#161a1d]  ">
+        <div className = {`relative w-full mt-[5%]  py-[1%] text-[#A0AABA] bg-${color}`}>
             <div className="border-t-1 border-gray-600 absolute top-[-2px] left-0 right-0"></div>
             <div className="mx-[5%] flex justify-between items-center">
-                <div className="flex space-x-3">
-                    <p>Terms |</p>
-                    <p>Privacy</p>
+                <div className={`flex space-x-3 text-${textColor}`}>
+                    <p className="hover:text-GebetaMain">Terms |</p>
+                    <p className="hover:text-GebetaMain">Privacy</p>
                 </div>
 
                 {/* icons */}
-                <div className="flex space-x-4">
+                <div className={`flex space-x-4 text-${textColor}`}>
 
-                    < FaFacebook className="w-7 h-7" />
-                    < FaGoogle  className="w-7 h-7"  />
-                    < FaLinkedin  className="w-7 h-7"  />
-                    < FaYoutube  className="w-7 h-7" />
-                    < FaFacebook  className="w-7 h-7" />
+                    < FaFacebook className="w-7 h-7 hover:text-GebetaMain" />
+                    < FaGoogle  className="w-7 h-7 hover:text-GebetaMain"  />
+                    < FaLinkedin  className="w-7 h-7 hover:text-GebetaMain"  />
+                    < FaYoutube  className="w-7 h-7 hover:text-GebetaMain" />
+                    < FaFacebook  className="w-7 h-7 hover:text-GebetaMain" />
 
                 </div>
                 
