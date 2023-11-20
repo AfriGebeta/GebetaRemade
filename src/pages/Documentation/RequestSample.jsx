@@ -4,7 +4,7 @@ const RequestSample = (props) => {
   const [requestLanguage, setRequestLanguage] = useState(0)
   const handlerequestLanguage = (i) => setRequestLanguage(i)
   return (
-  <div className='md:w-[80%]'>
+  <div className=']'>
     <p className='mt-[2%]   font-bold text-xl text-[#A0AABA]'>Request samples</p>
   
     <div className='bg-[#11171a] text-[#A0AABA]  mt-[2%] py-[1%] mb-[1%]'>

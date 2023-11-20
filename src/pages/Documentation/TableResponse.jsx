@@ -21,7 +21,7 @@ const TableResponse = ({tabledata}) =>{
                         {
                             tabledata.map((item, idx) => (
                                 <tr key={idx}>
-                                    <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{item.status}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{item.message}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">{item.description}</td>
                              
