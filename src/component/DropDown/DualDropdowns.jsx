@@ -2,9 +2,7 @@
 import React ,{ useState , useEffect ,useRef} from 'react'
 import logo from "./../../assets/img/icon/logo.png";
 
-import Signin from "../../pages/Signin/SignIn";
-import Signup from "../../pages/Signup/Signup";
-import Modal from "../Modal/Modal";
+
 
 const DualDropdowns = ({textColor ,dropdown1 , dropdown2}) => {
     const [isDropdown1Open, setDropdown1Open] = useState(false);
