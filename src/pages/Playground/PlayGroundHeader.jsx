@@ -1,13 +1,14 @@
-import React from "react";
+import React , {useState} from "react";
+import GeocodingDropdown from "./GeocodingDropdown";
 
 
 const PlayGroundHeader = () => {
     return (
         <div className="w-full mx-auto  pt-4 md:px-8">
             <div className="">
-                <div className="max-w-lg">
-                    <h3 className="text-gray-800 text-2xl font-bold">
-                        Playground | GeoCoding
+                <div className="max-w-lg ">
+                    <h3 className="text-gray-800 text-2xl font-bold relative">
+                        Playground | <GeocodingDropdown/>
                     </h3>                
                 </div>
                 <div className="w-full mt-[1%]">

@@ -1,14 +1,24 @@
 import React , {useState} from "react"
 import Map from "./Map";
 import SideBarForm from "./SideBarForm";
+import { returnPlaygroundObject } from "../../data/playground";
+import { useSelector, useDispatch } from "react-redux"
 
 const MapView = () => {
     const [waypoint, setWayPoint] = useState([]);
     const [origin, setOrigin] = useState({ lat: null, lng: null });
     const [destination, setDestination] = useState({ lat: null, lng: null });
-    const [selectedButton, setSelectedButton] = useState("start");
-  
-    const setSelectedButtonFunction = (text) => setSelectedButton(text);
+    const [selectedButton, setSelectedButton] = useState("");
+    const { playground } = useSelector((state) => state) 
+
+
+    const setSelectedButtonFunction = (text) => {
+        if(text == selectedButton)
+            setSelectedButton("")
+        else
+            setSelectedButton(text)
+            
+    }
     const setOriginCoordinates = (coordinates) =>  setOrigin(coordinates);
     const setDestinationCoordinates = (coordinates) =>  setDestination(coordinates);
     const setWayPointsCoordinates = (coordinate) =>   (waypoint.length < 5) ? setWayPoint([...waypoint , coordinate]) : "";
@@ -30,6 +40,7 @@ const MapView = () => {
               destination={destination}
               setSelectedButtonFunction={setSelectedButtonFunction}
               selectedButton={selectedButton}
+              object={returnPlaygroundObject(playground.current)}
         />
         </div>
         <div className="bg-red-500 flex-1 flex-grow-0 flex-basis-70 h-screen"  style={{ flexBasis: '80%' }}> {/* Set height to 100% */}
