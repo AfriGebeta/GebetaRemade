@@ -7,14 +7,41 @@ import MapView from "./MapView";
 
 
 const PlayGround = () => {
+    
+    const [waypoint, setWayPoint] = useState([]);
+    const [origin, setOrigin] = useState({ lat: null, lng: null });
+    const [destination, setDestination] = useState({ lat: null, lng: null });
+
+
+    const setOriginCoordinates = (coordinates) =>  setOrigin(coordinates);
+    const setDestinationCoordinates = (coordinates) =>  setDestination(coordinates);
+    const setWayPointsCoordinates = (coordinate) =>   (waypoint.length < 5) ? setWayPoint([...waypoint , coordinate]) : null;
+
+    const clearWaypoints = () => setWayPoint([]);
+    const clearDestination = () => setDestination({ lat: null, lng: null });
+    const clearOrigin = () => setOrigin({ lat: null, lng: null });
 
 
     return (
         <div className="flex flex-col bg-white">
           <NavBar color={"white"} textColor={"black"}/>
-          <PlayGroundHeader />
-          <div className="w-[100%] mx-auto px-5 pt-4 md:px-10">
-                  <MapView/>
+          <PlayGroundHeader
+            clearWaypoints={clearWaypoints}
+            clearDestination={clearWaypoints}
+            clearOrigin={clearOrigin}
+          />
+          <div className="w-[100%] mx-auto pt-4 lg:px-10 md:px-5 ">
+                  <MapView
+                    setOriginalCoord = {setOriginCoordinates}
+                    setDestinationCoord = {setDestinationCoordinates}
+                    setWayPointsCoord = {setWayPointsCoordinates}
+                    waypoint = {waypoint}
+                    origin={origin}
+                    destination={destination}
+                    clearWaypoints={clearWaypoints}
+                    clearDestination={clearDestination}
+                    clearOrigin={clearOrigin}
+                  />
           </div>
           <Footer color={"white"} textColor={"black"}/>
         </div>

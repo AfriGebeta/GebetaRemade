@@ -7,11 +7,6 @@ import blackIcon from "./../../assets/img/black.png"
 import 'leaflet/dist/leaflet.css';
 
 
-
-
-
-
-
 const Map = ({
         setOriginCoordinates,
         setDestinationCoordinates,
@@ -35,9 +30,10 @@ const Map = ({
                 if(selectedButton == "destination")
                     setDestinationCoordinates({ lat, lng });
                 if(selectedButton == "waypoint"){
-                    console.log(waypoint)
+                
                     setWayPointsCoordinates({ lat, lng })
                 }
+                
                     
               },
             });

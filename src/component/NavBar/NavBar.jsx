@@ -18,6 +18,7 @@ const NavBar =  ({color  ,textColor}) => {
     const [signinModal, setSigninModal] = useState(false);
     const [signupModal, setSignUpModal] = useState(false);
     const [clicked, setClicked] = useState(false);
+
     const [aboutDropDownStatus, setAbout] = useState(true);
     const [communityDropDownStatus, setCommunity] = useState(true);
 
@@ -136,7 +137,7 @@ const NavBar =  ({color  ,textColor}) => {
                             <li>
                                 <p 
                                 onClick={() => setSignUpModal(true)}
-                                className="block py-3 px-4 font-medium text-center text-white bg-GebetaMain hover:bg-GebetaMain-200 active:bg-GebetaMain-200 active:shadow-none rounded-lg shadow md:inline">
+                                className=" py-3 px-4 font-medium text-center text-white bg-GebetaMain hover:bg-GebetaMain-200 active:bg-GebetaMain-200 active:shadow-none rounded-lg shadow  ">
                                     Sign up
                                 </p>
                             </li>

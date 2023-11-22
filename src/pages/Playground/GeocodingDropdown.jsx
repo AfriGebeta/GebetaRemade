@@ -4,12 +4,16 @@ import { useSelector, useDispatch } from "react-redux"
 import { changeTopicPlayGround } from "../../redux/reducers/playgroundSlice";
 
 
-function GeocodingDropdown() {
+function GeocodingDropdown( {
+    clearWaypoints,
+    clearDestination,
+    clearOrigin
+}) {
     const [isOpen, setIsOpen] = useState(false);
     const { playground } = useSelector((state) => state) 
     const toggleOpen = () => setIsOpen(!isOpen);
     const dispatch = useDispatch()
-  
+    
     return (
         <div className="inline-flex bg-white border rounded-md ">
             <button
@@ -37,31 +41,56 @@ function GeocodingDropdown() {
                 <div className="absolute left-0 z-10 w-56 mt-4  bg-white border border-gray-100 rounded-md shadow-lg">
                    <div className="p-2">
                        <a
-                            onClick={()=>{ dispatch(changeTopicPlayGround("geocoding")) }}
+                            onClick={()=>{ 
+                                dispatch(changeTopicPlayGround("geocoding"))
+                                clearWaypoints();
+                                clearDestination();
+                                clearOrigin();
+                            }}
                             className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
                            Geocoding
                        </a>
                        <a
-                           onClick={()=>{ dispatch(changeTopicPlayGround("direction")) }}
+                           onClick={()=>{ 
+                            dispatch(changeTopicPlayGround("direction"))
+                            clearWaypoints();
+                            clearDestination();
+                            clearOrigin();
+                        }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
                           Direction
                        </a>
                        <a
-                          onClick={()=>{ dispatch(changeTopicPlayGround("matrix")) }}
+                          onClick={()=>{ 
+                            dispatch(changeTopicPlayGround("matrix"))
+                            clearWaypoints();
+                            clearDestination();
+                            clearOrigin();
+                        }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
                            Matrix
                        </a>
                        <a
-                          onClick={()=>{ dispatch(changeTopicPlayGround("onm")) }}
+                          onClick={()=>{ 
+                            dispatch(changeTopicPlayGround("onm"))
+                            clearWaypoints();
+                            clearDestination();
+                            clearOrigin();
+                        }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
                            ONM
                        </a>
                        <a
-                         onClick={()=>{ dispatch(changeTopicPlayGround("tss")) }}
+                         onClick={()=>{ 
+                            dispatch(changeTopicPlayGround("tss"))
+                            clearWaypoints();
+                            clearDestination();
+                            clearOrigin();
+                        }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
                            TSS
