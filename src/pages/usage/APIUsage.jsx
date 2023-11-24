@@ -40,7 +40,7 @@ function APIUsage() {
   };
 
   return (
-    <div className="rounded-md px-4 py-3 bg-[#202022] mt-[12%] md:mt-[2%] ">
+    <div className="rounded-md px-4 py-3 bg-[#202022] ">
       <div className="flex justify-between items-center w-full sm:!sw">
         <div>
           <h2 className="m-0">API Usage</h2>
@@ -58,7 +58,8 @@ function APIUsage() {
             <Line options={options} data={datas} className="!w-full" />
           ) : (
             <h3 className="text-white">
-              You don't have any account activity for the selected period.
+              You don't have any account activity for the selected period and
+              API key.
             </h3>
           )}
         </div>
