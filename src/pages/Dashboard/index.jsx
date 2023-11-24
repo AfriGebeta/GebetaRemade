@@ -4,68 +4,88 @@ import { ReactComponent as SettingsIcon } from "../../assets/img/settings.svg";
 import ApiDetail from "./ApiDetail";
 import DocCard from "./DocCard";
 import ApiToken from "./APIToken";
-import APIUsage from "./APIUsage";
-import NavBar from "../../component/NavBar/NavBar";
+import DashBoardNav from "../../component/NavBar/DashBoardNav";
 import Footer from "../../component/Footer/Footer";
+
 
 function Cards() {
 
-  return (
-    <div className="flex gap-6 items-stretch flex-wrap">
-      <DocCard />
 
-      <div className="flex-1 ">
-        <div className="p-6 bg-[#202022] h-full text-[#777] rounded-md">
-          <div className="flex gap-4 items-center px-5 py-2">
-            <SettingsIcon className="" fill="#777" />
-            <h2 className="m-0 uppercase">Business Pac.</h2>
-            <DirectionIcon />
-          </div>
-          <div className="leading-3 py-3">
-            <h2>userData.username</h2>
-            <span className="!m-0 !p-0 ">
-              {/* <CurrentPlan /> */}
-            </span>
-          </div>
-        </div>
+  
+  const metrics = {}
+  const objs = [
+    {
+      package: "ONM",
+      calls: metrics.onm,
+    },
+    {
+      package: "Matrix",
+      calls: metrics.matrix,
+    },
+    {
+      package: "Direction",
+      calls: metrics.direction,
+    },
+    {
+      package: "Tss",
+      calls: metrics.tss,
+    },
+
+    {
+      package: "Geocoding",
+      calls: metrics.Geocoding,
+    },
+
+
+    
+  ];
+
+  return (
+    <>
+  
+<div className="flex gap-6 flex-wrap mt-[2%]">
+<DocCard />
+
+<div className="flex-1 flex grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 justify-evenly">
+  {objs.map((data, i) => (
+    <div
+      key={i}
+      className="p-4 bg-[#202022] flex-1 text-[#777] rounded-md flex justify-between min-w-full xs:min-w-[40%]"
+    >
+      <div className="leading-3">
+        <h2 className="p-0 m-0">{data.package}</h2>
+        <p className="m-0 p-0">endpoint</p>
       </div>
-      <div className="">
-        <div className="p-6 bg-[#202022]  text-[#777] rounded-md">
-          <div className="flex gap-4 items-center px-5 py-2">
-            <SettingsIcon className="" fill="#777" />
-            <h2 className="m-0 uppercase">
-              Total Calls <small>calls</small>
-            </h2>
-            <DirectionIcon />
-          </div>
-          <div className="leading-3 py-3">
-            <h2>
-              {/* {metrics.onm + metrics.direction + metrics.matrix + metrics.tss + metrics.Geocoding}{" "} */}
-              {12}{" "}              
-              <small>calls</small>
-            </h2>
-           
-          </div>
-        </div>
+      <div className="flex items-end">
+        <h1 className="m-0">{data.calls}</h1>
+        <span>Calls</span>
       </div>
     </div>
+  ))}
+</div>
+</div>
+
+</>
   );
 }
 
 function Dashboard() {
+  let userData = { username : "asdf"}
   return (
-    <div className="w-full">
-      <NavBar color={"black"} textColor={"[#ccc]"}/>
-        <div className="w-[98%] mx-auto text-[#ccc] text-child flex flex-wrap gap-4">
-        <div className="flex-1 flex flex-col gap-6 ">
-          <ApiToken />
-          <ApiDetail />
-          <Cards />
-          <APIUsage />
+    <div className="flex flex-col min-h-screen">
+    <DashBoardNav color={"black"} textColor={"[#ccc]"}/>
+    <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
+      <div className=" justify-between items-center">
+        <div className="mt-[4%]">
+            <ApiDetail />
         </div>
+        <Cards />
+        <ApiToken />
       </div>
-      <Footer color={"black"} textColor={"[#ccc]"}/>
     </div>
+    <Footer color={"black"} textColor={"[#ccc]"}/>
+  </div>
+
    
   );
 }

@@ -1,11 +1,6 @@
 import React from "react";
-import { ReactComponent as Logo }  from "../../assets/img/direct.svg";
-import { ReactComponent as LocTargetIcon } from "../../assets/img/direct.svg";
-
-// import { ReactComponent as DirectionIcon } from "../../assets/img/direct.svg";
-// import { ReactComponent as SettingsIcon } from "../../assets/img/settings.svg";
-
-
+import  Logo  from "../../assets/img/icon/maplogo.png";
+import  LocTargetIcon  from "../../assets/img/locTarget.svg";
 
 
 function DocCard() {
@@ -19,15 +14,15 @@ function DocCard() {
       onClick={() => {
         handleClick();
       }}
-      className="p-6 bg-[#202022] text-[#777] self-start rounded-md max-w-full overflow-clip  "
+      className="p-6 bg-[#202022] text-[#777] self-start rounded-md w-[100%] md:w-[20%] md:max-w-full overflow-clip  "
     >
       <div className="flex gap-4 items-center px-5 py-2">
-        <Logo className="" fill="#777" />
+        <img src={Logo} className="" fill="#777" />
         <h2 className="m-0 uppercase">
           Api
           <br /> Documentation
         </h2>
-        <LocTargetIcon />
+        <img src={LocTargetIcon} />
       </div>
       <div className="leading-3 py-3">
         <span className="!m-0 !p-0 ">powered by</span>
