@@ -5,6 +5,7 @@ import Documentation from './pages/Documentation/index'
 import PlayGround from './pages/Playground';
 import Dashboard from './pages/Dashboard';
 import Usage from './pages/usage';
+import Priceplan from "./pages/priceplan"
 import "@fontsource/zen-dots";
 
 
@@ -12,7 +13,7 @@ function App() {
 
   return (
       <div className=' w-full bg-Dark'  style={{fontFamily: 'Trebuchet MS' }}>
-          <Usage />
+          <Priceplan />
           
 
       </div>
