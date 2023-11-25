@@ -64,7 +64,7 @@ function Usage() {
     </div> 
 
     
-    <Footer color={"black"} textColor={"[#ccc]"}/>
+
   </div>
 
    

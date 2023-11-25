@@ -1,0 +1,94 @@
+import React , {useState , useEffect} from "react";
+import Tooltip from "react-tooltip";
+
+const PricingSlider = ({ text }) => {
+  const [sliderValue, setSliderValue] = useState(1000);
+ 
+  const handleSliderChange = (e) => {
+    setSliderValue(e.target.value);
+  };
+ 
+  return (
+    <div className="flex justify-between grid grid-cols-2 md:grid-cols-4 mx-[3%] md:mx-[0%] mt-[4%]">
+      <div className="">
+        <p className="text-xl">{text}</p>
+      </div>
+      <div className="">
+        <input
+          type="range"
+          min="1000"
+          max="50001"
+          step="250"
+          value={sliderValue}
+          onChange={handleSliderChange}
+          data-tip
+        />
+        {/* <ReactTooltip>{sliderValue}</ReactTooltip> */}
+      </div>
+      <div className="">
+        <p className="text-xl ">10000 request</p>
+      </div>
+      <div className="flex items-center justify-center ">
+        <p className="text-xl ">0$</p>
+      </div>
+    </div>
+  );
+ };
+
+
+// Define the component
+const Pricing = () => {
+ 
+
+
+
+  // Return the JSX element
+  return (
+    <div className=" text-white  w-[100%] md:w-[60%] ">
+      <div className="mt-[2%] mx-[3%]">
+          <p>The Routes API uses a pay-as-you-go pricing model. The Google Maps Platform APIs and SDKs are billed by SKU. Usage is tracked for each SKU, and any API or SDK may have more than one product SKU. Cost is calculated by</p>
+          <p>SKU usage × Price per each use</p>
+
+        <p className="mt-[1%]"> Use our Pricing and Usage calculator to estimate your usage cost per API or SDK. </p>
+        <div className="w-full mt-[4%] bg-[#202022] rounded-md">
+           <div className="w-[80%] mx-auto py-[4%]">
+           <PricingSlider text = {"Direction API"}/>
+            <PricingSlider text = {"Matrix API"}/>
+            <PricingSlider text = {"ONM API"}/>
+            <PricingSlider text = {"Tss API"}/>
+            <PricingSlider text = {"Geocoding API"}/>
+
+           </div>
+
+        </div>  
+
+       
+        
+      </div>
+      
+
+    </div>
+  );
+};
+
+
+
+
+
+const Ourpricing = () => {
+    return (
+            <div className="mt-[10%] relative flex flex-col md:mt-[4%] w-full  ">
+                 <p className="mx-auto mb-[2%] text-[#A0AABA] text-3xl font-semibold sm:text-4xl" style={{fontFamily: "Zen Dots" }}>
+                                Pricing
+                </p>
+                <div className="flex justify-center">
+                   <Pricing />
+                </div>
+               
+                
+            </div>
+    )
+}
+
+
+export default Ourpricing

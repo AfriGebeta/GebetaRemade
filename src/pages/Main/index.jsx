@@ -11,8 +11,8 @@ import Hero from "./Hero";
 
 function Main(){
     return(
-        <div className=" flex flex-col ">
-            <NavBar  />   
+        <div className=" flex flex-col bg-Dark ">
+            
             <div className='flex flex-col w-full items-center relative'>
                 <Hero/>       
             </div> 
@@ -20,7 +20,7 @@ function Main(){
             <Solutions/>
             <Testimonials/>
             <Contact />    
-            <Footer />      
+               
         </div>  
     )
 }

@@ -14,7 +14,7 @@ const Documentation = () => {
 
     return (
       <div className="flex flex-col">
-        <NavBar color={"white"} textColor={"black"}/>
+        
         <DocumentationHeader />
         <div className="flex md:flex-row flex-col relative">
           <Sidebar />
@@ -26,7 +26,7 @@ const Documentation = () => {
             <Content object={returnDocumentationObject(documentation.current)} />
           </div>
         </div>
-        <Footer color={"white"} textColor={"black"}/>
+
       </div>
     );
   };

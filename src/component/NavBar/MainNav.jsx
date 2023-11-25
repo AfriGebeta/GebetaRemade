@@ -1,10 +1,9 @@
-import React ,{ useState , useEffect } from 'react'
+import React ,{ useState , useEffect ,useRef} from 'react'
 import logo from "./../../assets/img/icon/logo.png";
-
+import DualDropdowns from '../DropDown/DualDropdowns';
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
-import ProfileDropDown from '../DropDown/ProfileDropdown';
 
 
 
@@ -13,13 +12,16 @@ import ProfileDropDown from '../DropDown/ProfileDropdown';
 
 
 
-const DashBoardNav =  ({color  ,textColor}) => {
+const MainNav =  ({color  ,textColor}) => {
 
     const [state, setState] = useState(false)
     const [signinModal, setSigninModal] = useState(false);
     const [signupModal, setSignUpModal] = useState(false);
-   
-   
+    const [clicked, setClicked] = useState(false);
+
+    const [aboutDropDownStatus, setAbout] = useState(true);
+    const [communityDropDownStatus, setCommunity] = useState(true);
+
     const fromSignIntoSignUp = () => {
         setSignUpModal(true)
         setSigninModal(false)
@@ -31,13 +33,33 @@ const DashBoardNav =  ({color  ,textColor}) => {
     }
 
 
+
+
+    const handleClick = () => {
+        setClicked(!clicked);
+      };
+    
+      useEffect(() => {
+        document.addEventListener('click', handleClick);
+            setCommunity(true)
+            setAbout(true)
+ 
+        return () => {
+          document.removeEventListener('click', handleClick);
+        };
+      }, [clicked]);
+
+
+
     const navigation = [
-        {type : "text" , title: "Dashboard", path: "javascript:void(0)" },
-        {type : "text" , title: "Usage", path: "javascript:void(0)" },
-        {type : "text" , title: "price plan", path: "javascript:void(0)" },
-        {type : "text" , title: "Analytics", path: "javascript:void(0)" },
-        {type : "text" , title: "accounts", path: "javascript:void(0)" },
-      
+        {type : "text" , title: "Pricing", path: "javascript:void(0)" },
+        {type : "text" , title: "Products", path: "javascript:void(0)" },
+        {type : "text" , title: "Documentation", path: "javascript:void(0)" },
+        {type : "text" , title: "Blog", path: "javascript:void(0)" },
+        {
+            type : "component",
+            component: <DualDropdowns  textColor = {textColor} dropdown1={[{ text: "About us" }, { text: "Contact Us" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
+        }
    ]
 
     return (
@@ -104,9 +126,22 @@ const DashBoardNav =  ({color  ,textColor}) => {
                             })
                         }
                         <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
-                        <ProfileDropDown />
-
-                
+                        <div className='space-y-3 items-center gap-x-6 md:flex md:space-y-0'>
+                            <li>
+                                <p className={`hover:text-GebetaMain block py-3 text-center text-${textColor} hover:text-GebetaMain border rounded-lg md:border-none`}
+                                    onClick={() => setSigninModal(true)}
+                                >
+                                    Log in
+                                </p>
+                            </li>
+                            <li>
+                                <p 
+                                onClick={() => setSignUpModal(true)}
+                                className=" py-3 px-4 font-medium text-center text-white bg-GebetaMain hover:bg-GebetaMain-200 active:bg-GebetaMain-200 active:shadow-none rounded-lg shadow  ">
+                                    Sign up
+                                </p>
+                            </li>
+                        </div>
                      
                     </ul>
                   
@@ -121,4 +156,4 @@ const DashBoardNav =  ({color  ,textColor}) => {
 }
 
 
-export default DashBoardNav
+export default MainNav

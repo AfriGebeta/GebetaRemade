@@ -24,7 +24,7 @@ const PlayGround = () => {
 
     return (
         <div className="flex flex-col bg-white">
-          <NavBar color={"white"} textColor={"black"}/>
+         
           <PlayGroundHeader
             clearWaypoints={clearWaypoints}
             clearDestination={clearWaypoints}
@@ -43,7 +43,7 @@ const PlayGround = () => {
                     clearOrigin={clearOrigin}
                   />
           </div>
-          <Footer color={"white"} textColor={"black"}/>
+         
         </div>
     );
 };

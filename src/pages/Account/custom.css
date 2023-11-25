@@ -1,0 +1,14 @@
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);   
+}
+
+/* Assuming you have a class for the dropdown icon, e.g., .dropdown-icon */
+.select.relative::after {
+    content: '\25BC'; /* Unicode character for a downward-pointing triangle */
+    position: absolute;
+    top: 50%;
+    right: 0.75rem; /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    pointer-events: none; /* Ensures that the pseudo-element does not interfere with user interactions */
+  }
+  

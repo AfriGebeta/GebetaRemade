@@ -10,10 +10,10 @@ import Footer from "../../component/Footer/Footer";
 
 
 function Dashboard() {
-  let userData = { username : "asdf"}
+
   return (
-    <div className="flex flex-col min-h-screen">
-    <DashBoardNav color={"black"} textColor={"[#ccc]"}/>
+    <div className="bg-Dark flex flex-col min-h-screen">
+
     <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
       <div className=" justify-between items-center">
         <div className="mt-[4%]">
@@ -23,7 +23,7 @@ function Dashboard() {
         <ApiToken />
       </div>
     </div>
-    <Footer color={"black"} textColor={"[#ccc]"}/>
+
   </div>
 
    
