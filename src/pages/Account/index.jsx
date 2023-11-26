@@ -22,15 +22,10 @@ function Account() {
       <div className=" justify-between items-center">
         <div className="mt-[20%] md:mt-[3%]">
         <h3 className="text-white text-2xl font-bold">
-                        Documentation
+                       User Profile 
                     </h3>
         </div>
-      <div className="flex justify-between w-[100%] md:w-[20%] mt-[2%]">
-        <p>Change profile</p>
-        
-        <p>Billing</p>
-        <p></p>       
-      </div>
+     
    
       
       <ChangePassword/>

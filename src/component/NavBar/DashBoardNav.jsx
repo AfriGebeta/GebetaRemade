@@ -35,7 +35,7 @@ const DashBoardNav =  ({color  ,textColor}) => {
         {type : "text" , title: "Dashboard", path: "/dashboard" },
         {type : "text" , title: "Usage", path: "/usage" },
         {type : "text" , title: "price plan", path: "/priceplan" },
-        {type : "text" , title: "Analytics", path: "/account" },
+        {type : "text" , title: "Billing", path: "/billing" },
         {type : "text" , title: "accounts", path: "/account" },
       
    ]
