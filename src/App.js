@@ -13,6 +13,7 @@ import Footer from './component/Footer/Footer';
 import FoF from "./pages/404"
 import { AuthContext, AuthProvider } from './context/AuthProvider';
 import PrivateRoute from './routes/PrivateRoute';
+import About from './pages/About';
 import Products from './pages/Products';
 import Pricing from './pages/Pricing';
 import "@fontsource/zen-dots";
@@ -23,15 +24,16 @@ import "@fontsource/zen-dots";
 function App() {
   return (
     <AuthProvider>
-    <NavBar/>  
+     
     <BrowserRouter> 
+    <NavBar/> 
         <Routes>
             <Route path="/" element={<Main />} />
              <Route path="/documentation" element={<Documentation />} />
              <Route path="/playground" element={<PlayGround />} /> 
              <Route path="/products" element={<Products />} /> 
              <Route path="/pricing" element={<Pricing />} /> 
-             
+             <Route path="/about" element={<About />} /> 
              <Route path="/dashboard" element={
               <PrivateRoute>
                 <Dashboard />
@@ -60,9 +62,9 @@ function App() {
         </Routes>
 
          
-         
+        <Footer />   
     </BrowserRouter>
-    <Footer />   
+   
 </AuthProvider>
     
       );

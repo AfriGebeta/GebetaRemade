@@ -1,4 +1,5 @@
-import React from "react";
+import React , {useState,  useEffect }   from "react";
+import { useLocation } from 'react-router-dom';
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -6,17 +7,20 @@ import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
 
-    let color =  "Dark";
-    let textColor =  "white";
+    const [color, setColor] = useState("Dark");
+    const [textColor, setTextColor] = useState("white");
    
-    const currentPath = window.location.pathname;
-    if(currentPath == "/documentation" || currentPath == "/playground"){
-       color = "white"
-       textColor = "black"
-    }else{
-       color = "Dark"
-       textColor = "white"
+    const location = useLocation();
+
+    useEffect(() => {
+    if(location.pathname == "/documentation" || location.pathname == "/playground"){
+        setColor("white");
+        setTextColor("black");
+    } else {
+        setColor("Dark");
+        setTextColor("white");
     }
+    }, [location]);
 
 
     return (

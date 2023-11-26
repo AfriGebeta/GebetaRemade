@@ -4,12 +4,7 @@ import DualDropdowns from '../DropDown/DualDropdowns';
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
-
-
-
-
-
-
+import { Link } from 'react-router-dom';
 
 
 const MainNav =  ({color  ,textColor}) => {
@@ -52,13 +47,16 @@ const MainNav =  ({color  ,textColor}) => {
 
 
     const navigation = [
-        {type : "text" , title: "Pricing", path: "javascript:void(0)" },
-        {type : "text" , title: "Products", path: "javascript:void(0)" },
-        {type : "text" , title: "Documentation", path: "javascript:void(0)" },
-        {type : "text" , title: "Blog", path: "javascript:void(0)" },
+        {type : "text" , title: "Home", path: "/" },
+        {type : "text" , title: "Pricing", path: "/pricing" },
+        {type : "text" , title: "Products", path: "/products" },
+        {type : "text" , title: "Documentation", path: "/documentation" },
+        // {type : "text" , title: "Blog", path: "javascript:void(0)" },
         {
             type : "component",
-            component: <DualDropdowns  textColor = {textColor} dropdown1={[{ text: "About us" }, { text: "Contact Us" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
+
+            // {text : "Careers"} ,{ text: "Blog" }
+            component: <DualDropdowns  textColor = {textColor} dropdown1={[{ text: "About us" , path : "/about" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
         }
    ]
 
@@ -116,9 +114,11 @@ const MainNav =  ({color  ,textColor}) => {
                                 if (item.type == "text")
                                 return (
                                     <li key={idx} className={`text-${textColor} hover:text-GebetaMain`}>
-                                        <a href={item.path} className="block">
+                                        <Link 
+                                        to={item.path}
+                                        className="block">
                                             {item.title}
-                                        </a>
+                                        </Link>
                                     </li>
                                 )
                                 else
