@@ -16,6 +16,7 @@ function Signin({ signintosignup }) {
 
 
   const handleContinue = () => {
+    console.log("ok clicked khere")
     // Call the login function from the context
     authContext.login();
 
