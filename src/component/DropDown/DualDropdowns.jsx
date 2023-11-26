@@ -61,11 +61,12 @@ const DualDropdowns = ({textColor ,dropdown1 , dropdown2}) => {
               <ul>
                 {
                     dropdown1.map((item)=>{
-                       return (<li className="hover:text-GebetaMain py-2 px-4 hover:bg-gray-100 cursor-pointer">
-                        <Link to={item.path}>
-                        {item.text}
-                        </Link>
-                       </li>)
+                       return (
+                       
+                        <Link className='w-full' to={item.path}> <li className="hover:text-GebetaMain py-2 px-4 hover:bg-gray-100 cursor-pointer"> {item.text} </li> </Link>
+                   
+                       
+                       )
                     })
                 }
                 

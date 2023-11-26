@@ -50,8 +50,8 @@ const SelectForGraph = () => {
 function Usage() {
   let userData = { username : "asdf"}
   return (
-    <div className="flex flex-col min-h-screen">
-   <DashBoardNav color={"black"} textColor={"[#ccc]"}/>
+    <div className="flex flex-col min-h-screen bg-Dark">
+   
     <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
       <div className=" justify-between items-center">
         <div className="mt-[20%] md:mt-[3%]">

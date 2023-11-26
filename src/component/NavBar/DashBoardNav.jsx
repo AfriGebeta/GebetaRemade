@@ -1,6 +1,6 @@
 import React ,{ useState , useEffect } from 'react'
 import logo from "./../../assets/img/icon/logo.png";
-
+import { Link } from 'react-router-dom';
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
@@ -32,11 +32,11 @@ const DashBoardNav =  ({color  ,textColor}) => {
 
 
     const navigation = [
-        {type : "text" , title: "Dashboard", path: "javascript:void(0)" },
-        {type : "text" , title: "Usage", path: "javascript:void(0)" },
-        {type : "text" , title: "price plan", path: "javascript:void(0)" },
-        {type : "text" , title: "Analytics", path: "javascript:void(0)" },
-        {type : "text" , title: "accounts", path: "javascript:void(0)" },
+        {type : "text" , title: "Dashboard", path: "/dashboard" },
+        {type : "text" , title: "Usage", path: "/usage" },
+        {type : "text" , title: "price plan", path: "/priceplan" },
+        {type : "text" , title: "Analytics", path: "/account" },
+        {type : "text" , title: "accounts", path: "/account" },
       
    ]
 
@@ -93,11 +93,18 @@ const DashBoardNav =  ({color  ,textColor}) => {
                             navigation.map((item, idx) => {
                                 if (item.type == "text")
                                 return (
-                                    <li key={idx} className={`text-${textColor} hover:text-GebetaMain`}>
+
+                                    <Link 
+                                    to={item.path}
+                                    className="block">
+                                         <li key={idx} className={`text-${textColor} hover:text-GebetaMain`}>
                                         <a href={item.path} className="block">
                                             {item.title}
                                         </a>
                                     </li>
+                                    </Link>
+
+                                  
                                 )
                                 else
                                 return <li>{item.component}</li>

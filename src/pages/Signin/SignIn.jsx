@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "./../../context/AuthProvider";
+import { useNavigate } from "react-router-dom"; 
 
 function Signin({ signintosignup }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
-
+  const authContext = useContext(AuthContext); // Access the AuthContext
+  const navigate = useNavigate();
   const handleUsername = (event) => setUserName(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
+
   
+
+
+  const handleContinue = () => {
+    // Call the login function from the context
+    authContext.login();
+
+    // Navigate to another page using React Router
+     navigate("/dashboard");
+  };
+
 
   return (
     <div className="md:card h-full md:h-auto w-[100%] md:w-[25%] md:rounded bg-Dark text-white p-10 absolute md:top-[10%] left-1/2 transform -translate-x-1/2 ">
@@ -50,7 +63,9 @@ function Signin({ signintosignup }) {
 
                     <button
                         className="w-[100%] mt-[5%] bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 px-4 rounded"
-                        type="button">
+                        type="button"
+                        onClick={handleContinue}
+                        >
                             Continue
                     </button>
 

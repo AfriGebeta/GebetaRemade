@@ -1,8 +1,20 @@
-import React , {useState} from "react";
+import React , {useState , useContext} from "react";
+import { useNavigate } from "react-router-dom"; 
+import { AuthContext } from "../../context/AuthProvider";
 
 const ProfileDropDown = (props) => {
 
     const [state, setState] = useState(false)
+    const authContext = useContext(AuthContext); // Access the AuthContext
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // Call the login function from the context
+        authContext.logout()
+    
+        // Navigate to another page using React Router
+         navigate("/");// Replace "/another-page" with the path of the page you want to navigate to
+    };
 
 
     const navigation = [
@@ -30,7 +42,7 @@ const ProfileDropDown = (props) => {
                 {
                     navigation.map((item, idx) => (
                         <li>
-                            <a key={idx} className="block text-gray-600 lg:hover:bg-gray-50 lg:p-2.5" href={item.path}>
+                            <a key={idx} onClick={handleLogout} className="block text-gray-600 lg:hover:bg-gray-50 lg:p-2.5" href={item.path}>
                                 {item.title}
                             </a>
                         </li>

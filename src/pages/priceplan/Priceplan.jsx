@@ -15,23 +15,23 @@ function Plan({ data }) {
       }
     >
       <div className="flex-1">
-        <h3>{data.name}</h3>
-        <div className="flex gap-2 items-end">
+        <h3 className="font-bold">{data.name}</h3>
+        <div className="flex gap-2 items-end mt-[3%]">
           <div className="self-stretch pt-2">
-            <sup className=" ">$</sup>
+            <p className=" ">$</p>
           </div>
           <h1 className="m-0 inline-block">{data.price}</h1>
           <tiny>per 1000 calls</tiny>
         </div>
         <hr className="border-gray-500" />
-        <p className="max-w-[300px]">{data.description}</p>
+        <p className="mt-[5%] max-w-[300px]">{data.description}</p>
       </div>
       <div className="flex-1 mb-10 min-h-[170px]">
-        <h2 className="!font-normal">Core Features</h2>
-        <h4>{data.name}</h4>
+        <h2 className="font-bold mb-[2%]">Core Features</h2>
+
         {data.features.map((feature, i) => (
           <li className="flex list-none items-center gap-3" key={i}>
-            {/* <ListIcon /> */}
+            
             {feature}
           </li>
         ))}

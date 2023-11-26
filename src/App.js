@@ -34,6 +34,7 @@ function App() {
              <Route path="/products" element={<Products />} /> 
              <Route path="/pricing" element={<Pricing />} /> 
              <Route path="/about" element={<About />} /> 
+             {/* private route  */}
              <Route path="/dashboard" element={
               <PrivateRoute>
                 <Dashboard />
