@@ -2,7 +2,7 @@ import React , {useState , useEffect} from "react";
 import Tooltip from "react-tooltip";
 
 const PricingSlider = ({ text }) => {
-  const [sliderValue, setSliderValue] = useState(1000);
+  const [sliderValue, setSliderValue] = useState(0);
  
   const handleSliderChange = (e) => {
     setSliderValue(e.target.value);
@@ -16,9 +16,9 @@ const PricingSlider = ({ text }) => {
       <div className="">
         <input
           type="range"
-          min="1000"
-          max="50001"
-          step="250"
+          min="0"
+          max="1000000"
+          step="1"
           value={sliderValue}
           onChange={handleSliderChange}
           data-tip
@@ -26,10 +26,10 @@ const PricingSlider = ({ text }) => {
         {/* <ReactTooltip>{sliderValue}</ReactTooltip> */}
       </div>
       <div className="">
-        <p className="text-xl ">10000 request</p>
+        <p className="text-xl ">{sliderValue} request</p>
       </div>
       <div className="flex items-center justify-center ">
-        <p className="text-xl ">0$</p>
+        <p className="text-xl ">{parseInt(sliderValue*0.2)} birr</p>
       </div>
     </div>
   );

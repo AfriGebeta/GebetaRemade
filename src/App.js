@@ -32,7 +32,7 @@ function App() {
              <Route path="/documentation" element={<Documentation />} />
              <Route path="/playground" element={<PlayGround />} /> 
              <Route path="/products" element={<Products />} /> 
-             <Route path="/pricing" element={<Pricing />} /> 
+          
              <Route path="/about" element={<About />} /> 
              {/* private route  */}
              <Route path="/dashboard" element={
@@ -40,6 +40,16 @@ function App() {
                 <Dashboard />
               </PrivateRoute>
               } />
+
+
+<Route path="/dashboard" element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+              } />
+
+
+<Route path="/pricing" element={<Pricing />} /> 
 
               <Route path="/usage" element={
               <PrivateRoute>
