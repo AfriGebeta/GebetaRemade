@@ -12,7 +12,9 @@ const Sidebar = () => {
    
     
   const [expandedItems, setExpandedItems] = useState([]);
+  const { documentation } = useSelector((state) => state)
 
+  
   const toggleItem = (idx , href) => {
     const newExpandedItems = [...expandedItems];
     if (newExpandedItems.includes(href)) {
@@ -34,7 +36,7 @@ const Sidebar = () => {
                                 <li key={idx}>
                                 <p
                                     onClick={() => toggleItem(idx , item.href)}
-                                    className={`text-black font-semibold block w-full py-2 px-4 hover:text-GebetaMain duration-150 ${expandedItems.includes(idx) ? 'active' : ''}`}
+                                    className={`${documentation.current == item.href ? 'text-GebetaMain' : ''} font-semibold block w-full py-2 px-4 hover:text-GebetaMain duration-150 ${expandedItems.includes(idx) ? 'active' : ''  }`}
                                 >
                                     {item.name}  
                                 </p>

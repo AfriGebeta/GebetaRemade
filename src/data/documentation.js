@@ -505,42 +505,42 @@ export const documentationSideBarLinks =  [
 
     },
 
-    { 
-        name: "MapMatching", 
-        href: "intro",
-        subList : [
-            { 
-                name : 'Overview',
-                href : "javascript:void(0)"
-            },
-            { 
-                name : 'use case of Direction API',
-                href : "javascript:void(0)"
-            },
-            { 
-                name : 'Requirement parameter',
-                href : "javascript:void(0)"
-            },
-            { 
-                name : 'Optional parameter',
-                href : "javascript:void(0)"
-            },
-            { 
-                name : 'Directions API Responses',
-                href : "javascript:void(0)"
-            },
-            { 
-                name : 'Directions API restrictions and limits',
-                href : "javascript:void(0)"
-            },
-            { 
-                name : 'Directions API pricing',
-                href : "javascript:void(0)"
-            },
+    // { 
+    //     name: "MapMatching", 
+    //     href: "intro",
+    //     subList : [
+    //         { 
+    //             name : 'Overview',
+    //             href : "javascript:void(0)"
+    //         },
+    //         { 
+    //             name : 'use case of Direction API',
+    //             href : "javascript:void(0)"
+    //         },
+    //         { 
+    //             name : 'Requirement parameter',
+    //             href : "javascript:void(0)"
+    //         },
+    //         { 
+    //             name : 'Optional parameter',
+    //             href : "javascript:void(0)"
+    //         },
+    //         { 
+    //             name : 'Directions API Responses',
+    //             href : "javascript:void(0)"
+    //         },
+    //         { 
+    //             name : 'Directions API restrictions and limits',
+    //             href : "javascript:void(0)"
+    //         },
+    //         { 
+    //             name : 'Directions API pricing',
+    //             href : "javascript:void(0)"
+    //         },
             
-        ]
+    //     ]
 
-    }, 
+    // }, 
 
 ]
 
