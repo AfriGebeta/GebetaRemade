@@ -23,7 +23,7 @@ const Documentation = () => {
               Overview
             </p>
           
-            <Content object={returnDocumentationObject(documentation.current)} />
+            <Content object={returnDocumentationObject(documentation.current)} current = {documentation.current} />
           </div>
         </div>
 
