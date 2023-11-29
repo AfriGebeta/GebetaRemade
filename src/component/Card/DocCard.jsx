@@ -1,13 +1,13 @@
 import React from "react";
 import  Logo  from "../../assets/img/icon/maplogo.png";
 import  LocTargetIcon  from "../../assets/img/locTarget.svg";
-
+import { useNavigate } from "react-router-dom"; 
 
 function DocCard() {
 
-
+  const navigate = useNavigate();
   const handleClick = (event) => {
-   
+    navigate("/documentation");
   };
   return (
     <div

@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { add, format } from "date-fns";
 
-function ApiDetail() {
+function ApiDetail({ metrics }) {
+  
+  const user = useSelector((state) => state).user
 
-  const dispatch = useDispatch();
+  console.log(user)
 
-  const [detail] = useState({
-    status: "active",
-    type: "pay-as-you-go",
-    nextbilling: "Feb 28,2022",
-    totalusage: "23,127 Calls",
-    maxusage: {
-      directionEP: "78%",
-    },
-    minusage: {
-      matrixEP: "3%",
-    },
-  });
 
-  const metrics = {}
-
-  const addDate = () => {
+  const addDate = (date) => {
     try {
-      const dateString = new Date("userData.purchasedDate");
+      const dateString = new Date(date);
       const _date = add(dateString, {
         days: 30,
       });
@@ -35,7 +24,7 @@ function ApiDetail() {
   };
 
   const getTotal = () => {
-    return metrics.onm + metrics.direction + metrics.matrix + metrics.tss;
+    return metrics.ONM + metrics.Direction + metrics.Matrix + metrics.TSS + metrics.Geocoding;
   };
 
   const getMaximum = () => {
@@ -59,49 +48,49 @@ function ApiDetail() {
     <div className="flex-1 flex flex-col w-full grid grid-cols-2  md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-6 justify-evenly bg-[#202022]  py-3 px-3 ">
     <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
         <h4 className="m-0 pr-2">API Token Status</h4>
-        <span className="text-green-500">{detail.status}</span>
+        <span className={` ${user.data.token != null ? "text-green-500" : "text-red-500"}`}>
+           {user.data.token != null ? "active" : "inactive"}
+        </span>
       </div>
       <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
         <h4 className="m-0 pr-2">Subscription</h4>
-        <span className="text-green-500">{detail.type}</span>
+        <span className="text-green-500">pay-as-you-go</span>
       </div>
       <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
        
         <h4 className=" m-0 pr-2">Next Billing</h4>
-        <h3 className="!text-secondary">2/12/2015</h3>
+        <h3 className="!text-secondary">
+          {user.data.purchasedDate != null ? addDate(user.data.purchasedDate) : "-"}
+        </h3>
       </div>
       <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
         <h4 className="!text-secondary m-0 pr-2">Total Usage</h4>
-        <h3 className="m-0">1212</h3>
+        <h3 className="m-0">{getTotal()}</h3>
         
       </div>
       <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
  
-          {/* {getMaximum()[0]} Endpoint - {getMaximum()[1]} */}
+    
        
 
-        <h4 className="!text-secondary m-0 pr-2">Min Usage</h4>
+        <h4 className="!text-secondary m-0 pr-2">Max Usage</h4>
         <h3 className="">
-          {/* {getMinimum()[0]} Endpoint - {getMinimum()[1]} */}
-          ONM endpoint - 212
+         
+        {getMinimum()[0]} - {getMinimum()[1]}
        </h3>
         
       </div>
       <div className="leading-4 pl-2 flex flex-row-rev flex-wrap items-center whitespace-nowrap snap-start">
       <h4 className="!text-secondary m-0 pr-2">Min Usage</h4>
         <h3 className="">
-          {/* {getMinimum()[0]} Endpoint - {getMinimum()[1]} */}
-          ONM endpoint - 212
+          {getMaximum()[0]}  - {getMaximum()[1]} 
+         
        </h3>
         
       </div>
 
   </div>
 
-
-    // <div className="flex gap-10 items-center px-4 py-3 bg-[#202022] overflow-x-auto snap-x scroll-shadow mt-[4%]">
-      
-    // </div>
   );
 }
 

@@ -1,12 +1,9 @@
-import React from "react";
+import React,{useState , useEffect} from "react";
 import './custom.css'
+import { useSelector } from "react-redux";
 import ApiDetail from "../../component/Card/ApiDetail";
-import Cards from "./Card";
-import ApiToken from "./APIToken";
-import DashBoardNav from "../../component/NavBar/DashBoardNav";
-import Footer from "../../component/Footer/Footer";
 import APIUsage from "../Dashboard/APIUsage";
-
+import { getUserUsage } from "../../redux/api/usageAPI";
 
 const SelectForGraph = () => {
   return (
@@ -48,18 +45,26 @@ const SelectForGraph = () => {
   )
 }
 function Usage() {
-  let userData = { username : "asdf"}
+  const [metrics , setMetrics] = useState({})
+  const user = useSelector((state) => state).user
+
+  useEffect(()=>{
+    getUserUsage(user.data.id).then((response)=>{
+      if(response.error == null) setMetrics(response.data.data)
+    })
+  },[])
+
   return (
     <div className="flex flex-col min-h-screen bg-Dark">
    
     <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
       <div className=" justify-between items-center">
         <div className="mt-[20%] md:mt-[3%]">
-            <ApiDetail />
+            <ApiDetail metrics={metrics} />
         </div>
         <SelectForGraph/>
  
-        <APIUsage />
+        <APIUsage /> 
       </div>
     </div> 
 

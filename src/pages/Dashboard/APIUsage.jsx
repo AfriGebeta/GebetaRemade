@@ -3,12 +3,31 @@ import { useSelector } from "react-redux";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-
+import { getUserUsageForGraph } from "../../redux/api/usageAPI";
 
 function APIUsage() {
 
   const [labels, setLabels] = useState([]);
   const [data, setData] = useState([]);
+
+  const user = useSelector((state) => state).user
+  // 
+  useEffect(()=>{
+    getUserUsageForGraph(user.data.id).then((response)=>{
+      if(response.error == null) {
+        let labels = []
+        let data = []
+        for (let [key, value] of Object.entries(response.data.data)) {
+          labels.push(key)
+          data.push(value)
+        }
+        setLabels(labels)
+        setData(data)
+      }
+    })
+  },[])
+
+
 
 
   const options = {
