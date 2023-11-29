@@ -14,7 +14,7 @@ function Dashboard() {
   return (
     <div className="bg-Dark flex flex-col min-h-screen">
 
-    <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
+    <div className="w-[95%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
       <div className=" justify-between items-center">
         <div className="mt-[4%]">
             <ApiDetail />

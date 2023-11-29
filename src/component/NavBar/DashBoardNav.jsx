@@ -1,12 +1,12 @@
-import React ,{ useState , useEffect } from 'react'
+import React ,{ useState , useEffect , useContext } from 'react'
 import logo from "./../../assets/img/icon/logo.png";
 import { Link } from 'react-router-dom';
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
 import ProfileDropDown from '../DropDown/ProfileDropdown';
-
-
+import { useNavigate } from "react-router-dom"; 
+import { AuthContext } from '../../context/AuthProvider';
 
 
 
@@ -18,7 +18,9 @@ const DashBoardNav =  ({color  ,textColor}) => {
     const [state, setState] = useState(false)
     const [signinModal, setSigninModal] = useState(false);
     const [signupModal, setSignUpModal] = useState(false);
-   
+
+    const authContext = useContext(AuthContext); // Access the AuthContext
+    const navigate = useNavigate();
    
     const fromSignIntoSignUp = () => {
         setSignUpModal(true)
@@ -30,6 +32,12 @@ const DashBoardNav =  ({color  ,textColor}) => {
         setSigninModal(true)
     }
 
+    const handleLogout = () => {
+        authContext.logout();
+        // Navigate to another page using React Router
+         navigate("/");
+    }
+
 
     const navigation = [
         {type : "text" , title: "Dashboard", path: "/dashboard" },
@@ -37,6 +45,7 @@ const DashBoardNav =  ({color  ,textColor}) => {
         {type : "text" , title: "price plan", path: "/priceplan" },
         {type : "text" , title: "Billing", path: "/billing" },
         {type : "text" , title: "accounts", path: "/account" },
+        
       
    ]
 
@@ -111,7 +120,17 @@ const DashBoardNav =  ({color  ,textColor}) => {
                             })
                         }
                         <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
-                        <ProfileDropDown />
+                        <div className='hidden md:flex'><ProfileDropDown /></div>
+
+                  
+                        <li  
+                        onClick={(e) => { e.preventDefault(); handleLogout()}}
+                        className={`text-${textColor} hover:text-GebetaMain`}>
+                            <a  className="block md:hidden">
+                               logout 
+                            </a>
+                        </li>
+                              
 
                 
                      
