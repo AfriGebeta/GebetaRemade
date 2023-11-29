@@ -40,7 +40,7 @@ const DualDropdowns = ({textColor ,dropdown1 , dropdown2}) => {
     };
   
     return (
-      <div className="md:flex  flex-col md:flex-row  md:space-x-4" ref={dropdownContainerRef}>
+      <div className="md:flex  flex-col md:flex-row  md:space-x-4 space-y-3 md:space-y-0" ref={dropdownContainerRef}>
         <div className="relative">
         
 
