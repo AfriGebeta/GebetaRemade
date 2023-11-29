@@ -4,7 +4,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
 
     const [color, setColor] = useState("Dark");
@@ -28,8 +28,8 @@ const Footer = () => {
             <div className="border-t-1 border-gray-600 absolute top-[-2px] left-0 right-0"></div>
             <div className="mx-[5%] flex justify-between items-center">
                 <div className={`flex space-x-3 text-${textColor}`}>
-                    <p className="hover:text-GebetaMain">Terms |</p>
-                    <p className="hover:text-GebetaMain">Privacy</p>
+                    <Link to="/terms"><p className="hover:text-GebetaMain">Terms |</p></Link>
+                    <Link to="/privacy"><p className="hover:text-GebetaMain">Privacy</p></Link> 
                 </div>
 
                 {/* icons */}

@@ -5,7 +5,7 @@ import Hero from "./Hero";
 
 const FirstSection = () =>{
     return(
-        <div className="mt-[6%] text-black mx-[4%] md:mx-[15%] w-[60%] mb-[4%]">
+        <div className="mt-[6%] text-black mx-[4%] md:mx-[15%] w-[90%] md:w-[60%] mb-[4%]">
              <p  className=' text-[#A0AABA] md:text-4xl text-2xl' style={{fontFamily: "Zen Dots" }}>
                 We reimagine the way the world moves for the better</p>  
             <div className="">

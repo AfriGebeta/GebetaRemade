@@ -16,6 +16,8 @@ import PrivateRoute from './routes/PrivateRoute';
 import About from './pages/About';
 import Products from './pages/Products';
 import Pricing from './pages/Pricing';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 import "@fontsource/zen-dots";
 
 
@@ -32,7 +34,9 @@ function App() {
              <Route path="/documentation" element={<Documentation />} />
              <Route path="/playground" element={<PlayGround />} /> 
              <Route path="/products" element={<Products />} /> 
-          
+            <Route path = "/privacy" element={<Privacy/>} />
+            <Route path = "/terms" element={<Terms/>} />
+            
              <Route path="/about" element={<About />} /> 
              {/* private route  */}
              <Route path="/dashboard" element={
