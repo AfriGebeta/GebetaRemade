@@ -118,7 +118,7 @@ const MainNav =  ({color  ,textColor}) => {
                                 return (
                                     <li key={idx} className={`text-${textColor} hover:text-GebetaMain`}>
                                         <Link 
-                                        to={item.path}
+                                        to={item.path}  
                                         className="block">
                                             {item.title}
                                         </Link>

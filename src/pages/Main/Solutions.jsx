@@ -10,7 +10,7 @@ const Solutions = () => {
                 <div>
                     <div className="hidden md:flex flex-col md:flex-row  text-white w-full  justify-between items-center ">
                             <div className= "  md:ml-[10%] m:mr-[5%] ">
-                                <p className="text-4xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Provide local information </p>
+                                <p className="text-5xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Provide local information </p>
 
                               
                                 <p className="mt-[3%] text-[#A0AABA]">Use Mapbox APIs and SDKs, ready-made map styles, and live updating data to build customizable maps for web, mobile, automotive and AR.</p>
@@ -23,7 +23,7 @@ const Solutions = () => {
                         <div className=" md:hidden flex flex-col md:flex-row  text-white w-[100%]  justify-between items-center  space-x-5 ">
                             <div className= " w-[80%] mx-auto  ">
                              
-                                <p className="text-4xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Provide local information </p>
+                                <p className="text-2xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Provide local information </p>
                                 <p className="mt-[3%] text-[#A0AABA]">Use Mapbox APIs and SDKs, ready-made map styles, and live updating data to build customizable maps for web, mobile, automotive and AR.</p>
                             </div>
                         
@@ -39,7 +39,7 @@ const Solutions = () => {
                             <img className=" md:ml-[10%] m:mr-[5%] w-[50%] h-[50%]" src={displayImage}/>
                             <div className= "  md:ml-[10%] m:mr-[5%] ">
                         
-                                <p className="text-4xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Offer efficient routes</p>
+                                <p className="text-5xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Offer efficient routes</p>
                                 <p className="mt-[3%] text-[#A0AABA]">Use Mapbox APIs and SDKs, ready-made map styles, and live updating data to build customizable maps for web, mobile, automotive and AR.</p>
                             </div>
                         
@@ -50,7 +50,7 @@ const Solutions = () => {
                         <div className=" md:hidden flex flex-col md:flex-row  text-white w-[100%]  justify-between items-center  space-x-5 ">
                             <div className= " w-[80%] mx-auto  ">
                               
-                                <p className="text-4xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Offer efficient routes</p>
+                                <p className="text-3xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Offer efficient routes</p>
                                 <p className="mt-[3%] text-[#A0AABA]">Use Mapbox APIs and SDKs, ready-made map styles, and live updating data to build customizable maps for web, mobile, automotive and AR.</p>
                             </div>
                         
@@ -65,7 +65,7 @@ const Solutions = () => {
                     <div className="hidden md:flex flex-col md:flex-row  text-white w-full  justify-between items-center ">
                             <div className= "  md:ml-[10%] m:mr-[5%] ">
                          
-                                <p className="text-4xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Improve addresses</p>
+                                <p className="text-5xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Improve addresses</p>
                                 <p className="mt-[3%] text-[#A0AABA]">Use Mapbox APIs and SDKs, ready-made map styles, and live updating data to build customizable maps for web, mobile, automotive and AR.</p>
                             </div>
                         
@@ -76,7 +76,7 @@ const Solutions = () => {
                         <div className=" md:hidden flex flex-col md:flex-row  text-white w-[100%]  justify-between items-center  space-x-5 ">
                             <div className= " w-[80%] mx-auto  ">
                                
-                                <p className="text-4xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Improve addresses</p>
+                                <p className="text-3xl text-[#A0AABA]" style={{fontFamily: "Zen Dots" }}>Improve addresses</p>
                                 <p className="mt-[3%] text-[#A0AABA]">Use Mapbox APIs and SDKs, ready-made map styles, and live updating data to build customizable maps for web, mobile, automotive and AR.</p>
                             </div>
                         

@@ -56,12 +56,8 @@ const Hero = () => {
                 <p  className='text-center mt-[10%] md:mt-[15%] text-[#A0AABA] md:text-2xl text-xl' style={{fontFamily: "Zen Dots" }}>LET US FIND YOUR WAY</p>  
                 </div>
 
-               <div class="inline-flex flex-col md:flex-row items-center justify-center w-full max-w-6xl mx-auto   ">
-                   {/* <Link
-                    to = ""
-                   >
-                   </Link> 
-                    */}
+               <div class=" mt-[24%] md:mt-[0%] inline-flex flex-col md:flex-row items-center justify-center w-full max-w-6xl mx-auto space-y-5 md:space-y-0   ">
+                   
                    <button  onClick={() => setSignUpModal(true)} class="rounded-full mt-[2%] md:mt-[0%] text-lg font-semibold px-6 py-3  mr-4  bg-GebetaMain text-white "> <span className="px-5">Get Started</span></button>
                    
                    <Link 
