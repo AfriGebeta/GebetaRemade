@@ -2,27 +2,19 @@ import React , {useState} from "react";
 import GeocodingDropdown from "./GeocodingDropdown";
 import { useSelector , useDispatch } from "react-redux";
 import { changeToken } from "../../redux/reducers/tokenSlice";
-const PlayGroundHeader = (
-    {
-        clearWaypoints,
-        clearDestination,
-        clearOrigin
-    }
-) => {
+
+const PlayGroundHeader = () => {
 
     const [search , setSearch] = useState("")
     const { token } = useSelector((state) => state) 
+ 
     const dispatch = useDispatch()
     return (
         <div className="w-full mx-auto  pt-4 md:px-8">
             <div className="">
                 <div className="max-w-lg ">
                         <h3 className="text-gray-800 text-2xl font-bold relative mx-[2%] md:mx-[0%]">
-                            Playground | <GeocodingDropdown
-                            clearWaypoints={clearWaypoints}
-                            clearDestination={clearDestination}
-                            clearOrigin={clearOrigin}
-                            />
+                            Playground | <GeocodingDropdown/>
                         </h3>                
                 </div>
                 <div className="md:w-full mt-[1%]">

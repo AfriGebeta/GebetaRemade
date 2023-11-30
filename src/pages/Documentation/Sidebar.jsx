@@ -1,7 +1,7 @@
 import React , {useState} from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { changeTopic } from "../../redux/reducers/documentationSlice";
-
+import { Link } from "react-router-dom";
 import { documentationSideBarLinks } from "../../data/documentation";
 
 
@@ -51,6 +51,16 @@ const Sidebar = () => {
                                 </ul>
                                 </li>
                             ))}
+                            <li>
+                              <Link
+                                to= "/playground"
+                              >
+                                <p
+                                    className={` font-semibold block w-full py-2 px-4 hover:text-GebetaMain duration-150  }`}>
+                                    PlayGround 
+                                </p>
+                              </Link>
+                            </li>
                             </ul>
                     </div>
             </div>

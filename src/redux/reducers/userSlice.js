@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { userLogin } from '../api/userApi'
 import { setToken } from '../api/userApi'
+import {updateprofile} from '../api/userApi'
 const initialState = {
    data : {},
   
@@ -43,6 +44,21 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+
+      .addCase(updateprofile.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateprofile.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload.data)
+        state.data = action.payload.data;
+      })
+      .addCase(updateprofile.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+
+      
   },    
   
 })

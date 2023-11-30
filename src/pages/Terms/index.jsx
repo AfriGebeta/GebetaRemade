@@ -6,61 +6,41 @@ import Hero from "./Hero";
 const FirstSection = () =>{
     return(
         <div className="mt-[6%] text-black mx-[4%] md:mx-[15%] w-[90%] md:w-[60%] mb-[4%]">
-             <p  className=' text-[#A0AABA] md:text-4xl text-2xl' style={{fontFamily: "Zen Dots" }}>
-             Signing up</p>  
+             
             <div className="">
                 <p className="mt-[1%]">
-                In order to use most Services, you must register for or authenticate into a Mapbox account. To use our Services through a Marketplace, you may additionally or alternatively be required to register for or authenticate into a separate account for that Marketplace. When you use our application program interfaces (APIs), including our SDK Registry/Downloads API, each request to an API must include one of your account's unique API keys.
+                    Gebeta Software Private Limited Company Please read these Terms and Conditions carefully before using Gebeta Map API operated by Gebeta Software Private Limited Company. In using this website you are deemed to have read and agreed to the following terms and conditions:
                 </p>
                 <p className="mt-[1%]">
-                Please carefully guard the security of your account and monitor use of your API keys. You are responsible for all use of the Services under your account, whether or not authorized, including any use of your API keys. At our discretion, we may make limited exceptions to this policy for unauthorized use of your account if you notify us of the problem promptly.
+                    The following terminology applies to these Terms and Conditions, Privacy Statement, Refund Policy and any or all Agreements: “You” and “Your” refers to you, the person accessing this website and accepting the Company’s terms and conditions. "The Company", “Ourselves”, “We” and "Us", refers to our Company.
                 </p>
 
                 <p className="mt-[1%]">
-                You must be 18 years or older to use the Services. By registering as a user or providing personal information on the site, you represent that you are at least 18 years old.
+                    If you disagree with any part of the terms then you may not access the Service. 
                 </p>
 
-
-                <p className="mt-[1%]">
-                If you are entering into this agreement on behalf of your company or another legal entity, you represent that you have the authority to bind that entity to these Terms, in which case "you" will mean the entity you represent.
-                </p>
-
-
-
-                <p className="mt-[1%]">
-                If you are a United States government user or otherwise accessing or using any Mapbox service in a U.S. government capacity, these Terms are amended as set out in our U.S. Government Terms of Service.
-                </p>
-                
             </div>
 
             <p  className='mt-[2%] text-[#A0AABA] md:text-4xl text-2xl' style={{fontFamily: "Zen Dots" }}>
-            Our services</p>  
+            Privacy Statement </p>  
             <div className="">
                 <p className="mt-[1%]">
-                Subject to these Terms, we grant you a non-exclusive, non-transferable, non-sublicensable, revocable license and right to: (i) use the Services to develop online services and online, desktop, or mobile applications; (ii) make the Services available to one or more distinct human users (i.e., natural persons) that can access any Licensed Application (defined in the Product Terms) ("End Users") in connection with their use of your online services and online, desktop, or mobile applications.‍
-
+                    We respect your right to privacy. We do not share any information you provide us with anybody. This includes your Name, address, telephone number and email address. None of this information will be given out in any form unless required by law. We are committed to protecting all customers' privacy. We use the minimum information we collect about a person to process orders and to provide a more personalized shopping experience. All services will adhere to the standards as described. Please read on for more details about our privacy policy.
                  </p>
 
 
                 <p className="mt-[1%]">
-                Contact us if you are looking to use enterprise-only products and services or to obtain additional volume-based discounts. You must purchase an enterprise license to use the Services with Licensed Applications having to do with analytics and business intelligence, sales performance management, and cloud database management systems.
-                </p>
+                What information is collected? How do we use it?  No personal information is kept when you visit our sites.  When you order through our secured site, we need to know your name, email address, mailing address. This allows us to process and fulfill your order and to notify you of your order status.  We do not use your email, unless there is a need to notify you about important functionality changes to the site or products offers.  We do not give or sell your information to others. </p>
 
-                <p className="mt-[1%]">
-                We may choose to make available to you products and services that are in beta, being provided for internal evaluation or trial, or otherwise not generally available (“Evaluation Products”). By accessing such Evaluation Products, you agree to only use them for internal evaluation or testing purposes. Upon our written request, you shall immediately cease all use, and destroy all copies, of Evaluation Products, and you shall provide us with written certification of such deletion.
-                </p>
-
-               
-              
             </div>
             
 
 
              <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-             End Users and Notification</p>  
+             Termination of Agreements and Refunds Policy</p>  
             <div className="">
                 <p className="mt-[1%]">
-                You may not allow your End Users or other third parties to use the Services in any way that would be a violation of these Terms if done by you, and you agree to take reasonable efforts to prevent such use. You agree to promptly notify Mapbox in writing if you become aware of any misappropriation or unauthorized use of the Services.
+                We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. No refunds shall be offered, where a Service is deemed to have begun and is, for all intents and purposes, underway. Any monies that have been paid to us which constitute payment in respect of the provision of unused Services, shall be refunded.
                 </p>
                 
                
@@ -68,119 +48,84 @@ const FirstSection = () =>{
 
 
             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-            Service Terms & Policies</p>  
+            Links to This Website</p>  
             <div className="">
                 <p className="mt-[1%]">
-                You will comply with these Terms, our Product Terms, Data Processing Addendum (for data processed by Mapbox as a processor) and Privacy Policy (for data otherwise processed by Mapbox), which govern access and/or use of the Services
+                You may not create a link to any page of this website without our prior written consent. If you do create a link to a page of this website you do so at your own risk and the exclusions and limitations set out above will apply to your use of this website by linking to it.
                 </p>
                 
-                <p className="mt-[1%]">
-                In addition to the requirements above, you agree to adhere to the policies posted on this site in conjunction with the Services, including accompanying documentation.
-                </p>
-                
-
-                <p className="mt-[1%]">
-                All terms and policies referred to above are incorporated by reference into these Terms.
-                </p>
-                
+               
             </div>
 
 
             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-            Charges and Payment</p>  
+            Links from This Website</p>  
             <div className="">
                 <p className="mt-[1%]">
-                You agree to pay all fees owed for your use of the Services, as calculated by our records and based on (i) our publicly available pricing, currently located at www.mapbox.com/pricing, if you use the Services directly through our site or (ii) the pricing included in the listing information accompanying the Services offered via a Marketplace if you transact for use of the Services through such Marketplace. All charges are non-refundable unless expressly prohibited by applicable law. We or a third-party acting on our behalf or pursuant to our instructions (“Payment Partner”) may invoice and charge you on a recurring basis for any amounts that you owe us, some of which may require advance payments.
+                We do not monitor or review the content of other party’s websites which are linked to from this website. Opinions expressed or material appearing on such websites are not necessarily shared or endorsed by us and should not be regarded as the publisher of such opinions or material. Please be aware that we are not responsible for the privacy practices, or content, of these sites. We encourage our users to be aware when they leave our site & to read the privacy statements of these sites. You should evaluate the security and trustworthiness of any other site connected to this site or accessed through this site yourself, before disclosing any personal information to them. Gebeta Map API has no control over, and assumes no responsibility for, the content, privacy policies, or practices  of any third party web sites or services. You further acknowledge and agree that we shall not be r esponsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused  by or in connection with use of or reliance on any such content, goods or services available on or  through any such web sites or services.
                 </p>
                 
-                <p className="mt-[1%]">
-                You acknowledge and agree that failure to use the current version of Mapbox Software may result in potentially different (and higher) fees being charged to you, and agree to pay any such fees as calculated by us.    
-                </p>
-                
-
-                <p className="mt-[1%]">
-                Late payments may bear interest at the rate of 1.5% per month (or the highest rate permitted by law, if less) from the payment due date until paid in full. You will be responsible for all reasonable expenses (including attorneys’ fees) incurred by us in collecting such delinquent amounts.
-                </p>
-
-                <p className="mt-[1%]">
-                We are not responsible for any bank fees, interest charges, finance charges, over draft charges, or other fees resulting from charges billed by Mapbox or a Payment Partner. Currency exchange settlements will be based on agreements between you and the provider of your credit card or your bank.
-                </p>
-                
-
-                <p className="mt-[1%]">
-                Our listed fees, whether on this site or accompanying our offering of the Services via a Marketplace, do not include taxes, and you agree to pay all sales/use, gross receipts, value-added, GST, personal property or other tax (including any interest and penalties) with respect to the transactions and payments under these Terms, other than taxes based on our net income, employees or real property. You agree to work with us and our Payment Partners to help us obtain any necessary withholding or royalty tax exemptions where applicable.
-                </p>
-                
-                <p className="mt-[1%]">
-                Notwithstanding the foregoing, all payments made by you to us under these Terms, whether directly or through a Payment Partner, will be made free and clear of any deduction or withholding, as may be required by law. If any such deduction or withholding (including but not limited to cross-border withholding taxes) is required on any payment, you will pay such additional amounts as are necessary so that the net amount received by us after such deduction or withholding, will be equal to the full amount that we would have received if no deduction or withholding had been required. The payment of any taxes, charges or fees required to be deducted or withheld from payments due to us, and the filing of any information or tax returns with respect thereto, shall be your responsibility. Upon your reasonable request, we will provide you with any existing tax forms in our possession that would reduce or eliminate the amount of any such withholding or deduction for taxes.
-                </p>
-                
+               
             </div>
 
-           
+
             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-            Charges and Payment</p>  
+            Copyright Notice</p>  
             <div className="">
                 <p className="mt-[1%]">
-                You agree to pay all fees owed for your use of the Services, as calculated by our records and based on (i) our publicly available pricing, currently located at www.mapbox.com/pricing, if you use the Services directly through our site or (ii) the pricing included in the listing information accompanying the Services offered via a Marketplace if you transact for use of the Services through such Marketplace. All charges are non-refundable unless expressly prohibited by applicable law. We or a third-party acting on our behalf or pursuant to our instructions (“Payment Partner”) may invoice and charge you on a recurring basis for any amounts that you owe us, some of which may require advance payments.
-                </p>
+                Copyright and other relevant intellectual property rights exists on all text relating to the Company’s services and the full content of this website. The brand names and specific services of this Company featured on this web site are trademarked.
+                 </p>
                 
-                <p className="mt-[1%]">
-                You acknowledge and agree that failure to use the current version of Mapbox Software may result in potentially different (and higher) fees being charged to you, and agree to pay any such fees as calculated by us.    
-                </p>
-                
+               
+            </div>
 
-                <p className="mt-[1%]">
-                Late payments may bear interest at the rate of 1.5% per month (or the highest rate permitted by law, if less) from the payment due date until paid in full. You will be responsible for all reasonable expenses (including attorneys’ fees) incurred by us in collecting such delinquent amounts.
-                </p>
 
+            <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
+            Communication</p>  
+            <div className="">
                 <p className="mt-[1%]">
-                We are not responsible for any bank fees, interest charges, finance charges, over draft charges, or other fees resulting from charges billed by Mapbox or a Payment Partner. Currency exchange settlements will be based on agreements between you and the provider of your credit card or your bank.
-                </p>
+                We have e-mail addresses for you to contact us. These, & other contact information, can be found on our Contact Us link on our website or via Company literature or via the Company’s stated telephone, facsimile or mobile telephone numbers. </p>
                 
-
-                <p className="mt-[1%]">
-                Our listed fees, whether on this site or accompanying our offering of the Services via a Marketplace, do not include taxes, and you agree to pay all sales/use, gross receipts, value-added, GST, personal property or other tax (including any interest and penalties) with respect to the transactions and payments under these Terms, other than taxes based on our net income, employees or real property. You agree to work with us and our Payment Partners to help us obtain any necessary withholding or royalty tax exemptions where applicable.
-                </p>
-                
-                <p className="mt-[1%]">
-                Notwithstanding the foregoing, all payments made by you to us under these Terms, whether directly or through a Payment Partner, will be made free and clear of any deduction or withholding, as may be required by law. If any such deduction or withholding (including but not limited to cross-border withholding taxes) is required on any payment, you will pay such additional amounts as are necessary so that the net amount received by us after such deduction or withholding, will be equal to the full amount that we would have received if no deduction or withholding had been required. The payment of any taxes, charges or fees required to be deducted or withheld from payments due to us, and the filing of any information or tax returns with respect thereto, shall be your responsibility. Upon your reasonable request, we will provide you with any existing tax forms in our possession that would reduce or eliminate the amount of any such withholding or deduction for taxes.
-                </p>
+              
                 
             </div>
 
             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-            Account cancellation or suspension</p>  
+            Force Majeure</p>  
             <div className="">
                 <p className="mt-[1%]">
-                We don't want you to leave, but you may cancel at any time. However, we do not give pro-rated refunds for unused time if you cancel during the middle of a billing cycle.
+                Neither party shall be liable to the other for any failure to perform any obligation under any Agreement which is due to an event beyond the control of such party including but not limited to any Act of God, terrorism, war, Political insurgence, insurrection, riot, civil unrest, act of civil or military authority, uprising, earthquake, flood or any other natural or manmade eventuality outside of our control, which causes the termination of an agreement or contract entered into, nor which could have been reasonably foreseen. Any Party affected by such event shall forthwith inform the other Party of the same and shall use all reasonable endeavors to comply with the terms and conditions of any Agreement contained herein.
                 </p>
-                
-                <p className="mt-[1%]">
-
-                If you breach any of these Terms, we may immediately without notice cancel or suspend your account and the limited license granted to you hereunder automatically terminates, without notice to you. Upon termination of the limited license, you agree to immediately destroy any materials downloaded from the Services. In addition, Mapbox may cancel or suspend your account for any reason by providing you 30 days' advance notice.
-                </p>
-                
-
-                <p className="mt-[1%]">
-                Upon cancellation or suspension, your right to use the Services will stop immediately. You may not have access to data that you stored on the site after we cancel or suspend your account. You are responsible for backing up data that you use with the Services. If we cancel your account in its entirety without cause, we will refund to you on a pro-rata basis the amount of your payment corresponding to the portion of your service remaining right before we cancelled your account.
-                </p>
-
             </div>
-        
-           
+          
+
             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-            Changes to services or terms</p>  
+            Force Majeure</p>  
             <div className="">
                 <p className="mt-[1%]">
-                We may modify these Terms and other terms related to your use of the Services (like our privacy policy) from time to time, by posting the changed terms on the site. All changes will be effective immediately upon posting to the site unless they specify a later date. Changes will not apply retroactively. Please check these Terms periodically for changes - your continued use of the Services after new terms become effective constitutes your binding acceptance of the new terms.
+                Neither party shall be liable to the other for any failure to perform any obligation under any Agreement which is due to an event beyond the control of such party including but not limited to any Act of God, terrorism, war, Political insurgence, insurrection, riot, civil unrest, act of civil or military authority, uprising, earthquake, flood or any other natural or manmade eventuality outside of our control, which causes the termination of an agreement or contract entered into, nor which could have been reasonably foreseen. Any Party affected by such event shall forthwith inform the other Party of the same and shall use all reasonable endeavors to comply with the terms and conditions of any Agreement contained herein.
                 </p>
-                
-                <p className="mt-[1%]">
-                We may change the features and functions of the Services, including APIs. It is your responsibility to ensure that calls or requests you make to the Services are compatible with our then-current APIs. We attempt to avoid changes to our APIs that are not backwards compatible, but such changes may occasionally be required. If that happens, we will use reasonable efforts to notify you prior to deploying the changes.
-                </p>
-                
             </div>
+
+
+            
+            <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
+            Governing Law</p>  
+            <div className="">
+                <p className="mt-[1%]">
+                These Terms shall be governed and construed in accordance with the laws of Ethiopia, with regards to conflict law’s provisions. Our failure to enforce this rights or provisions of this terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or  unenforceable by a court, the remaining provisions of these Terms will remain in effect. This terms constitutes the entire agreement between us regarding our services, and supersede and replace any prior agreements we might have between us regarding the service.  
+                </p>
+            </div>
+
+            <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
+            Notification of Changes</p>  
+            <div className="">
+                <p className="mt-[1%]">
+                We reserves the right to change these conditions from time to time as it sees fit and your continued use of the site will signify your acceptance of any adjustment to these terms. If there are any changes to our privacy policy, we will announce that these changes have been made on our home page and on other key pages on our site. If there are any changes in how we use our site customers’ Personally Identifiable Information, notification by e-mail or postal mail will be made to those affected by this change. Any changes to our privacy policy will be posted on our web site 30 days prior to these changes taking place. You are therefore advised to re-read this statement on a regular basis.
+                </p>
+            </div>
+            
+            
         </div>
     )
 }

@@ -1,24 +1,24 @@
-import React , {useState} from "react";
-import { MapContainer, TileLayer, Marker, Popup , useMapEvents } from 'react-leaflet';
+import React , {useState , useContext} from "react";
+import { MapContainer, TileLayer, Marker, Popup , useMapEvents , Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import redIcon from "./../../assets/img/red.png"
 import greenIcon from "./../../assets/img/green.png"
 import blackIcon from "./../../assets/img/black.png"
 import 'leaflet/dist/leaflet.css';
-
+import { PlayGroundContext } from "../../context/PlayGround";
 
 const Map = ({
-        setOriginCoordinates,
-        setDestinationCoordinates,
-        setWayPointsCoordinates,
+       
         selectedButton,
-        setSelectedButtonFunction,
-        origin,
-        destination,
-        waypoint
+   
+     
     }) => {
-        
-        const position = [51.505, -0.09]; // Initial map position
+        const playContext = useContext(PlayGroundContext); // Access the AuthContext
+
+        const {waypoint , origin , destination , setOriginCoordinates , setDestinationCoordinates , setWayPointsCoordinates, coordinate} = playContext
+
+
+        const position = [9.035961873355374,38.75238418579102]; // Initial map position
 
         function MyComponent() {
             useMapEvents({
@@ -62,6 +62,7 @@ const Map = ({
             {waypoint.map((marker, index) => (
                <Marker key={index} position={marker} icon={new L.Icon({ iconUrl: blackIcon , iconSize: [25, 25] })} />
            ))} 
+            <Polyline positions={coordinate} color="red" />
 
             <MyComponent/>
         </MapContainer>

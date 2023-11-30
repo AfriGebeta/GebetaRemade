@@ -1,23 +1,19 @@
-import React , {useState} from "react";
+import React , {useState ,  useContext} from "react";
 import RequestSample from "./RequestSample";
 import { useSelector  } from "react-redux";
 import ResponseSample from "./Responsesample";
 import JsonViewer from "./JsonViewer";
-
-
-
+import { getRoute } from "../../redux/api/routeAPI";
+import Notify from "../../component/Popup/Notify";
+import { PlayGroundContext } from "../../context/PlayGround";
 
 
 const SideBarForm = ({
-    clearWaypoints,
-    clearDestination,
-    clearOrigin,
-    waypoint,
-    origin,
-    destination,
+  
     setSelectedButtonFunction,
     selectedButton,
-    object
+    object,
+    
 }) => {
     // state variables
     const [selectedGeocoding , setSelectedGeocoding] = useState("forward")
@@ -25,10 +21,14 @@ const SideBarForm = ({
     const [instruction , setInstruction] = useState(false)
     const [searchText , setSearchText] = useState("")
     const [apiResponse , setApiResponse] = useState({})
-
+    const [notify, setNotify] = useState({ visible: false });
     //global state
     const { token } = useSelector((state) => state)  
-    
+
+    const playContext = useContext(PlayGroundContext); // Access the AuthContext
+
+  
+    const {waypoint , origin , destination , setCoordinateFunction} = playContext
     const waypointsString = waypoint.length > 0 ? `&${object.type == "direction" ? "waypoints" : "json"}=[${waypoint.map(point => `{${point.lat},${point.lng}}`).join(",")}]` : "";
    
 
@@ -99,16 +99,55 @@ const SideBarForm = ({
                 return null;
         }
     };
-    // 
+    
+    const shouldContinue = () => {
+        if(object.type == "direction"){
+            if(origin.lat == null || origin.lng == null || destination.lat == null || destination.lng == null){
+                return { error : true , message : "check parameters"}
+            }else{
+                return { error : false}
+            }           
+        }else if(object.type == "onm"){
+            if(origin.lat == null || origin.lng == null || waypoint.length == 0){ 
+                return { error : true , message : "check parameters"}     
+            }else{
+                return { error : false}
+            }
+        }
+        else if(object.type == "matrix"){
+            if(waypoint.length == 0){ 
+                return { error : true , message : "check parameters"}     
+            }else{
+                return { error : false}
+            }
+        }
+        else if(object.type == "tss"){
+            if(waypoint.length == 0){ 
+                return { error : true , message : "check parameters"}     
+            }else{
+                return { error : false}
+            }
+        }     
+    }
     // based on the 
     const calculate = () => {
+        let response = shouldContinue()
+        if(response.error == true){
+            
+            setNotify({ visible: true, msg: response.message, type: "success" });
+            setTimeout(() => setNotify({ visible: false }), 2000);
+        }
+        else{
+
+        }
         // // fetch function 
-        fetch(urlMap[object.type])
+        // to do check the parameters and if  not correct ont call the api
+        
+        getRoute(urlMap[object.type])
         .then((data) => {
-            return data.json();
-        })
-        .then((data) => {
-            setApiResponse(data)
+            
+            setApiResponse(data.data)
+            setCoordinateFunction(data.data.direction)
         });
     }
  
@@ -132,7 +171,7 @@ const SideBarForm = ({
                                 </div>: ""
                             ) : ""
                 }
-
+                <Notify value={notify} />
                 {/* Render buttons based on type */}
                 {(object.type === "direction" || object.type === "onm") ? renderButton("start", object.type) : null}
                 {object.type === "direction" ? (startWayPoint ? renderButton("waypoint", object.type) : null) : renderButton("waypoint", object.type)}

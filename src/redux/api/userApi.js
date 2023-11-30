@@ -35,7 +35,7 @@ export const userLogoutEndPointCaller = async (formData) => {
 }
 
 
-export const setToken =createAsyncThunk(
+export const setToken = createAsyncThunk(
   'user/settoken',
   async(formData) => {
     try{
@@ -50,6 +50,27 @@ export const setToken =createAsyncThunk(
     }
 }
 )
+
+// https://mapapi.gebeta.app/api/v1/users/updateprofile
+export const updateprofile =  createAsyncThunk(
+  'user/updateprofile',
+  async (formData) => {
+    try{
+      const  data  = await API.put(`/api/v1/users/updateprofile` , formData , {
+          headers : {
+              "Content-Type": "application/json",  
+          }
+      });
+      return  data.data;
+  }catch (error) {
+      return handleApiError(error);
+  }
+  }
+)
+
+
+
+
 
 
 

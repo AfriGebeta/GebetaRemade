@@ -6,89 +6,182 @@ import Hero from "./Hero";
 const FirstSection = () =>{
     return(
         <div className="mt-[6%] text-black mx-[4%] md:mx-[15%] w-[90%] md:w-[60%] mb-[4%]">
-             <p  className=' text-[#A0AABA] md:text-4xl text-2xl' style={{fontFamily: "Zen Dots" }}>
-             I. Introduction</p>  
+        
             <div className="">
                 <p className="mt-[1%]">
-                When you use Uber, you trust us with your personal data. We’re committed to keeping that trust. That starts with helping you understand our privacy practices.       
+                    Gebeta Software private Limited Company operates Gebeta Map API. Gebeta Map API are responsible for the collection and proper management of any personal information you submit. Since the responsibility that you are giving as is great Gebeta Map API will keep your personal details secure and use the information you provide us consistently with applicable privacy and data protection laws and the terms of this Privacy Policy.
                 </p>
                 <p className="mt-[1%]">
-                This notice describes the personal data (“data”) we collect, how it’s used and shared, and your choices regarding this data. We recommend that you read this along with our privacy overview, which highlights information about our privacy practices and provides summaries of the data we collect and how we use it.
+                    This page informs you of our policies regarding the collection; use and disclosure of Personal Information we receive from users of the Site. We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.
                 </p>
                 
             </div>
 
             <p  className='mt-[2%] text-[#A0AABA] md:text-4xl text-2xl' style={{fontFamily: "Zen Dots" }}>
-            II. Overview</p>  
+            Services That Gebeta API Provide
+            </p>  
             <div className="">
                 <p className="mt-[1%]">
-                This privacy notice is designed to inform users of Uber's global services about the collection and use of data. It applies universally to individuals utilizing Uber's apps, websites, and related services worldwide, excluding specific services covered by separate privacy notices. These include Uber Freight, Careem, Uber Carshare, and UT (South Korea). The notice delineates its scope, encompassing various user categories such as Riders, Drivers, Order recipients, Delivery persons, Guest users, Borrowers, and Owners.
+                The app service Gebeta Map API provides helps in providing the location of any person that is located in Ethiopia. During these services we require the user to provide name, password, payment method and location in order to access Gebeta Map API. Because of this the protection and to whom Gebeta Map API share your personal information matters.
                 </p>
 
 
-                <p className="mt-[1%]">
-                The notice elaborates on the specific user groups covered, providing clarity on how it applies to Riders requesting transportation services, Drivers providing transportation individually or through partners, Order recipients using food delivery services, Delivery persons involved in delivery services, Guest users without Uber accounts, Borrowers utilizing Uber Carshare, and Owners making their vehicles available through Uber Carshare.
-                </p>
-
-                <p className="mt-[1%]">
-                In addition to user categories, the notice extends its governance over other data collections related to Uber's services. This includes the collection of contact information for restaurant or merchant owners, accounts managed by Enterprise Customers, and data related to individuals initiating but not completing applications to become drivers or delivery persons.
-                </p>
-
-                <p className="mt-[1%]">
-                Acknowledging the importance of legal compliance, the notice highlights that Uber's privacy practices adhere to the laws of the respective countries or regions in which it operates. It emphasizes regional nuances, such as contact information for regulatory bodies in Argentina, compliance with Australian Privacy Principles, and adherence to Brazil's General Data Protection Law (LGPD).
-                </p>
-
-                <p className="mt-[1%]">
-                The notice concludes by emphasizing regional variations in privacy practices. Specific information is provided for users in the European Economic Area (EEA), the United Kingdom (UK), Switzerland, Mexico, Nigeria, and the United States. Users are directed to relevant resources for further details, ensuring transparency and accountability in Uber's global privacy framework.
-                </p>
             </div>
             
-
-
-             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-             Data collections and uses</p>  
+            <p  className='mt-[2%] text-[#A0AABA] md:text-4xl text-2xl' style={{fontFamily: "Zen Dots" }}>
+                Types of Information Gebeta Map API Uses
+            </p>  
             <div className="">
                 <p className="mt-[1%]">
-                Uber collects a comprehensive range of user data from various sources, including data provided by users, data created during the use of their services, and data from other sources. This includes account information, background check information for drivers, identity verification documents, demographic data, user content, travel information, location data, transaction information, usage data, device data, and communications data. Additionally, data is gathered from users participating in referral programs, Uber account owners requesting services on behalf of others, and various business partners and service providers.
+                    Personal Information While using our Site, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to:
                 </p>
-                <p className="mt-[1%]">
-                Safety, fraud protection, and security are paramount concerns for Uber, leading to the use of data for verifying user accounts, conducting background checks, identity verification, and employing facial recognition technology. The company actively monitors and addresses safety incidents, potentially unsafe driving behavior, and fraudulent activities.
+                <ul className="list-disc mt-[1%]">
+                    <li className="ml-[4%]">Email address</li>
+                    <li className="ml-[4%]">First name and last name</li>
+                    <li className="ml-[4%]">Phone number</li>
+                    <li className="ml-[4%]">Address, State, Province</li>
+                    <li className="ml-[4%]">Usage Data</li>
+                    
+                </ul>
 
-                </p>
-                <p className="mt-[1%]">
-                Customer support relies on the information collected, including call recordings and chat logs, to investigate and address user concerns. Data is also used for research and development to enhance services, enable communications between users, and for marketing and advertising efforts. Uber utilizes cookies and other identification technologies for authentication, personalization, advertising effectiveness measurement, and analyzing user behaviors.
-                </p>
 
+            </div>
+
+             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
+             Log Usage Data</p>  
+            <div className="">
                 <p className="mt-[1%]">
-                In conclusion, Uber's extensive data collection and utilization are foundational to delivering reliable and convenient transportation and delivery services, ensuring safety, providing customer support, conducting research and development, enabling communications, implementing marketing strategies, and complying with legal requirements. The company's practices aim to balance service efficiency with user privacy and security considerations.
+                Usage Data is collected automatically when using the Service. Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. When You access the Service by or through a mobile device, Gebeta Map API may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.
                 </p>
-               
             </div>
 
 
             <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
-            Legal information</p>  
+            Location Services</p>  
             <div className="">
                 <p className="mt-[1%]">
-                Uber operates on a global scale, processing user data globally, which may involve transferring personal data to the United States and other countries with different data protection laws. Despite the variations in regulations, Uber is committed to safeguarding users' personal data universally. This commitment is reflected in the implementation of global measures such as data encryption during transit and at rest, company-wide privacy and data security training, and internal policies restricting access to and use of user data.
-                </p>
-                <p className="mt-[1%]">
-                When transferring user data from the European Economic Area (EEA), the UK, and Switzerland, Uber adheres to various legal mechanisms, including the necessity to fulfill agreements with users, consent, adequacy decisions, and specific transfer mechanisms like Standard Contractual Clauses. The company's certifications, such as the EU-U.S. Data Privacy Framework (DPF), the UK Extension to the EU-U.S. DPF, and the Swiss-U.S. DPF, are in line with the principles set forth by the United States Department of Commerce. In case of conflicts or invalidation of these frameworks, Uber commits to alternative data transfer mechanisms.
-                </p>
-                <p className="mt-[1%]">
-                Uber's DPF certification covers data received from other data controllers, and users have the right to access their personal data subject to this certification. Uber is responsible for onward transfers of personal data to third parties and is obligated to share user data with law enforcement agencies as required by applicable law. The company is subject to the investigatory and enforcement powers of the U.S. Federal Trade Commission.</p>
-
-                <p className="mt-[1%]">
-                Users can access more information about the EU-U.S. DPF and Swiss-U.S. DPF, view Uber's certification, and learn about the scope of data subject to the certification on Uber's website.
+                    Gebeta Map API collects information about your location when you use our services, which help us offer attributes likedriving directions. Your location can be determined with varying degrees of accuracy by GPS and other sensor data from your device IP address.
                 </p>
 
-
-                <p>This framework ensures that Uber maintains a high standard of data protection and privacy practices, irrespective of users' geographic locations or the jurisdictions in which their data is processed.</p>
-
-               
+                <p className="mt-[1%]">
+                    When transferring user data from the European Economic Area (EEA), the UK, and Switzerland, Uber adheres to various legal mechanisms, including the necessity to fulfill agreements with users, consent, adequacy decisions, and specific transfer mechanisms like Standard Contractual Clauses. The company's certifications, such as the EU-U.S. Data Privacy Framework (DPF), the UK Extension to the EU-U.S. DPF, and the Swiss-U.S. DPF, are in line with the principles set forth by the United States Department of Commerce. In case of conflicts or invalidation of these frameworks, Uber commits to alternative data transfer mechanisms.
+                </p>
+                
             </div>
             
-            
+            <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
+            Gebeta Map API uses your Personal Data</p>  
+            <div className="">
+                <p className="mt-[1%]">
+                    To provide and maintain our Service, including monitoring the usage of our Service better Gebeta Map API may use Personal Data for the following purposes:
+                    To Manage Your Account
+                </p>
+
+                <p className="mt-[1%]">
+                    To manage your registration as a user of our service, the personal data you provide can give you access to different functionalities of the Service that are available to you as a registered user.
+                    For The Performance of a Contract
+                </p>
+
+
+                <p className="mt-[1%]">
+                The development, compliance and undertaking of the purchase contract for the products, items or services you have purchased or of any other contract with us through the Service.
+                </p>
+                
+                <p className="mt-[1%] font-bold">To Contact You</p>
+                <p className="mt-[1%]">
+                    To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.To provide You with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.
+                    To Manage Your Requests To attend and manage the requests you have for to us.
+                </p>
+
+                <p className="mt-[1%] font-bold">For Business Transfers</p>
+              
+                <p className="mt-[1%]">
+                    We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal data held by us about our Service users is among the assets transferred.
+                </p>
+               <p className="mt-[1%] font-bold">For Other purposes</p>
+               <p className="mt-[1%]">
+                    We may use your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.
+                    Protect Gebeta Map, Our Users and the Public Gebeta Map API uses information to help improve the safety and reliability of our services. This includes detecting, preventing and responding to fraud, abuse, security risks and technical issues that could harm Gebeta Map, our users or the public.
+               </p>
+
+            </div>
+
+            <p  className=' text-[#A0AABA] md:text-4xl text-2xl mt-[5%]' style={{fontFamily: "Zen Dots" }}>
+            Who will Gebeta Map API share your information with?</p>  
+            <div className="">
+                <p className="mt-[1%]">
+                Gebeta Map API does not share your personal information with companies, organizations or individuals outside of Gebeta Map API except in the following cases:
+                </p>
+
+               
+
+                <p className="mt-[1%] font-bold">With Service Providers</p>
+              
+                <p className="mt-[1%]">
+                We may share your personal information with Service Providers to monitor and analyze the use of our Service, for payment processing, to contact you.
+                </p>
+
+               <p className="mt-[1%] font-bold">For Business Transfers</p>
+               <p className="mt-[1%]">
+                    We may share or transfer your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of our business to another company.
+               </p>
+
+               <p className="mt-[1%] font-bold">With Affiliates</p>
+               <p className="mt-[1%]">
+               Gebeta Map API may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include our parent company and any other subsidiaries, joint venture partners or other companies that we controls or that are under common control during this time period and in the future with us.
+               </p>
+
+
+
+               <p className="mt-[1%] font-bold">With Business Partners</p>
+               <p className="mt-[1%]">
+                    We may share your information with our business partners to offer you certain products, services or promotions.
+               </p>
+
+
+               <p className="mt-[1%] font-bold">With Other Users</p>
+               <p className="mt-[1%]">
+               When you share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside. With Your Consent We may disclose your personal information for any other purpose with your consent.
+               </p>
+
+
+
+
+               <p className="mt-[1%] font-bold">For Legal Reasons</p>
+               <p className="mt-[1%]">
+               We will share personal information outside of Gebeta Map API if we have a reasonable belief that access, use, preservation or disclosure of the information is reasonably necessary to meet any applicable law, regulation, legal process or enforceable governmental request.   </p>
+
+
+
+
+               <p className="mt-[1%] font-bold">Security of Your Personal Data</p>
+               <p className="mt-[1%]">
+               The security of Your Personal Data is important to us, but remembers that no method of transmission over the Internet, or method of electronic storage is 100% secure. While Gebeta Map API strives to use commercially acceptable means to protect Your Personal Data, we cannot guarantee its absolute security.
+               </p>
+
+
+
+               <p className="mt-[1%] font-bold">Links to Other Websites</p>
+               <p className="mt-[1%]">
+              
+                Our Service may contain links to other websites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. Gebeta Map API strongly advises you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
+
+
+               </p>
+
+               <p className="mt-[1%] font-bold"> Changes to this Privacy Policy</p>
+               <p className="mt-[1%]">
+              
+               Gebeta Map API may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. We will let you know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the "Last updated" date at the top of this Privacy Policy. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+
+               </p>
+               <p className="mt-[1%] font-bold"> Contact Us</p>
+               <p className="mt-[1%]">
+              
+               If you have any questions about this Privacy Policy, You can contact us
+               </p>
+
+            </div>
              
         </div>
     )

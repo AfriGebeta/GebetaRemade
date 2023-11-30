@@ -40,10 +40,10 @@ const ProfileDropDown = (props) => {
 
                 
             </div>
-            <ul className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
+            <ul className={`z-10 bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
                 {
                     navigation.map((item, idx) => (
-                        <li onClick={handleLogout}>
+                        <li onClick={handleLogout} >
                             <a key={idx}  className="block text-gray-600 lg:hover:bg-gray-50 lg:p-2.5" href={item.path}>
                                 {item.title}
                             </a>

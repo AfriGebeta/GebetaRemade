@@ -1,19 +1,17 @@
 
-import React , {useState} from "react";
+import React , {useState , useContext} from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { changeTopicPlayGround } from "../../redux/reducers/playgroundSlice";
+import { PlayGroundContext } from "../../context/PlayGround";
 
 
-function GeocodingDropdown( {
-    clearWaypoints,
-    clearDestination,
-    clearOrigin
-}) {
+function GeocodingDropdown( ) {
     const [isOpen, setIsOpen] = useState(false);
     const { playground } = useSelector((state) => state) 
     const toggleOpen = () => setIsOpen(!isOpen);
     const dispatch = useDispatch()
-    
+    const playContext = useContext(PlayGroundContext); 
+  
     return (
         <div className="inline-flex bg-white border rounded-md ">
             <button
@@ -43,9 +41,7 @@ function GeocodingDropdown( {
                        <a
                             onClick={()=>{ 
                                 dispatch(changeTopicPlayGround("geocoding"))
-                                clearWaypoints();
-                                clearDestination();
-                                clearOrigin();
+                                playContext.clearEveryThing();
                             }}
                             className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
@@ -54,9 +50,7 @@ function GeocodingDropdown( {
                        <a
                            onClick={()=>{ 
                             dispatch(changeTopicPlayGround("direction"))
-                            clearWaypoints();
-                            clearDestination();
-                            clearOrigin();
+                            playContext.clearEveryThing();
                         }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
@@ -65,9 +59,7 @@ function GeocodingDropdown( {
                        <a
                           onClick={()=>{ 
                             dispatch(changeTopicPlayGround("matrix"))
-                            clearWaypoints();
-                            clearDestination();
-                            clearOrigin();
+                            playContext.clearEveryThing();
                         }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
@@ -76,9 +68,7 @@ function GeocodingDropdown( {
                        <a
                           onClick={()=>{ 
                             dispatch(changeTopicPlayGround("onm"))
-                            clearWaypoints();
-                            clearDestination();
-                            clearOrigin();
+                            playContext.clearEveryThing();
                         }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
@@ -87,9 +77,7 @@ function GeocodingDropdown( {
                        <a
                          onClick={()=>{ 
                             dispatch(changeTopicPlayGround("tss"))
-                            clearWaypoints();
-                            clearDestination();
-                            clearOrigin();
+                            playContext.clearEveryThing();
                         }}
                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                        >
