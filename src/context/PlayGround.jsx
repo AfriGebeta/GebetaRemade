@@ -9,7 +9,7 @@ export const PlayGroundProvider = ({ children }) => {
 const [waypoint, setWayPoint] = useState([]);
 const [origin, setOrigin] = useState({ lat: null, lng: null });
 const [destination, setDestination] = useState({ lat: null, lng: null });
-const [coordinate , setCoordinate] = useState([])
+const [coordinate , setCoordinate] = useState({type : null, coords : []})
 
 const setOriginCoordinates = (coordinates) =>  setOrigin(coordinates);
 const setDestinationCoordinates = (coordinates) =>  setDestination(coordinates);
@@ -19,7 +19,7 @@ const setCoordinateFunction = (coords) => {
 }
 const clearEveryThing = () => {
     setWayPoint([])
-    setCoordinate([])
+    setCoordinate({type : null, coords : []})
     setDestination({ lat: null, lng: null });
     setOrigin({ lat: null, lng: null });
 }

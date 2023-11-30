@@ -7,18 +7,22 @@ import blackIcon from "./../../assets/img/black.png"
 import 'leaflet/dist/leaflet.css';
 import { PlayGroundContext } from "../../context/PlayGround";
 
-const Map = ({
-       
-        selectedButton,
-   
-     
-    }) => {
+const Map = ({selectedButton}) => {
         const playContext = useContext(PlayGroundContext); // Access the AuthContext
 
         const {waypoint , origin , destination , setOriginCoordinates , setDestinationCoordinates , setWayPointsCoordinates, coordinate} = playContext
 
 
         const position = [9.035961873355374,38.75238418579102]; // Initial map position
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+          }
 
         function MyComponent() {
             useMapEvents({
@@ -41,7 +45,7 @@ const Map = ({
             return null;
            }
          
-
+           console.log(coordinate)
         return (
         <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} >
             <TileLayer
@@ -62,7 +66,15 @@ const Map = ({
             {waypoint.map((marker, index) => (
                <Marker key={index} position={marker} icon={new L.Icon({ iconUrl: blackIcon , iconSize: [25, 25] })} />
            ))} 
-            <Polyline positions={coordinate} color="red" />
+
+            {
+            coordinate.type == "direction" || coordinate.type == "tss" ? <Polyline positions={coordinate.coords} color="red" /> : ""
+           }
+         
+           {
+            coordinate.type == "onm"  ? coordinate.coords.map((pos)=> {return <Polyline positions={pos} color={getRandomColor()} />}) : ""
+           }
+            
 
             <MyComponent/>
         </MapContainer>

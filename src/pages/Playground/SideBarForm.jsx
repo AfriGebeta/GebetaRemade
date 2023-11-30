@@ -39,7 +39,7 @@ const SideBarForm = ({
         
         direction :`https://mapapi.gebeta.app/api/route/direction/?origin=${origin.lat == null ? "{}" : `{${origin.lat},${origin.lng}}`}&destination=${destination.lat == null ? "{}" : `{${destination.lat},${destination.lng}}`}${waypointsString}&apiKey=${token.token}`,
         tss : `https://mapapi.gebeta.app/api/route/tss/?${waypointsString}&apiKey=${token.token}`,
-        onm : `https://mapapi.gebeta.app/api/route/onm/?${waypointsString}&origin=${origin.lat == null ? "{}" : `{${origin.lat},${origin.lng}}`}&apiKey=`,
+        onm : `https://mapapi.gebeta.app/api/route/onm/?${waypointsString}&origin=${origin.lat == null ? "{}" : `{${origin.lat},${origin.lng}}`}&apiKey=${token.token}`,
         matrix : `https://mapapi.gebeta.app/api/route/matrix/?${waypointsString}&apiKey=${token.token}`,
     }
 
@@ -129,26 +129,61 @@ const SideBarForm = ({
             }
         }     
     }
+
+    const setForDrawing = (data) => {
+        if(object.type == "direction"){
+            setCoordinateFunction({type : "direction", coords : data.data.direction})
+        }else if(object.type == "onm"){
+        
+            let array = [];
+            for (let i = 0; i < data.data.directions.length; i++) {
+              
+                array.push(data.data.directions[i].direction);
+             
+            }
+            console.log(data.data)
+            console.log("the array")
+            setCoordinateFunction({type : "onm", coords : array})
+        }
+        else if(object.type == "matrix"){
+            let array = [];
+            for (let i = 0; i < data.data.response.length; i++) {
+              for (let j = 0; j < data.data.response[i].length; j++) {
+                array.push(data.data.response[i][j].data.direction);
+              }
+            }
+            setCoordinateFunction({type : "matrix", coords : array})
+        }
+        else if(object.type == "tss"){
+            setCoordinateFunction({type : "tss", coords : data.data.direction})
+        }  
+    }
     // based on the 
     const calculate = () => {
         let response = shouldContinue()
         if(response.error == true){
             
-            setNotify({ visible: true, msg: response.message, type: "success" });
+            setNotify({ visible: true, msg: response.message, type: "failure" });
             setTimeout(() => setNotify({ visible: false }), 2000);
         }
         else{
-
+            getRoute(urlMap[object.type])
+            .then((data) => {
+             
+                if(data.error == null){
+                    setApiResponse(data.data)
+                    setForDrawing(data)
+                }else{
+                    setNotify({ visible: true, msg: "failed", type: "failure" });
+                    setTimeout(() => setNotify({ visible: false }), 2000);
+                }
+                
+                
+            });
         }
-        // // fetch function 
-        // to do check the parameters and if  not correct ont call the api
+      
         
-        getRoute(urlMap[object.type])
-        .then((data) => {
-            
-            setApiResponse(data.data)
-            setCoordinateFunction(data.data.direction)
-        });
+        
     }
  
     
