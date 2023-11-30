@@ -1,13 +1,13 @@
 import React , {useState , useContext} from "react";
 import { useNavigate } from "react-router-dom"; 
 import { AuthContext } from "../../context/AuthProvider";
-
+import { useSelector } from "react-redux";
 const ProfileDropDown = (props) => {
 
     const [state, setState] = useState(false)
     const authContext = useContext(AuthContext); // Access the AuthContext
     const navigate = useNavigate();
-
+    const user = useSelector((state) => state).user
     const handleLogout = () => {
         // Call the login function from the context
         authContext.logout()
@@ -32,7 +32,9 @@ const ProfileDropDown = (props) => {
                
             <div className="w-10 h-10 overflow-hidden outline-none flex items-center rounded-full ring-gray-200 ring-2" onClick={() => setState(!state)}>
                <div className="w-12 h-12 overflow-hidden rounded-full flex justify-center items-center relative overflow-hidden" style={{lineHeight: '12rem'}}>
-                  <span className="!m-0 !p-0 uppercase text-[3vh] text-white"> A </span>
+                     <span className="!m-0 !p-0 uppercase text-[3vh] text-white">
+                        { user.data != null ? user.data.username[0] : "B"}
+                    </span>
                 </div>
             </div>
 

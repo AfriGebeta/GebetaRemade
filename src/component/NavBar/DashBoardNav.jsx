@@ -18,7 +18,7 @@ const DashBoardNav =  ({color  ,textColor}) => {
     const [state, setState] = useState(false)
     const [signinModal, setSigninModal] = useState(false);
     const [signupModal, setSignUpModal] = useState(false);
-
+   
     const authContext = useContext(AuthContext); // Access the AuthContext
     const navigate = useNavigate();
    

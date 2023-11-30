@@ -3,7 +3,7 @@ import React , {useState} from 'react'
 
 
 //gebetausertest
-function ChangePassword() {
+function ChangePassword({currentState}) {
   const [password , setPassword] = useState("")
   const [confirmPassword , setConfirmPassword] = useState("")
   const [showLoading , setShowLoading] = useState(false)
@@ -27,7 +27,7 @@ function ChangePassword() {
   }
 
   return (
-    <div className='sw py-10 border mt-[4%]'>
+    <div className='sw py-10 border mt-[4%] px-10  w-[100%] md:w-[80%]'>
       <div className='flex gap-4'>
         {/* <Nav url='password' /> */}
         <div className='flex-1 flex flex-col items-center text-white'>
@@ -35,7 +35,7 @@ function ChangePassword() {
      
            
 
-              <div class="relative h-10 w-full min-w-[200px]">
+              <div class={`${currentState == "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
                             class=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "
@@ -45,7 +45,7 @@ function ChangePassword() {
                             </label>
               </div>
 
-              <div class="relative h-10 w-full min-w-[200px]">
+              <div class={`${currentState == "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
                             class=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "
@@ -55,7 +55,7 @@ function ChangePassword() {
                             </label>
               </div>
 
-              <div class="relative h-10 w-full min-w-[200px]">
+              <div class={`${currentState == "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
                             class=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "
@@ -65,7 +65,7 @@ function ChangePassword() {
                             </label>
               </div>
 
-              <div class="relative h-10 w-full min-w-[200px]">
+              <div class={`${currentState != "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
                             class=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "
@@ -75,7 +75,7 @@ function ChangePassword() {
                             </label>
               </div>
 
-              <div class="relative h-10 w-full min-w-[200px]">
+              <div class={`${currentState != "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
                             class=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "
