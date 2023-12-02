@@ -34,8 +34,8 @@ const SideBarForm = ({
 
     //url function
     const urlMap = {
-        geocoding : selectedGeocoding == "forward" ? `http://localhost:8080/api/v1/route/geocoding?name=${searchText}&apiKey=${token.token}` :
-        `http://localhost:8080/api/v1/route/revgeocoding?lat=${origin.lat == null ? "" : origin.lat}&lon=${origin.lng == null ? "" : origin.lng}&apiKey=${token.token}`,
+        geocoding : selectedGeocoding == "forward" ? `https://mapapi.gebeta.app/api/v1/route/geocoding?name=${searchText}&apiKey=${token.token}` :
+        `https://mapapi.gebeta.app/api/v1/route/revgeocoding?lat=${origin.lat == null ? "" : origin.lat}&lon=${origin.lng == null ? "" : origin.lng}&apiKey=${token.token}`,
         
         direction :`https://mapapi.gebeta.app/api/route/direction/?origin=${origin.lat == null ? "{}" : `{${origin.lat},${origin.lng}}`}&destination=${destination.lat == null ? "{}" : `{${destination.lat},${destination.lng}}`}${waypointsString}&apiKey=${token.token}`,
         tss : `https://mapapi.gebeta.app/api/route/tss/?${waypointsString}&apiKey=${token.token}`,
@@ -127,8 +127,27 @@ const SideBarForm = ({
             }else{
                 return { error : false}
             }
-        }     
-    }
+        }    
+        else if(object.type == "geocoding"){
+
+            if(selectedGeocoding == "forward"){
+                if(searchText.trim().length == 0){ 
+                    return { error : true , message : "check parameters"}     
+                }else{
+                    return { error : false}
+                }
+            }else if(selectedGeocoding == "reverse"){
+                if(origin.lat == null || origin.lng == null){
+                    console.log('veryhing is ok')
+                    return { error : true , message : "check parameters"}     
+                }else{
+                    return { error : false}
+                }
+            }
+            
+        } 
+        return { error : true , message : "check parameters"}
+   }
 
     const setForDrawing = (data) => {
         if(object.type == "direction"){
@@ -141,8 +160,7 @@ const SideBarForm = ({
                 array.push(data.data.directions[i].direction);
              
             }
-            console.log(data.data)
-            console.log("the array")
+         
             setCoordinateFunction({type : "onm", coords : array})
         }
         else if(object.type == "matrix"){
@@ -156,7 +174,10 @@ const SideBarForm = ({
         }
         else if(object.type == "tss"){
             setCoordinateFunction({type : "tss", coords : data.data.direction})
-        }  
+        }else if(object.type == "geocoding"){
+            console.log(data.data)
+        }
+        
     }
     // based on the 
     const calculate = () => {
@@ -211,6 +232,20 @@ const SideBarForm = ({
                 {(object.type === "direction" || object.type === "onm") ? renderButton("start", object.type) : null}
                 {object.type === "direction" ? (startWayPoint ? renderButton("waypoint", object.type) : null) : renderButton("waypoint", object.type)}
                 {object.type === "direction" ? renderButton("destination", object.type) : null}
+                
+                <ul className="list-disc mt-[2%]">
+                    {
+                        apiResponse.data != null ?
+                        apiResponse.data.map((n) => <li className="ml-[4%]">{n.name}</li>)
+                    : ""
+                    }
+                    
+                  
+                    
+                </ul>
+                <div className="mt-[1%]">
+
+                </div>
                 <button className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 bg-GebetaMain outline-none mt-[4%]`} onClick={(e)=> {calculate()}}> {object.type === "geocoding" ? "search" : "calculate"}</button>
                 {object.type === "direction" ? <p className='mt-[2%] font-bold text-xl text-[#A0AABA] mt-[5%] mx-[2%] md:mx-[0%]'>Optional parameter</p> : ""}
                 
