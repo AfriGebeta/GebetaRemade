@@ -20,6 +20,22 @@ export const userLogin = createAsyncThunk(
 );
 
 
+export const userEmailConfirm = createAsyncThunk(
+  'user/confirmEmail',
+  async (token, thunkAPI) => {
+    try {
+      const data = await API.get(`/api/v1/users/confirm?token=`+token);
+      return data.data;
+    } catch (error) {
+      return handleApiError(error);
+    }
+  }
+ );
+
+ 
+//http://localhost:8080/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRlIjoiMjAyMy0xMi0xMSAxODoxNjoyMC4yODAiLCJlbWFpbCI6ImFiZW5lemVyLnNlaWZ1LmtpbmZ1QGdtYWlsLmNvbSJ9.4dMfcdjUb3o6BtqNrX7AAWBIulSNXL5hg5p7W_Mj8eA
+
+
 
 export const userLogoutEndPointCaller = async (formData) => {
     try{
@@ -30,6 +46,7 @@ export const userLogoutEndPointCaller = async (formData) => {
         })
         return { error: null, data };
     }catch (error) {
+    
         return handleApiError(error);
     }
 }

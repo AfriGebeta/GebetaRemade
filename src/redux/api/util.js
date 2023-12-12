@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const BASE_URL = "https://mapapi.gebeta.app";
-const ADMIN_URL = `${BASE_URL}/admin`;
+const LOCAL_BASE_URL = "http://localhost:8080"
 
 
 
 export const API = axios.create({
-  baseURL: BASE_URL,
+  baseURL: LOCAL_BASE_URL,
 });
 
 
@@ -15,8 +15,7 @@ export const API = axios.create({
 
 export const handleApiError = async (error) => {
   try {
-    const errorMessage =
-      error.response?.data?.message || "An unexpected error occurred.";
+    const errorMessage = error.response?.data?.message || error.response?.data?.msg || "An unexpected error occurred.";
     const data = null;
     return { error: errorMessage, data };
   } catch (err) {

@@ -1,127 +1,229 @@
 import React, { useState } from "react";
+import EmailConfirmation from "../EmailConfirmation/EmailConfirmation"; 
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-
-function Signup({ signupintosignin }) {
+import { userLogoutEndPointCaller } from "../../redux/api/userApi";
+function Signup({ signupintosignin ,  }) {
   const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone , setPhone] = useState("")
+  const [companyname  , setCompanyName] = useState("")
   const [password, setPassword] = useState("");
+  const [confirmPassword , setConfirmPassword ] = useState("")
+  const [errorMessage , setErrorMessage] = useState("")
+
+
+  const [emailConfirmation , setEmailConfirmation] = useState(false)
 
 
   const handleUsername = (event) => setUserName(event.target.value);
+  const handleEmail = (event) => setEmail(event.target.value);
+  const handlePhone = (event) => setPhone(event.target.value);
+  const handleCompanyName = (event) => setCompanyName(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
+  const handleConfirmPassword = (event) => setConfirmPassword(event.target.value);
   
 
+
+  function validateInputs(username, email, phone, companyname, password, confirmPassword) {
+    // Check if any input is empty
+    if (!username || !email || !phone || !companyname || !password || !confirmPassword) {
+      return { error: true, msg: "All fields must be filled out." };
+    }
+  
+    // Check if the phone number is valid
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(phone)) {
+      return { error: true, msg: "Invalid phone number. It should be 10 digits." };
+    }
+  
+    // Check if the passwords match
+    if (password !== confirmPassword) {
+      return { error: true, msg: "Passwords do not match." };
+    }
+  
+    // Check if the email is a valid email address
+
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    if (!emailRegex.test(email)) {
+        return { error: true, msg: "Invalid email address." };
+    }
+
+  
+    // If all checks pass, return success
+    return { error: false, msg: "" };
+  }
+
+
+const signup = () => {
+
+    const validationResults = validateInputs(username, email, phone, companyname, password, confirmPassword);
+    if(validationResults.error) setErrorMessage(validationResults.msg)
+    else{
+        setErrorMessage("")
+       
+        userLogoutEndPointCaller({
+            "username": username,
+            "password": password,
+            "companyname": companyname,
+            "email": email,
+            "phone" : phone
+        }).then((response)=>{
+            console.log(response)
+            if(response.error != null) setErrorMessage(response.error) 
+            else setEmailConfirmation(!emailConfirmation)
+        })
+
+       
+    }
+
+    
+
+     
+  }
+    
+
   return (
-    <div className="md:card md:h-auto w-[100%] md:w-[25%] md:rounded bg-Dark text-white p-10 absolute md:top-[10%] left-1/2 transform -translate-x-1/2 ">
-        <div className="flex flex-col">
-                <p  className='  text-[#A0AABA] ' style={{fontFamily: "Zen Dots" }}>LET'S GET YOU STARTED</p>
-                <p className='  text-white font-bold text-xl ' style={{fontFamily: "Zen Dots" }}>CREATE AN Account </p>
-                <div className="w-[95%] mt-[3%]  md:mt-[10%]">
-                    <div class="w-full">
-                        <div class="relative h-10 w-full min-w-[200px]">
-                            <input
-                            class=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
-                            placeholder=" "
-                            />
-                            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                            username
-                            </label>
-                        </div>
+<>
+    {
+        emailConfirmation ? (<EmailConfirmation email = { email } />)  :
+    
+(
+    <div className="md:card md:h-auto w-[100%] md:w-[45%] lg:w-[25%] md:rounded bg-Dark text-white p-10 absolute md:top-[10%] left-1/2 transform -translate-x-1/2 ">
+    <div className="flex flex-col">
+            <p  className='  text-[#A0AABA] ' style={{fontFamily: "Zen Dots" }}>LET'S GET YOU STARTED</p>
+            <p className='  text-white font-bold text-xl ' style={{fontFamily: "Zen Dots" }}>CREATE AN Account </p>
+            <div className="w-[95%] mt-[3%]  md:mt-[10%]">
+            {errorMessage != "" ? <p className="mb-[5%] text-red-400">{errorMessage}</p> : ""}
+                <div class="w-full">
+                    <div class="relative h-10 w-full min-w-[200px]">
+                        <input
+                        class=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
+                        placeholder=" "
+                        onChange={handleUsername}
+                        />
+                        <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                        username
+                        </label>
                     </div>
+                </div>
 
-                    <div class="w-full mt-[8%]">
-                        <div class="relative h-10 w-full min-w-[200px]">
-                            <input
-                            class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
-                            placeholder=" "
-                            />
-                            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                                Email
-                            </label>
-                        </div>
+                <div class="w-full mt-[8%]">
+                    <div class="relative h-10 w-full min-w-[200px]">
+                        <input
+                        class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
+                        placeholder=" "
+                        onChange={handleEmail}
+                        />
+                        <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                            Email
+                        </label>
                     </div>
+                </div>
 
-                    <div class="w-full mt-[8%]">
-                        <div class="relative h-10 w-full min-w-[200px]">
-                            <input
-                            class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
-                            placeholder=" "
-                            />
-                            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                                Phone
-                            </label>
-                        </div>
+                <div class="w-full mt-[8%]">
+                    <div class="relative h-10 w-full min-w-[200px]">
+                        <input
+                        class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
+                        placeholder=" "
+                        type = "number"
+                        onChange={handlePhone}
+                        />
+                        <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                            Phone
+                        </label>
                     </div>
+                </div>
 
 
 
 
-                    <div class="w-full mt-[8%]">
-                        <div class="relative h-10 w-full min-w-[200px]">
-                            <input
-                            class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
-                            placeholder=" "
-                            />
-                            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                                Company name
-                            </label>
-                        </div>
+                <div class="w-full mt-[8%]">
+                    <div class="relative h-10 w-full min-w-[200px]">
+                        <input
+                        class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
+                        placeholder=" "
+                        onChange={handleCompanyName}
+                        />
+                        <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                            Company name
+                        </label>
                     </div>
+                </div>
 
-                    <div class="w-full mt-[8%]">
-                        <div class="relative h-10 w-full min-w-[200px]">
-                            <input
-                            class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
-                            placeholder=" "
-                            />
-                            <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                                Password
-                            </label>
-                        </div>
+                <div class="w-full mt-[8%]">
+                    <div class="relative h-10 w-full min-w-[200px]">
+                        <input
+                        class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
+                        placeholder=" "
+                        type="password"
+                        onChange={handlePassword}
+                        />
+                        <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                            Password
+                        </label>
                     </div>
-                  
+                </div>
 
-                    <button
-                        className="w-[100%] mt-[5%] bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 px-4 rounded"
-                        type="button">
-                            Continue
-                    </button>
-
-                    <div class="flex items-center mt-[2%]">
-                        <div class="flex-1 border-t border-gray-500"></div>
-                        <span class="mx-4 text-white"> or </span>
-                        <div class="flex-1 border-t border-gray-500"></div>
+                <div class="w-full mt-[8%]">
+                    <div class="relative h-10 w-full min-w-[200px]">
+                        <input
+                        class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
+                        placeholder=" "
+                        type="password"
+                        onChange={handleConfirmPassword}
+                        />
+                        <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                            Confirm password
+                        </label>
                     </div>
+                </div>
+              
 
-                    
-                    <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
-                        <FaFacebook/>
-                        <p>Sign with Google</p>
-                        <p></p>
-                    </div>
-                    
-                   
+                <button
 
-                    <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
-                        <FaGoogle/>
-                        <p>Sign with FaceBook</p>
-                        <p></p>
-                    </div>
+                    onClick={()=>{signup()}}
+                    className="w-[100%] mt-[5%] bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 px-4 rounded"
+                    type="button">
+                        Continue
+                </button>
 
-                    <div className="w-full mt-[10%] md:mb-[5%] text-center">
-                        <p onClick={()=>{signupintosignin()}}>Already have an account? LOGIN HERE</p>
-                    </div>
-
+                <div class="flex items-center mt-[2%]">
+                    <div class="flex-1 border-t border-gray-500"></div>
+                    <span class="mx-4 text-white"> or </span>
+                    <div class="flex-1 border-t border-gray-500"></div>
                 </div>
 
                 
+                <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
+                    <FaFacebook/>
+                    <p>Sign with Google</p>
+                    <p></p>
+                </div>
+                
                
 
+                <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
+                    <FaGoogle/>
+                    <p>Sign with FaceBook</p>
+                    <p></p>
+                </div>
 
-               
-        </div>
+                <div className="w-full mt-[10%] md:mb-[5%] text-center">
+                    <p onClick={()=>{signupintosignin()}}>Already have an account? LOGIN HERE</p>
+                </div>
 
+            </div>
+
+            
+              
     </div>
+
+</div>
+)
+  
+}</>
   );
 }
 

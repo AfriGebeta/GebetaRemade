@@ -27,6 +27,8 @@ const MainNav =  ({color  ,textColor}) => {
         setSigninModal(true)
     }
 
+ 
+
 
 
 

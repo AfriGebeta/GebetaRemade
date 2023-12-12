@@ -24,21 +24,22 @@ function ApiDetail({ metrics }) {
   };
 
   const getTotal = () => {
-    return metrics.ONM + metrics.Direction + metrics.Matrix + metrics.TSS + metrics.Geocoding;
-  };
+    return (metrics.ONM || 0) + (metrics.Direction || 0) + (metrics.Matrix || 0) + (metrics.TSS || 0) + (metrics.Geocoding || 0);
+   };
 
-  const getMaximum = () => {
+   const getMaximum = () => {
     let max = Object.entries(metrics).reduce(
-      (max, entry) => (entry[1] >= max[1] ? entry : max),
-      [0, -Infinity]
+    (max, entry) => ((entry[1] || 0) >= (max[1] || 0) ? entry : max),
+    [0, -Infinity]
     );
-
+   
     return max;
-  };
+   };
+   
 
   const getMinimum = () => {
     let min = Object.entries(metrics).reduce(
-      (min, entry) => (entry[1] <= min[1] ? entry : min),
+      (min, entry) => ((entry[1] || 0) <= (min[1] || 0) ? entry : min),
       [0, +Infinity]
     );
     return min;
