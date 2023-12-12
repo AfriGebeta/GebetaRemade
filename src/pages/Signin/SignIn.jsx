@@ -5,7 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "./../../context/AuthProvider";
 import { useNavigate } from "react-router-dom"; 
 import { userLogin } from "../../redux/api/userApi";
-
+import EmailConfirmationForgotPassword from "../EmailConfirmation/EmailConfirmationForgotPassword";
 import Loading from "../Loading";
 
 
@@ -15,12 +15,12 @@ function Signin({ signintosignup }) {
   const [loading , setLoading] = useState(false)
   const [errorMessage , setErrorMessage] = useState("")
   const authContext = useContext(AuthContext); // Access the AuthContext
-  
+  const [forgotPassword , setForgotPassword] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleUsername = (event) => setUserName(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
-
+  const handleForgotPassword = () => setForgotPassword(!forgotPassword)
 
   const handleContinue = () => {
     setLoading(true)
@@ -45,6 +45,11 @@ function Signin({ signintosignup }) {
     <>
         {
             loading ? <Loading/>:
+
+            forgotPassword ? <EmailConfirmationForgotPassword/> :
+
+
+
             <div className="md:card h-full md:h-auto w-[100%] md:w-[25%] md:rounded bg-Dark text-white p-10 absolute md:top-[10%] left-1/2 transform -translate-x-1/2 ">
             <div className="flex flex-col">
                     <p  className='  text-[#A0AABA] ' style={{fontFamily: "Zen Dots" }}>Welcome Back</p>
@@ -82,9 +87,9 @@ function Signin({ signintosignup }) {
                         <div className="flex  justify-between mt-[5%]">
                             <div className="flex">
                                 <input className="bg-white" type="checkbox" id="myCheckbox" class="hidden"/>
-                                <span class="ml-2">Remeber Me?</span>
+                                <span class="ml-2"></span>
                             </div>
-                            <p>Forgot password?</p>
+                            <p className=" hover:text-GebetaMain block   hover:text-GebetaMain border rounded-lg md:border-none " onClick={handleForgotPassword}>Forgot password?</p>
                         </div>
     
                         <button

@@ -20,6 +20,7 @@ import Pricing from './pages/Pricing';
 import Privacy from './pages/Privacy';
 import Confirm from './pages/EmailConfirmation/Confirm';
 import Terms from './pages/Terms';
+import ResetPassword from './pages/ResetPassword'
 import "@fontsource/zen-dots";
 
 
@@ -38,10 +39,12 @@ function App() {
              <Route path="/products" element={<Products />} /> 
             <Route path = "/privacy" element={<Privacy/>} />
             <Route path = "/terms" element={<Terms/>} />
-              <Route path = "/confirm" element = {<Confirm/>} />
-             <Route path="/about" element={<About />} /> 
-             {/* private route  */}
-             <Route path="/dashboard" element={
+            <Route path = "/reset-password" element={<ResetPassword/>} />
+            
+            <Route path = "/confirm" element = {<Confirm/>} />
+            <Route path="/about" element={<About />} /> 
+            {/* private route  */}
+            <Route path="/dashboard" element={
               <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
