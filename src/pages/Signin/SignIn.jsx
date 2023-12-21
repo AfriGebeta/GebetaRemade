@@ -4,23 +4,26 @@ import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "./../../context/AuthProvider";
 import { useNavigate } from "react-router-dom"; 
-import { userLogin } from "../../redux/api/userApi";
+import { userLogin , fireBaseLogin} from "../../redux/api/userApi";
 import EmailConfirmationForgotPassword from "../EmailConfirmation/EmailConfirmationForgotPassword";
+import  {auth , provider} from "./../../firebase/Firebase"
 import Loading from "../Loading";
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 function Signin({ signintosignup }) {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [loading , setLoading] = useState(false)
   const [errorMessage , setErrorMessage] = useState("")
-  const authContext = useContext(AuthContext); // Access the AuthContext
   const [forgotPassword , setForgotPassword] = useState(false)
+  const [fireBaseId , setFirebaseId] = useState("")
+  const authContext = useContext(AuthContext); // Access the AuthContext
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleUsername = (event) => setUserName(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
   const handleForgotPassword = () => setForgotPassword(!forgotPassword)
+  
 
   const handleContinue = () => {
     setLoading(true)
@@ -40,7 +43,39 @@ function Signin({ signintosignup }) {
    };
    
 
+const googleLogin = () => {
 
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        setLoading(true)
+        dispatch(fireBaseLogin(user.uid)).then((resultAction) => {
+          if (fireBaseLogin.fulfilled.match(resultAction)) {
+                authContext.login();
+                navigate("/dashboard");
+          } else {
+                setErrorMessage(resultAction.error.message);
+          }
+          setLoading(false)
+                
+        });
+   
+    }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+    });
+
+ }
   return (
     <>
         {
@@ -107,16 +142,20 @@ function Signin({ signintosignup }) {
                         </div>
     
                         
-                        <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
-                            <FaFacebook/>
-                            <p>Log in with Google</p>
+                        <div 
+                        onClick={()=> googleLogin()}
+                        className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
+                           <FaGoogle/>
+                           
+                           <p>Log in with Google</p>
                             <p></p>
                         </div>
                         
                        
     
                         <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
-                            <FaGoogle/>
+                            
+                            <FaFacebook/>
                             <p>Log in with FaceBook</p>
                             <p></p>
                         </div>

@@ -3,6 +3,24 @@ import { API , handleApiError } from "./util";
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+
+export const fireBaseLogin = createAsyncThunk(
+  'user/fireBaseLogin',
+  async (firebaseId , thunkAPI) => {
+    try{
+      const data = await API.post(`/api/v1/users/firebaselogin` , {"firebaseId" : firebaseId}, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      return data.data;
+    }
+    catch (error) {
+      return handleApiError(error);
+    }
+  }
+)
+
 export const userLogin = createAsyncThunk(
  'user/login',
  async (formData, thunkAPI) => {
@@ -12,7 +30,7 @@ export const userLogin = createAsyncThunk(
          "Content-Type": "application/json",
        },
      });
-     return data.data;
+   
    } catch (error) {
      return handleApiError(error);
    }

@@ -3,6 +3,10 @@ import EmailConfirmation from "../EmailConfirmation/EmailConfirmation";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { userLogoutEndPointCaller } from "../../redux/api/userApi";
+// firebaase  
+import  {auth , provider} from "./../../firebase/Firebase"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 function Signup({ signupintosignin ,  }) {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,7 +15,7 @@ function Signup({ signupintosignin ,  }) {
   const [password, setPassword] = useState("");
   const [confirmPassword , setConfirmPassword ] = useState("")
   const [errorMessage , setErrorMessage] = useState("")
-
+  const [fireBaseId , setFirebaseId] = useState("")
 
   const [emailConfirmation , setEmailConfirmation] = useState(false)
 
@@ -55,6 +59,27 @@ function Signup({ signupintosignin ,  }) {
     return { error: false, msg: "" };
   }
 
+  const googleSignup = () => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+
+        setEmail(user.email)
+        if(user.phoneNumber != null) setPhone(user.phoneNumber)
+        setFirebaseId(user.uid)
+
+    }).catch((error) => {
+  
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(error)
+    });
+
+ }
 
 const signup = () => {
 
@@ -68,7 +93,8 @@ const signup = () => {
             "password": password,
             "companyname": companyname,
             "email": email,
-            "phone" : phone
+            "phone" : phone,
+            "fireBaseId" : fireBaseId
         }).then((response)=>{
             console.log(response)
             if(response.error != null) setErrorMessage(response.error) 
@@ -114,6 +140,7 @@ const signup = () => {
                         <input
                         class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
                         placeholder=" "
+                        value={email}
                         onChange={handleEmail}
                         />
                         <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -128,6 +155,7 @@ const signup = () => {
                         class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
                         placeholder=" "
                         type = "number"
+                        value={phone}
                         onChange={handlePhone}
                         />
                         <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -195,20 +223,23 @@ const signup = () => {
                     <div class="flex-1 border-t border-gray-500"></div>
                 </div>
 
+                <div 
+                onClick={()=> googleSignup()}
+                className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
+                    <FaGoogle/>
+                    <p>Sign with Google</p>
+                    <p></p>
+                </div>
                 
                 <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                     <FaFacebook/>
-                    <p>Sign with Google</p>
+                    <p>Sign with Facebook</p>
                     <p></p>
                 </div>
                 
                
 
-                <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
-                    <FaGoogle/>
-                    <p>Sign with FaceBook</p>
-                    <p></p>
-                </div>
+              
 
                 <div className="w-full mt-[10%] md:mb-[5%] text-center">
                     <p onClick={()=>{signupintosignin()}}>Already have an account? LOGIN HERE</p>

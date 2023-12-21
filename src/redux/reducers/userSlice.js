@@ -3,6 +3,7 @@ import { userLogin } from '../api/userApi'
 import { setToken } from '../api/userApi'
 import {updateprofile} from '../api/userApi'
 import {userEmailConfirm} from '../api/userApi'
+import { fireBaseLogin } from '../api/userApi'
 const initialState = {
    data : {},
   
@@ -75,6 +76,23 @@ export const userSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+
+
+      // firebase login
+      .addCase(fireBaseLogin.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fireBaseLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload.data)
+        state.data = action.payload.data;
+      })
+      .addCase(fireBaseLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+
+      
       
   },    
   
