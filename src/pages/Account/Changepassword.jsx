@@ -3,6 +3,7 @@ import React , {useState , useEffect} from 'react'
 import { updateprofile } from '../../redux/api/userApi'
 import { useSelector , useDispatch } from 'react-redux'
 import Notify from '../../component/Popup/Notify'
+import ClipLoader from "react-spinners/ClipLoader";
 
 function ChangePassword({currentState}) {
   const [password , setPassword] = useState("")
@@ -10,6 +11,7 @@ function ChangePassword({currentState}) {
   const [companyname , setCompanyName] = useState("")
   const [email , setEmail] = useState("")
   const [phone , setPhone] = useState("")
+  const [isLoading , setLoading] = useState(false)
   const [errorMessage , setErrorMessage] = useState("")
   const [notify, setNotify] = useState({ visible: false });
   const user = useSelector((state) => state).user
@@ -23,7 +25,7 @@ function ChangePassword({currentState}) {
           return false;
   }
   const update = () => {
-
+      setLoading(true)
       if(currentState == "Password") {
         if(password != confirmPassword){
           setErrorMessage("password doesnt match")
@@ -39,7 +41,7 @@ function ChangePassword({currentState}) {
                 setNotify({ visible: true, msg: "Update failed", type: "success" });
                 setTimeout(() => setNotify({ visible: false }), 2000);
               }
-              
+              setLoading(false)
             })
       
         }
@@ -74,12 +76,12 @@ function ChangePassword({currentState}) {
                 setNotify({ visible: true, msg: "Update failed", type: "success" });
                 setTimeout(() => setNotify({ visible: false }), 2000);
               }
-              
+              setLoading(false)
             })
 
         }
       }
-    //
+      setLoading(false)
   }
   const onChangePassword = (e) => {
     setPassword(e.target.value)
@@ -174,7 +176,8 @@ function ChangePassword({currentState}) {
                         className="w-[100%] mt-[5%] bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 px-4 rounded"
                         onClick={(e) => {e.preventDefault(); update()}}
                         type="button">
-                            Continue
+                            
+                            {isLoading ? <ClipLoader color="#ffffff" size={35} /> : "update"} 
                     </button>
           </div>
         </div>
