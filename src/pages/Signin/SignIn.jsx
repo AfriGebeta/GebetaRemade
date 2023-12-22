@@ -1,6 +1,7 @@
 import React, { useState , useContext } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { FaFacebook } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "./../../context/AuthProvider";
 import { useNavigate } from "react-router-dom"; 
@@ -9,7 +10,7 @@ import EmailConfirmationForgotPassword from "../EmailConfirmation/EmailConfirmat
 import  {auth , provider} from "./../../firebase/Firebase"
 import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Loading";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 
 function Signin({ signintosignup }) {
@@ -26,6 +27,33 @@ function Signin({ signintosignup }) {
   const handlePassword = (event) => setPassword(event.target.value);
   const handleForgotPassword = () => setForgotPassword(!forgotPassword)
   
+
+  const signInGithub = () => {
+    const provider = new GithubAuthProvider();
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const user = result.user;
+        dispatch(fireBaseLogin(user.uid)).then((resultAction) => {
+            if (fireBaseLogin.fulfilled.match(resultAction)) {
+                  authContext.login();
+                  navigate("/dashboard");
+            } else {
+                  setErrorMessage(resultAction.error.message);
+            }
+            setLoading(false)
+                  
+          });
+    }) .catch((error) => {
+        // Handle Errors here.   
+        setLoading(false)
+    });
+
+  
+
+ }
+
 
   const handleContinue = () => {
     setLoading(true)
@@ -163,11 +191,13 @@ const googleLogin = () => {
                         
                        
     
-                        <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
+                        <div 
+                        onClick={() => signInGithub()}
+                        className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                             
-                            <FaFacebook/>
+                            <FaGithub/>
                           
-                            <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : "Log in with FaceBook"} </p>
+                            <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : "Log in with Github"} </p>
                             <p></p>
                         </div>
     

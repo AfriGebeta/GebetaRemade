@@ -9,10 +9,10 @@ import { PlayGroundContext } from "../../context/PlayGround";
 
 const Map = ({selectedButton}) => {
         const playContext = useContext(PlayGroundContext); // Access the AuthContext
-
         const {waypoint , origin , destination , setOriginCoordinates , setDestinationCoordinates , setWayPointsCoordinates, coordinate} = playContext
-       
         const position = [9.035961873355374,38.75238418579102]; // Initial map position
+
+        // the 
 
         function getRandomColor() {
             var letters = "0123456789ABCDEF";

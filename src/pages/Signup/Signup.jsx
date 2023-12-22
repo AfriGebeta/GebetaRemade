@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import EmailConfirmation from "../EmailConfirmation/EmailConfirmation"; 
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { userLogoutEndPointCaller } from "../../redux/api/userApi";
 // firebaase  
 import  {auth , provider} from "./../../firebase/Firebase"
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider,getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import ClipLoader from "react-spinners/ClipLoader";
 
 
@@ -58,6 +59,26 @@ function Signup({ signupintosignin ,  }) {
     // If all checks pass, return success
     return { error: false, msg: "" };
   }
+
+  const signUpGithub = () => {
+    const provider = new GithubAuthProvider();
+    signInWithPopup(auth, provider)
+    .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const user = result.user;
+        setEmail(user.email)
+        if(user.phoneNumber != null) setPhone(user.phoneNumber)
+        setFirebaseId(user.uid)
+        setLoading(false)
+    }) .catch((error) => {
+        // Handle Errors here.   
+        setLoading(false)
+    });
+
+  
+
+ }
 
   const googleSignup = () => {
     setLoading(true)
@@ -230,10 +251,12 @@ const signup = () => {
                     <p></p>
                 </div>
                 
-                <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
-                    <FaFacebook/>
+                <div 
+                onClick={()=> signUpGithub()}
+                className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
+                    <FaGithub/>
               
-                    {loading ? <ClipLoader color="#ffffff" size={35} />  : "Sign with Facebook"} 
+                    {loading ? <ClipLoader color="#ffffff" size={35} />  : "Sign with Github"} 
                     <p></p>
                 </div>
                 
