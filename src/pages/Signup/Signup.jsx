@@ -17,9 +17,9 @@ function Signup({ signupintosignin ,  }) {
   const [password, setPassword] = useState("");
   const [confirmPassword , setConfirmPassword ] = useState("")
   const [errorMessage , setErrorMessage] = useState("")
-  const [fireBaseId , setFirebaseId] = useState("8tM37q9LcgP4Bgr6WFr6FNc50VS2")
+  const [fireBaseId , setFirebaseId] = useState("")
   const [loading , setLoading] = useState(false)
-  const [emailConfirmation , setEmailConfirmation] = useState(true)
+  const [emailConfirmation , setEmailConfirmation] = useState(false)
   const handleUsername = (event) => setUserName(event.target.value);
   const handleEmail = (event) => setEmail(event.target.value);
   const handlePhone = (event) => setPhone(event.target.value);

@@ -5,6 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "./../../context/AuthProvider";
 import { useNavigate } from "react-router-dom"; 
 import { userLogin } from "../../redux/api/userApi";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 
@@ -12,11 +13,14 @@ import { userLogin } from "../../redux/api/userApi";
 function EmailConfirmationForgotPassword() {
   const [errorMessage , setErrorMessage] = useState("")
   const [counter , setCounter] = useState(0)
+  const [isLoading , setLoading] = useState(false)
   const [email , setEmail] = useState("")
   const intervalIdRef = useRef(null);
   const handleEmail = (event) => setEmail(event.target.value);
 
   const handleSendEmail = async () => {
+    setLoading(true)
+
     // Clear any existing interval
     if (intervalIdRef.current) {
       clearInterval(intervalIdRef.current);
@@ -51,10 +55,13 @@ function EmailConfirmationForgotPassword() {
           });
         }, 1000);
       }
+      setLoading(false)
     } catch (error) {
       console.error('Error sending email:', error);
       setErrorMessage("Error sending email");
+      setLoading(false)
     }
+    setLoading(false)
    };
 
 
@@ -89,7 +96,7 @@ function EmailConfirmationForgotPassword() {
                             type="button"
                             onClick={counter > 0 ? null : handleSendEmail}
                             disabled={counter > 0}>
-                            {counter > 0 ? `Please Wait for ${counter} sec` : "Send Email"} 
+                            {isLoading ? <ClipLoader color="#ffffff" size={35} /> : counter > 0 ? `Please Wait for ${counter} sec` : "Send Email"} 
                         </button>
                     </div>
             </div>
