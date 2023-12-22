@@ -6,6 +6,8 @@ import { userLogoutEndPointCaller } from "../../redux/api/userApi";
 // firebaase  
 import  {auth , provider} from "./../../firebase/Firebase"
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 function Signup({ signupintosignin ,  }) {
   const [username, setUserName] = useState("");
@@ -15,11 +17,9 @@ function Signup({ signupintosignin ,  }) {
   const [password, setPassword] = useState("");
   const [confirmPassword , setConfirmPassword ] = useState("")
   const [errorMessage , setErrorMessage] = useState("")
-  const [fireBaseId , setFirebaseId] = useState("")
-
-  const [emailConfirmation , setEmailConfirmation] = useState(false)
-
-
+  const [fireBaseId , setFirebaseId] = useState("8tM37q9LcgP4Bgr6WFr6FNc50VS2")
+  const [loading , setLoading] = useState(false)
+  const [emailConfirmation , setEmailConfirmation] = useState(true)
   const handleUsername = (event) => setUserName(event.target.value);
   const handleEmail = (event) => setEmail(event.target.value);
   const handlePhone = (event) => setPhone(event.target.value);
@@ -60,53 +60,50 @@ function Signup({ signupintosignin ,  }) {
   }
 
   const googleSignup = () => {
+    setLoading(true)
     signInWithPopup(auth, provider)
+    
     .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-
+           
         setEmail(user.email)
         if(user.phoneNumber != null) setPhone(user.phoneNumber)
         setFirebaseId(user.uid)
-
+        setLoading(false)
     }).catch((error) => {
   
         const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(error)
+        setLoading(false)
     });
 
  }
 
 const signup = () => {
-
+    setLoading(true)
     const validationResults = validateInputs(username, email, phone, companyname, password, confirmPassword);
     if(validationResults.error) setErrorMessage(validationResults.msg)
     else{
         setErrorMessage("")
-       
         userLogoutEndPointCaller({
             "username": username,
             "password": password,
             "companyname": companyname,
             "email": email,
             "phone" : phone,
-            "fireBaseId" : fireBaseId
+            "fid" : fireBaseId
         }).then((response)=>{
-            console.log(response)
+           
             if(response.error != null) setErrorMessage(response.error) 
             else setEmailConfirmation(!emailConfirmation)
+            setLoading(false)
         })
-
-       
     }
-
-    
-
-     
+    setLoading(false)
   }
     
 
@@ -214,7 +211,8 @@ const signup = () => {
                     onClick={()=>{signup()}}
                     className="w-[100%] mt-[5%] bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 px-4 rounded"
                     type="button">
-                        Continue
+                        
+                        {loading ? <ClipLoader color="#ffffff" size={35} />  : "Continue"} 
                 </button>
 
                 <div class="flex items-center mt-[2%]">
@@ -227,13 +225,15 @@ const signup = () => {
                 onClick={()=> googleSignup()}
                 className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                     <FaGoogle/>
-                    <p>Sign with Google</p>
+              
+                    {loading ? <ClipLoader color="#ffffff" size={35} />  : "Sign with Google"} 
                     <p></p>
                 </div>
                 
                 <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                     <FaFacebook/>
-                    <p>Sign with Facebook</p>
+              
+                    {loading ? <ClipLoader color="#ffffff" size={35} />  : "Sign with Facebook"} 
                     <p></p>
                 </div>
                 

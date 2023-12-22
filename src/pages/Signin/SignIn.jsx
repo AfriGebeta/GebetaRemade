@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { userLogin , fireBaseLogin} from "../../redux/api/userApi";
 import EmailConfirmationForgotPassword from "../EmailConfirmation/EmailConfirmationForgotPassword";
 import  {auth , provider} from "./../../firebase/Firebase"
+import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Loading";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 
 function Signin({ signintosignup }) {
   const [username, setUserName] = useState("");
@@ -32,9 +34,15 @@ function Signin({ signintosignup }) {
       "password": password
     })).then((resultAction) => {
       if (userLogin.fulfilled.match(resultAction)) {
-            authContext.login();
-            navigate("/dashboard");
+            if(resultAction.payload.data == null){
+             
+                setErrorMessage(resultAction.payload.error);
+            }else{
+                authContext.login();
+                navigate("/dashboard");
+            }
       } else {
+            
             setErrorMessage(resultAction.error.message);
       }
       setLoading(false)
@@ -44,7 +52,7 @@ function Signin({ signintosignup }) {
    
 
 const googleLogin = () => {
-
+    setLoading(true)
     signInWithPopup(auth, provider)
     .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -52,7 +60,7 @@ const googleLogin = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        setLoading(true)
+        
         dispatch(fireBaseLogin(user.uid)).then((resultAction) => {
           if (fireBaseLogin.fulfilled.match(resultAction)) {
                 authContext.login();
@@ -73,6 +81,7 @@ const googleLogin = () => {
     // The AuthCredential type that was used.
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
+    setLoading(false)
     });
 
  }
@@ -132,7 +141,9 @@ const googleLogin = () => {
                             type="button"
                             onClick={handleContinue}
                             >
-                                Continue
+                                
+                                {loading ? <ClipLoader color="#ffffff" size={35} />  : "Continue"} 
+
                         </button>
     
                         <div class="flex items-center mt-[2%]">
@@ -146,8 +157,7 @@ const googleLogin = () => {
                         onClick={()=> googleLogin()}
                         className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                            <FaGoogle/>
-                           
-                           <p>Log in with Google</p>
+                           <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : "Log in with Google"} </p>
                             <p></p>
                         </div>
                         
@@ -156,7 +166,8 @@ const googleLogin = () => {
                         <div className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                             
                             <FaFacebook/>
-                            <p>Log in with FaceBook</p>
+                          
+                            <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : "Log in with FaceBook"} </p>
                             <p></p>
                         </div>
     

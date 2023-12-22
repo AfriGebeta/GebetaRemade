@@ -6,19 +6,22 @@ import { AuthContext } from "./../../context/AuthProvider";
 import { useNavigate } from "react-router-dom"; 
 import { userLogin } from "../../redux/api/userApi";
 
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function EmailConfirmation({ email }) {
   const [errorMessage , setErrorMessage] = useState("")
   const [counter , setCounter] = useState(0)
-  
+  const [isLoading, setIsLoading] = useState(false);
   const intervalIdRef = useRef(null);
   const handleSendEmail = async () => {
+    setIsLoading(true);
     // Clear any existing interval
     if (intervalIdRef.current) {
       clearInterval(intervalIdRef.current);
     }
+
+
    
     // Make the API request
     try {
@@ -49,10 +52,14 @@ function EmailConfirmation({ email }) {
           });
         }, 1000);
       }
+      setIsLoading(false)
     } catch (error) {
       console.error('Error sending email:', error);
       setErrorMessage("Error sending email");
+      setIsLoading(false)
     }
+
+    setIsLoading(false)
    };
 
 
@@ -70,7 +77,8 @@ function EmailConfirmation({ email }) {
                             type="button"
                             onClick={counter > 0 ? null : handleSendEmail}
                             disabled={counter > 0}>
-                            {counter > 0 ? `Please Wait for ${counter} sec` : "Send Email"} 
+                            {/* {counter > 0 ? `Please Wait for ${counter} sec` : "Send Email"}  */}
+                            {isLoading ? <ClipLoader color="#ffffff" size={35} /> : counter > 0 ? `Please Wait for ${counter} sec` : "Send Email"} 
                         </button>
                     </div>
             </div>

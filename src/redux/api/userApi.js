@@ -8,7 +8,7 @@ export const fireBaseLogin = createAsyncThunk(
   'user/fireBaseLogin',
   async (firebaseId , thunkAPI) => {
     try{
-      const data = await API.post(`/api/v1/users/firebaselogin` , {"firebaseId" : firebaseId}, {
+      const data = await API.post(`/api/v1/users/firebaselogin` , {"fid" : firebaseId}, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -30,8 +30,10 @@ export const userLogin = createAsyncThunk(
          "Content-Type": "application/json",
        },
      });
-   
+     
+     return data.data
    } catch (error) {
+ 
      return handleApiError(error);
    }
  }
