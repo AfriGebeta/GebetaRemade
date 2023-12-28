@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import ApiDetail from "../../component/Card/ApiDetail";
 import APIUsage from "./APIUsage";
 import { getUserUsage } from "../../redux/api/usageAPI";
-import {getUserUsageForGraph} from "./../../redux/api/apiCallApi"
-
+import {getUserUsageForGraph ,getSpecifcUserUsageForGraph} from "./../../redux/api/apiCallApi"
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Usage() {
   const [metrics , setMetrics] = useState({})
@@ -13,7 +13,8 @@ function Usage() {
   const [graphData , setGraphData] = useState({error : "no data"})
   const [startingDate , setStartingDate] = useState("")
   const [endingDate , setEndingDate] = useState("")
-
+  const [selected, setSelected] = useState('All');
+  const [loading , setLoading] = useState(false)
 
   useEffect(()=>{
     getUserUsage(user.data.id).then((response)=>{
@@ -29,17 +30,33 @@ function Usage() {
   function handleStaringChange(event) {
     setStartingDate(event.target.value);
   }
+
+  function handleChange(e) {
+    // Update the state variable with the new value
+    setSelected(e.target.value);
+  }
+
   
   const getGraphData = () => {
   
- 
+    setLoading(true)
     if(startingDate != "" > 0 && endingDate != "" > 0) {
-
+      if(selected == "All"){
         getUserUsageForGraph(user.data.token ,startingDate  , endingDate ).then((response)=>{
           if(response.error == null){ setGraphData(response)
           }
         })
+      }else{
+        getSpecifcUserUsageForGraph(user.data.token ,startingDate  , endingDate , selected
+           ).then((response)=>{
+          if(response.error == null){ setGraphData(response)
+          }
+        })
+      }
+
+        
     }
+    setLoading(false)
     
   }
 
@@ -59,17 +76,19 @@ function Usage() {
 
     <div className="flex flex-row items-center justify-between">
       <p className=" mx-4">Select endpoints : </p>
-      <select className=" mx-4 w-40 h-10 bg-transparent border border-gray-300 rounded px-4 text-white">
-          <option value="all" className="text-black">All</option>
-          <option value="geocoding" className="text-black">Geocoding</option>
-          <option value="direction" className="text-black">Direction</option>
-          <option value="matrix" className="text-black">Matrix</option>
-          <option value="onm" className="text-black">Onm</option>
-          <option value="tss" className="text-black">TSS</option>
+      <select className=" mx-4 w-40 h-10 bg-transparent border border-gray-300 rounded px-4 text-white"   onChange={handleChange} >
+          <option value="All" className="text-black">All</option>
+          <option value="Geocoding" className="text-black">Geocoding</option>
+          <option value="Direction" className="text-black">Direction</option>
+          <option value="Matrix" className="text-black">Matrix</option>
+          <option value="ONM" className="text-black">Onm</option>
+          <option value="TSS" className="text-black">TSS</option>
       </select>
     </div>
 
-  <div className="flex flex-row items-center justify-between">
+
+
+  <div className="flex flex-row items-center justify-between mt-[2%] md:mt-[0%] ">
      <p className=" mx-4">from : </p>
   <input
     type="date"
@@ -79,7 +98,7 @@ function Usage() {
   />
   </div>
   
-  <div className="flex flex-row items-center justify-between">
+  <div className="flex flex-row items-center justify-between mt-[2%] md:mt-[0%] ">
     <p className=" mx-4">to : </p>
     <input
       type="date"
@@ -88,7 +107,16 @@ function Usage() {
       value={endingDate}
     />
   </div>
-  <p onClick={(e) => getGraphData()}>sd</p>
+
+  <button
+                            className=" mt-[2%] md:mt-[0%] w-full md:w-[30%]  bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 rounded"
+                            type="button"
+                            onClick={getGraphData}
+                            >
+                                
+                                {loading ? <ClipLoader color="#ffffff" size={35} />  : "Send"} 
+
+                        </button>
 </div>
 </div>
  
