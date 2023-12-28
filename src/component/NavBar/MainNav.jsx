@@ -51,7 +51,7 @@ const MainNav =  ({color  ,textColor}) => {
     const navigation = [
         {type : "text" , title: "Home", path: "/" },
         {type : "text" , title: "Pricing", path: "/pricing" },
-        {type : "text" , title: "Products", path: "/products" },
+        // {type : "text" , title: "Products", path: "/products" },
         {type : "text" , title: "Documentation", path: "/documentation" },
         // {type : "text" , title: "Blog", path: "javascript:void(0)" },
         {

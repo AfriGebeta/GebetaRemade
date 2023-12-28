@@ -3,12 +3,31 @@ import { useSelector } from "react-redux";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import { getUserUsageForGraph } from "../../redux/api/usageAPI";
 
-
-function APIUsage() {
+function APIUsage({graphData}) {
 
   const [labels, setLabels] = useState([]);
   const [data, setData] = useState([]);
+
+  const user = useSelector((state) => state).user
+  // 
+  useEffect(()=>{
+   
+      if(graphData.error == null ) {
+        console.log(graphData.data.data)
+        let labels = []
+        let data = []
+        for (let [key, value] of Object.entries(graphData.data.data.data)) {
+          labels.push(key)
+          data.push(value)
+        }
+        setLabels(labels)
+        setData(data)
+      }
+  },[graphData])
+
+
 
 
   const options = {
@@ -40,7 +59,7 @@ function APIUsage() {
   };
 
   return (
-    <div className="rounded-md px-4 py-3 bg-[#202022] ">
+    <div className="rounded-md px-4 py-3 bg-[#202022] mt-[12%] md:mt-[2%] ">
       <div className="flex justify-between items-center w-full sm:!sw">
         <div>
           <h2 className="m-0">API Usage</h2>
@@ -58,8 +77,7 @@ function APIUsage() {
             <Line options={options} data={datas} className="!w-full" />
           ) : (
             <h3 className="text-white">
-              You don't have any account activity for the selected period and
-              API key.
+              You don't have any account activity for the selected period.
             </h3>
           )}
         </div>

@@ -55,26 +55,20 @@ const FaqsCard = (props) => {
 
 
     const faqsList = [
+        
         {
-            q: "What are some random questions to ask?",
-            a: "That's exactly the reason we created this random question generator. There are hundreds of random questions to choose from so you're able to find the perfect random question."
+            q: "How does the pricing work?",
+            a: "The pricing structure varies depending on the nature of each request. For directional queries, charges are based on the number of requests made, while for matrix, TSS, and ONM requests, the billing is determined by the quantity of GPS coordinates transmitted. For example, a matrix request involving 10 coordinates is considered as 10 individual sending requests. Geocoding utilizes a session-based counter, and there is no charge for approximately 5 seconds if the last and new requests are similar."
         },
         {
-            q: "Do you include common questions?",
-            a: "This generator doesn't include most common questions. The thought is that you can come up with common questions on your own so most of the questions in this generator."
+            q: "What happens if I don't pay on time?",
+            a: "In the event of delayed payment, a grace period of 7 days will be provided after one month from your last payment. Failure to settle within this timeframe will result in a temporary suspension of system access until payment is received."
         },
         {
-            q: "Can I use this for 21 questions?",
-            a: "Yes! there are two ways that you can use this question generator depending on what you're after. You can indicate that you want 21 questions generated."
+            q: "How does payment scale for a larger number of requests?",
+            a: "The payment scale is inversely proportional to your usage. As the volume of requests decreases, the cost per request diminishes. For instance, if you utilize 1,000,000 requests, the rate is $2 per 1,000 requests. However, for a million requests, the price is halved, amounting to $1 per 1,000 requests."
         },
-        {
-            q: "Are these questions for girls or for boys?",
-            a: "The questions in this generator are gender neutral and can be used to ask either male of females (or any other gender the person identifies with)."
-        },
-        {
-            q: "What do you wish you had more talent doing?",
-            a: "If you've been searching for a way to get random questions, you've landed on the correct webpage. We created the Random Question Generator to ask you as many random questions as your heart desires."
-        }
+       
     ]
   
 

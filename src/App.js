@@ -36,7 +36,7 @@ function App() {
             <Route path="/" element={<Main />} />
              <Route path="/documentation" element={<Documentation />} />
              <Route path="/playground" element={<PlayGround />} /> 
-             <Route path="/products" element={<Products />} /> 
+             {/* <Route path="/products" element={<Products />} />  */}
             <Route path = "/privacy" element={<Privacy/>} />
             <Route path = "/terms" element={<Terms/>} />
             <Route path = "/reset-password" element={<ResetPassword/>} />

@@ -15,7 +15,7 @@ function Dashboard() {
     getUserUsage(user.data.id).then((response)=>{
       if(response.error == null) setMetrics(response.data.data)
     })
-  },[])
+  },[metrics])
 
 
   return (

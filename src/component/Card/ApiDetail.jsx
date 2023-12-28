@@ -7,7 +7,7 @@ function ApiDetail({ metrics }) {
   
   const user = useSelector((state) => state).user
 
-  console.log(user)
+ 
 
 
   const addDate = (date) => {
