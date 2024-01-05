@@ -1,5 +1,5 @@
 import React , {useState} from 'react'
-import { BrowserRouter , Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router , Routes, Route, Link } from "react-router-dom";
 import { AuthContext, AuthProvider } from './context/AuthProvider';
 import './App.css';
 import Billing from "./pages/Billing/index"
@@ -30,7 +30,7 @@ function App() {
   return (
     <AuthProvider>
      
-    <BrowserRouter> 
+    <Router> 
     <NavBar/> 
         <Routes>
             <Route path="/" element={<Main />} />
@@ -88,7 +88,7 @@ function App() {
 
          
         <Footer />   
-    </BrowserRouter>
+    </Router>
    
 </AuthProvider>
     

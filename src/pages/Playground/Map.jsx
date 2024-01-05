@@ -11,6 +11,9 @@ const Map = ({selectedButton}) => {
         const playContext = useContext(PlayGroundContext); // Access the AuthContext
         const {waypoint , origin , destination , setOriginCoordinates , setDestinationCoordinates , setWayPointsCoordinates, coordinate} = playContext
         const position = [9.035961873355374,38.75238418579102]; // Initial map position
+        const full_path = [
+        
+        ]
 
         // the 
 
@@ -73,6 +76,8 @@ const Map = ({selectedButton}) => {
            {
             coordinate.type == "onm"  ? coordinate.coords.map((pos)=> {return <Polyline positions={pos} color={getRandomColor()} />}) : ""
            }
+
+          <Polyline positions={full_path} color={getRandomColor()} />
 
 
             <MyComponent/>
