@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.faef2c3b.css",
-    "main.js": "./static/js/main.ded67f74.js",
+    "main.js": "./static/js/main.41df169d.js",
     "reactPlayerYouTube.js": "./static/js/reactPlayerYouTube.5aae55f2.chunk.js",
     "reactPlayerSoundCloud.js": "./static/js/reactPlayerSoundCloud.b886590e.chunk.js",
     "reactPlayerVimeo.js": "./static/js/reactPlayerVimeo.e35a9827.chunk.js",
@@ -16,9 +16,9 @@
     "reactPlayerFilePlayer.js": "./static/js/reactPlayerFilePlayer.4ca27c22.chunk.js",
     "reactPlayerPreview.js": "./static/js/reactPlayerPreview.afce1324.chunk.js",
     "static/js/787.6c9e71c5.chunk.js": "./static/js/787.6c9e71c5.chunk.js",
-    "static/media/gc.mp4": "./static/media/gc.5e91a83854807d940803.mp4",
-    "static/media/onm.mp4": "./static/media/onm.fb86d500f10b3089fd29.mp4",
-    "static/media/ro.mp4": "./static/media/ro.23fc7711241823bc34aa.mp4",
+    "static/media/gc.mp4": "./static/media/gc.6086ee820cef5c28c992.mp4",
+    "static/media/onm.mp4": "./static/media/onm.29af25cbaba6197d060e.mp4",
+    "static/media/ro.mp4": "./static/media/ro.7bbdfa3a8dc55a2f3f77.mp4",
     "static/media/display.png": "./static/media/display.db7790aaebdb23871c14.png",
     "static/media/africa5.jpeg": "./static/media/africa5.51c9426834d06509e9e5.jpeg",
     "static/media/RunningMan.png": "./static/media/RunningMan.ca7f8810cbac87f0a1e4.png",
@@ -39,7 +39,7 @@
     "index.html": "./index.html",
     "static/media/user3.webp": "./static/media/user3.8ca3a13f834ea7a85277.webp",
     "main.faef2c3b.css.map": "./static/css/main.faef2c3b.css.map",
-    "main.ded67f74.js.map": "./static/js/main.ded67f74.js.map",
+    "main.41df169d.js.map": "./static/js/main.41df169d.js.map",
     "reactPlayerYouTube.5aae55f2.chunk.js.map": "./static/js/reactPlayerYouTube.5aae55f2.chunk.js.map",
     "reactPlayerSoundCloud.b886590e.chunk.js.map": "./static/js/reactPlayerSoundCloud.b886590e.chunk.js.map",
     "reactPlayerVimeo.e35a9827.chunk.js.map": "./static/js/reactPlayerVimeo.e35a9827.chunk.js.map",
@@ -57,6 +57,6 @@
   },
   "entrypoints": [
     "static/css/main.faef2c3b.css",
-    "static/js/main.ded67f74.js"
+    "static/js/main.41df169d.js"
   ]
 }
