@@ -51,11 +51,11 @@ const Solutions = () => {
                                 muted={true}
                                 playing={true}
                                 url={geoVid}
-                                className=" mt-[2%] w-[90%] h-[90%] mr-[5%]"
+                                className=" mt-[2%] w-full h-[90%] mr-[5%]"
                                 loop={true}
                            
                                 playsinline={true}
-                                /> 
+                                />  
                         
       
                         </div>
@@ -104,15 +104,15 @@ const Solutions = () => {
                             </div>
                         
                          
-                            <ReactPlayer 
+                             <ReactPlayer 
                                 muted={true}
                                 playing={true}
                                 url={routeVid}
-                                className=" mt-[2%] w-[90%] h-[90%]"
+                                className=" mt-[2%] w-full h-[90%]"
                                 loop={true}
                                
                                 playsinline={true}
-                                /> 
+                                />  
                                
                         </div>
                 </div>
@@ -156,7 +156,7 @@ const Solutions = () => {
                                 muted={true}
                                 playing={true}
                                 url={onmVid}
-                                className=" mt-[2%] w-[90%] h-[90%]"
+                                className=" mt-[2%] w-full h-[90%]"
                                 loop={true}
 
                                 playsinline={true}
