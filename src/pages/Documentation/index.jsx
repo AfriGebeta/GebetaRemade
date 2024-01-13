@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import DocumentationHeader from "./DocumentationHeader";
 import Content from "./Content";
 import { returnDocumentationObject } from "../../data/documentation";
-
+import "./index.css"
 
 
 const Documentation = () => {

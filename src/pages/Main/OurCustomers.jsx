@@ -7,7 +7,7 @@ import user3 from "./../../assets/img/user3.png"
 
 const OurCustomers = () =>{
     return (
-        <div className="py-14 mt-[2%]">
+        <div className="py-14 mt-[25%] md:mt-0 lg:mt-[-20%]">
     <div className="max-w-screen-xl mx-auto px-4 md:px-8">
       {/* font-semibold text-sm text-gray-600 text-center */}
         <p className='text-center mt-[5%] md:mt-[10%] text-[#A0AABA] md:text-2xl text-xl' style={{fontFamily: "Zen Dots" }}>Our Customers</p>

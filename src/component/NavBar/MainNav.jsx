@@ -27,10 +27,6 @@ const MainNav =  ({color  ,textColor}) => {
         setSigninModal(true)
     }
 
- 
-
-
-
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -58,7 +54,7 @@ const MainNav =  ({color  ,textColor}) => {
             type : "component",
 
             // {text : "Careers"} ,{ text: "Blog" }
-            component: <DualDropdowns  textColor = {textColor} dropdown1={[{ text: "About us" , path : "/about" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
+            component: <DualDropdowns color={color}  textColor = {textColor} dropdown1={[{ text: "About us" , path : "/about" }]}  dropdown2 = {[ { text: "Linkedin" }, { text: "Twitter" }, { text: "Youtube" }, { text: "FaceBook" }, { text: "Instagram" }]}/>
         }
    ]
 
@@ -80,7 +76,7 @@ const MainNav =  ({color  ,textColor}) => {
                     elem={<Signup signupintosignin={fromSignupIntoSignIn} />}
             />
         
-        <nav className={`bg-${color} border-b w-full font-bold  md:static md:text-sm md:border-none`}>
+        <nav className={`bg-${color} border-b border-gray-700 p-2 md:p-4 w-full font-bold  md:static md:text-sm md:border-none`}>
             <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                 <Link 

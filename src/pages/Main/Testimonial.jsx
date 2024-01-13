@@ -19,7 +19,7 @@ const Testimonials = () => {
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="max-w-3xl mx-auto text-center">
                     <h3 className="text-[#A0AABA] font-semibold pb-6"></h3>
-                    <p className="text-[#A0AABA] text-3xl font-semibold sm:text-4xl" style={{fontFamily: "Zen Dots" }}>
+                    <p className="text-gray-300 text-3xl font-semibold sm:text-4xl mb-4" style={{fontFamily: "Zen Dots" }}>
                     What people are saying
                     </p>
                     <ul>
@@ -29,7 +29,7 @@ const Testimonials = () => {
                                     <li key={idx}>
                                         <figure>
                                             <blockquote>
-                                                <p className="text-white text-xl font-semibold sm:text-2xl">
+                                                <p className="text-gray-400 text-xl font-semibold sm:text-2xl">
                                                     “{item.quote}“
                                                 </p>
                                             </blockquote>
@@ -52,7 +52,7 @@ const Testimonials = () => {
                         {
                             testimonials.map((item, idx) => (
                                 <li key={idx}>
-                                    <button className={`w-2.5 h-2.5 rounded-full duration-150 ring-offset-2 ring-indigo-600 focus:ring ${currentTestimonial == idx ? "bg-indigo-600" : "bg-gray-300"}`}
+                                    <button className={`w-2.5 h-2.5 rounded-full duration-150 ring-offset-2 ring-gray-600 focus:ring ${currentTestimonial == idx ? "bg-gray-600" : "bg-gray-300"}`}
                                         onClick={() => setCurrentTestimonial(idx)}
                                     ></button>
                                 </li>

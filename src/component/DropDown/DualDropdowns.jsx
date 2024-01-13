@@ -1,11 +1,10 @@
 
 import React ,{ useState , useEffect ,useRef} from 'react'
-import logo from "./../../assets/img/icon/logo.png";
 import { Link } from 'react-router-dom';
 
 
 
-const DualDropdowns = ({textColor ,dropdown1 , dropdown2}) => {
+const DualDropdowns = ({color, textColor ,dropdown1 , dropdown2}) => {
     const [isDropdown1Open, setDropdown1Open] = useState(false);
     const [isDropdown2Open, setDropdown2Open] = useState(false);
    
@@ -57,7 +56,7 @@ const DualDropdowns = ({textColor ,dropdown1 , dropdown2}) => {
 
   
           {isDropdown1Open && (
-            <div className="md:absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+            <div className={`md:absolute right-0 mt-2 w-48 bg-${color} border rounded shadow-lg`}>
               <ul>
                 {
                     dropdown1.map((item)=>{
@@ -88,7 +87,7 @@ const DualDropdowns = ({textColor ,dropdown1 , dropdown2}) => {
             </p>
   
           {isDropdown2Open && (
-            <div className="md:absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg">
+            <div className={`md:absolute right-0 mt-2 w-48 bg-${color} border rounded shadow-lg`}>
               <ul>
               {
                     dropdown2.map((item)=>{
