@@ -130,7 +130,7 @@ const Solutions = () => {
                                 </p>
                             </div>
                             <div className="mt-[5%] md:mt-[0%] w-[50%] h-[50%] mr-[5%]">
-                            <ReactPlayer 
+                            <ReactPlayer tele
                                 muted={true}
                                 playing={true}
                                 url={onmVid}

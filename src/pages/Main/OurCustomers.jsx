@@ -1,11 +1,6 @@
 import React from "react";
-import user1 from "./../../assets/img/user1.webp"
-import user2 from "./../../assets/img/user2.webp"
-import user3 from "./../../assets/img/user3.webp"
-import user4 from "./../../assets/img/user4.webp"
-import user5 from "./../../assets/img/user5.webp"
-import user6 from "./../../assets/img/user6.webp"
-import user7 from "./../../assets/img/user7.webp"
+import user1 from "./../../assets/img/user1.jpg"
+
 
 
 const OurCustomers = () =>{
@@ -17,34 +12,9 @@ const OurCustomers = () =>{
         <div className="mt-6">
             <ul className="flex gap-x-10 gap-y-6 flex-wrap items-center justify-center md:gap-x-16">
                 {/* LOGO 1 */}
-              <li>
-                    <img src={user1} />
-              </li>
-
-                {/* LOGO 2 */}
-              <li>
-                    <img src={user2} />
-              </li>
-
-              <li>
-                    <img src={user3} />
-              </li>
-
-
-              <li>
-                    <img src={user4} />
-              </li>
-
-                {/* LOGO 3 */}
-              <li>
-                    <img src={user2} />
-              </li>
-
-                {/* LOGO 4 */}
-              <li>
-                 <img src={user3} />
-              </li>
-
+               <li>
+                    <img src={user1} className="w-28" />
+              </li> 
             </ul>
         </div>
     </div>
