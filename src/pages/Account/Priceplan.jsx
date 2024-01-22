@@ -48,9 +48,9 @@ function Plans() {
   const list = [
     {
       name: "Starter",
-      price: "2.00",
+      price: "0.20 cents",
       description:
-        "GebetaMap’s Starter plan if your API usage is 0 - 100000 API calls.",
+        "GebetaMap's Starter plan if your API usage is 0 - 100000 API calls.",
       features: [
         "Geocoding Endpoint",
         "Direction Endpoint",
@@ -61,9 +61,9 @@ function Plans() {
     },
     {
       name: "Business",
-      price: "1.75",
+      price: "0.175 cents",
       description:
-        "GebetaMap’s Business plan if your API usage is 100001 - 500000 API calls.",
+        "GebetaMap's Business plan if your API usage is 100001 - 500000 API calls.",
       features: [
         "Geocoding Endpoint",
         "Direction Endpoint",
@@ -74,9 +74,9 @@ function Plans() {
     },
     {
       name: "Professional",
-      price: "1.50",
+      price: "0.15 cents",
       description:
-        "GebetaMap’s Professional plan if your API usage is 500001 - 1000000 API calls.",
+        "GebetaMap's Professional plan if your API usage is 500001 - 1000000 API calls.",
       features: [
         "Geocoding Endpoint",
         "Direction Endpoint",
@@ -87,9 +87,9 @@ function Plans() {
     },
     {
       name: "Premium",
-      price: "1.00",
+      price: "0.10 cents",
       description:
-        "GebetaMap’s Premium plan if your API usage is 1000001 - 5000000 API calls.",
+        "GebetaMap's Premium plan if your API usage is 1000001 - 5000000 API calls.",
       features: [
         "Geocoding Endpoint",
         "Direction Endpoint",

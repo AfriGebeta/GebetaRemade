@@ -247,7 +247,7 @@ const signup = () => {
                 className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                     <FaGoogle/>
               
-                    {loading ? <ClipLoader color="#ffffff" size={35} />  : "Sign with Google"} 
+                    {loading ? <ClipLoader color="#ffffff" size={35} />  : <span className="hover:text-GebetaMain">Sign with Google</span>} 
                     <p></p>
                 </div>
                 
@@ -256,7 +256,7 @@ const signup = () => {
                 className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                     <FaGithub/>
               
-                    {loading ? <ClipLoader color="#ffffff" size={35} />  : "Sign with Github"} 
+                    {loading ? <ClipLoader color="#ffffff" size={35} />  : <span className="hover:text-GebetaMain">Sign with Github</span>} 
                     <p></p>
                 </div>
                 
@@ -265,7 +265,7 @@ const signup = () => {
               
 
                 <div className="w-full mt-[10%] md:mb-[5%] text-center">
-                    <p onClick={()=>{signupintosignin()}}>Already have an account? LOGIN HERE</p>
+                    <p onClick={()=>{signupintosignin()}}>Already have an account? <span className="hover:text-GebetaMain">login here</span></p>
                 </div>
 
             </div>

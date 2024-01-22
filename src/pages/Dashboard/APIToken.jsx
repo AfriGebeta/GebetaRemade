@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CopyOutlined, DeleteFilled, EyeInvisibleFilled } from "@ant-design/icons";
+import { CopyOutlined, DeleteFilled, EyeInvisibleFilled  } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { setToken } from "../../redux/api/userApi";
 import Modal from "./../../component/Modal/Modal"
@@ -10,6 +10,7 @@ import { setUserData } from "../../redux/reducers/userSlice";
 function APIToken() {
   const [showTokenModal, setTokenModal] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [showToken , setShowToken] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [description, setDescription] = useState("");
   const [textType, setTextType] = useState("text");
@@ -19,20 +20,28 @@ function APIToken() {
   const dispatch = useDispatch()
   
   const handleDescription = (event) => setDescription(event.target.value);
-  
 
-  // ... (other functions remain unchanged)
 
   const copyToClipboard = () => {
     try {
       navigator.clipboard.writeText(user.data.token);
-
       setNotify({ visible: true, msg: "Copied", type: "success" });
       setTimeout(() => setNotify({ visible: false }), 2000);
     } catch (err) {
       console.error('Failed to copy: ', err);
     }
   };
+
+  const handleEyeVisible = () => {
+    try {
+      setShowToken(!showToken)
+      navigator.clipboard.writeText(user.data.token);
+      setNotify({ visible: true, msg: "hidden", type: "success" });
+      setTimeout(() => setNotify({ visible: false }), 2000);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  }
 
 
   
@@ -86,26 +95,28 @@ function APIToken() {
             <p className="mt-[2%] text-lg text-white"> Api Token</p>
             <div className="flex justify-between mt-[1%] items-center">
             
-              <div className="relative w-full">
-                  
+              <div className="relative w-[95%]">
                   <input
-                      type="text"
-                      placeholder={user.data.token}
-                      className="w-full pl-12 pr-3 py-2 text-gray-500 bg-transparent outline-none border  shadow-sm rounded-lg"
+                       type={showToken ? "text" : "password"}
+                       disabled
+                      value={user.data.token}
+                      className="w-full pl-2 pr-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg"
                   />
-              
-
-                  <CopyOutlined className="w-6 h-6 text-gray-400 absolute right-3 inset-y-0 my-auto top-2" onClick={copyToClipboard} />
-
               </div>
-                  
-                  <DeleteFilled
-                  className="!text-red-600 cursor-pointer ml-[2%]"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    deleteToken();
-                  }}
+              <div className="flex justify-between w-[4%]">
+                <CopyOutlined className="" onClick={copyToClipboard} />
+             
+                <EyeInvisibleFilled className="ml-[2%]" onClick={handleEyeVisible}  />
+                
+                <DeleteFilled
+                    className="!text-red-600 cursor-pointer ml-[2%]"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      deleteToken();
+                    }}
                 />
+              </div>
+              
             </div>
           </div>
       

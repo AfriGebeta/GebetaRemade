@@ -185,7 +185,7 @@ const googleLogin = () => {
                         onClick={()=> googleLogin()}
                         className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                            <FaGoogle/>
-                           <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : "Log in with Google"} </p>
+                           <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : <span className="hover:text-GebetaMain">Log in with Google</span>} </p>
                             <p></p>
                         </div>
                         
@@ -197,12 +197,12 @@ const googleLogin = () => {
                             
                             <FaGithub/>
                           
-                            <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : "Log in with Github"} </p>
+                            <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : <span className="hover:text-GebetaMain">Log in with Github</span>} </p>
                             <p></p>
                         </div>
     
                         <div className="w-full mt-[15%] mb-[5%] text-center">
-                            <p onClick={()=> signintosignup()}>New User? SIGN UP HERE</p>
+                            <p onClick={()=> signintosignup()}>new user ?<span className="hover:text-GebetaMain"> sign up here </span></p>
                         </div>
     
                     </div>

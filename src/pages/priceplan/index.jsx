@@ -24,10 +24,7 @@ function Priceplan() {
         <div className="mt-[20%] md:mt-[3%]">
             <ApiDetail metrics = {metrics} />
         </div>
-      <p className="mt-[2%]">asdfjklasdfhjkasashf jhahsfjjhahsf hajfhaasjkfh hasfjklfhassfjkfh hjkasfhfjaasfh jha aj sfhaasjkfh lh jahlfjkfhdfj hjlaahffjaahfj haklajkldfflhk asdfjklasdfhjkasashf jhahsfjjhahsf hajfhaasjkfh hasfjklfhassfjkfh hjkasfhfjaasfh jha aj sfhaasjkfh lh jahlfjkfhdfj hjlaahffjaahfj haklajkldfflhk asdfjklasdfhjkasashf jhahsfjjhahsf hajfhaasjkfh hasfjklfhassfjkfh hjkasfhfjaasfh jha aj sfhaasjkfh lh jahlfjkfhdfj hjlaahffjaahfj haklajkldfflhk</p>
-      
-   
-      
+    
       <Plans/>
         
       </div>

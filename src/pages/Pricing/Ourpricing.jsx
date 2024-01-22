@@ -46,10 +46,10 @@ const Pricing = () => {
   return (
     <div className=" text-white  w-[100%] md:w-[60%] ">
       <div className="mt-[2%] mx-[3%]">
-          <p>The Routes API uses a pay-as-you-go pricing model. The Google Maps Platform APIs and SDKs are billed by SKU. Usage is tracked for each SKU, and any API or SDK may have more than one product SKU. Cost is calculated by</p>
-          <p>SKU usage × Price per each use</p>
+          <p>The Routes API uses a pay-as-you-go pricing model. The Gebeta maps  APIs  arer billed by usage. Cost is calculated by</p>
+          <p>api call  × Price per each use</p>
 
-        <p className="mt-[1%]"> Use our Pricing and Usage calculator to estimate your usage cost per API or SDK. </p>
+        <p className="mt-[1%]"> Use our Pricing and Usage calculator to estimate your usage cost per API . </p>
         <div className="w-full mt-[4%] bg-[#202022] rounded-md">
            <div className="w-[80%] mx-auto py-[4%]">
            <PricingSlider text = {"Direction API"}/>

@@ -90,40 +90,14 @@ const OurTeam =  () => {
 
     const team = [
         {
-            avatar: bek,
-            name: "Bereket Terefe",
-            title: "Frontend developer",
-            // linkedin: "javascript:void(0)",
-            // twitter: "javascript:void(0)",
-        },
-        {
-            avatar: dani,
-            name: "Daniel Tsegaw",
-            title: "Backend developer",
-            // linkedin: "javascript:void(0)",
-            // twitter: "javascript:void(0)",
-        },
-        {
             avatar: bemh,
             name: "Bemhreth Gezahegn",
             title: "CEO",
             // linkedin: "javascript:void(0)",
             // twitter: "javascript:void(0)",
         },
-        {
-            avatar: rahel,
-            name: "Rahel Tura",
-            title: "Finance head",
-            // linkedin: "javascript:void(0)",
-            // twitter: "javascript:void(0)",
-        },
-        {
-            avatar: dibo,
-            name: "Deborah Terefe",
-            title: "Legal Advisor",
-            // linkedin: "javascript:void(0)",
-            // twitter: "javascript:void(0)",
-        },
+
+
         {
             avatar: aben,
             name: "Abenezer Seifu",
@@ -138,6 +112,38 @@ const OurTeam =  () => {
             // linkedin: "javascript:void(0)",
             // twitter: "javascript:void(0)",
         },
+        {
+            avatar: rahel,
+            name: "Rahel Tura",
+            title: "CFO",
+            // linkedin: "javascript:void(0)",
+            // twitter: "javascript:void(0)",
+        },
+        {
+            avatar: dibo,
+            name: "Deborah Terefe",
+            title: "Legal Advisor",
+            // linkedin: "javascript:void(0)",
+            // twitter: "javascript:void(0)",
+        },
+
+        {
+            avatar: bek,
+            name: "Bereket Terefe",
+            title: "Senior software engineer",
+            // linkedin: "javascript:void(0)",
+            // twitter: "javascript:void(0)",
+        },
+        {
+            avatar: dani,
+            name: "Daniel Tsegaw",
+            title: "Senior software engineer",
+            // linkedin: "javascript:void(0)",
+            // twitter: "javascript:void(0)",
+        },
+       
+      
+        
     ]
 
     return (
@@ -147,9 +153,7 @@ const OurTeam =  () => {
                     <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
                         Meet our team
                     </h3>
-                    <p className="text-gray-600 mt-3">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy.
-                    </p>
+                  
                 </div>
                 <div className="mt-12">
                     <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
