@@ -1,5 +1,7 @@
 import React from "react";
 import user1 from "./../../assets/img/user1.jpg"
+import user2 from "./../../assets/img/user2.png"
+import user3 from "./../../assets/img/user3.png"
 
 
 
@@ -14,6 +16,12 @@ const OurCustomers = () =>{
                 {/* LOGO 1 */}
                <li>
                     <img src={user1} className="w-28" />
+              </li> 
+              <li>
+                    <img src={user2} className="w-28" />
+              </li> 
+              <li>
+                    <img src={user3} className="w-28" />
               </li> 
             </ul>
         </div>
