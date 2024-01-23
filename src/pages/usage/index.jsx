@@ -89,7 +89,7 @@ function Usage() {
 
 
   <div className="flex flex-row items-center justify-between mt-[2%] md:mt-[0%] ">
-     <p className=" mx-4">from : </p>
+     <p className=" mx-4">from  </p>
   <input
     type="date"
     onChange={handleStaringChange}
@@ -99,7 +99,7 @@ function Usage() {
   </div>
   
   <div className="flex flex-row items-center justify-between mt-[2%] md:mt-[0%] ">
-    <p className=" mx-4">to : </p>
+    <p className=" mx-4">to  </p>
     <input
       type="date"
       onChange={handleEndChange}
