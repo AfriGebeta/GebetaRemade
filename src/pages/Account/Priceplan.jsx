@@ -18,7 +18,7 @@ function Plan({ data }) {
         <h3>{data.name}</h3>
         <div className="flex gap-2 items-end">
           <div className="self-stretch pt-2">
-            <sup className=" ">$</sup>
+            <sup className=" ">Birr</sup>
           </div>
           <h1 className="m-0 inline-block">{data.price}</h1>
           <tiny>per 1000 calls</tiny>

@@ -6,7 +6,7 @@ const Testimonials = () => {
         {
             avatar: biruk,
             name: "Biruk Fekade",
-            title: "Software enginner at adika",
+            title: "CTO at Adika",
             quote: "Gebeta Maps has consistently proven to be an invaluable asset for Adika. The seamless integration of their API into our systems has significantly enhanced our location-based services. The accuracy and up-to-date information provided by Gebeta Maps have played a crucial role in improving the overall user experience for our customers."
         },
        

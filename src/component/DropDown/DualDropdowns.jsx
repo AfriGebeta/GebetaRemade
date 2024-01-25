@@ -56,7 +56,7 @@ const DualDropdowns = ({color, textColor ,dropdown1 , dropdown2}) => {
 
   
           {isDropdown1Open && (
-            <div className={`md:absolute right-0 mt-2 w-48 bg-${color} border rounded shadow-lg`}>
+            <div className={`md:absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg `}>
               <ul>
                 {
                     dropdown1.map((item)=>{
@@ -87,11 +87,11 @@ const DualDropdowns = ({color, textColor ,dropdown1 , dropdown2}) => {
             </p>
   
           {isDropdown2Open && (
-            <div className={`md:absolute right-0 mt-2 w-48 bg-${color} border rounded shadow-lg`}>
+            <div className={`md:absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg`}>
               <ul>
               {
                     dropdown2.map((item)=>{
-                       return (<li className="hover:text-GebetaMain py-2 px-4 hover:bg-gray-100 cursor-pointer">{item.text}</li>)
+                       return (<a href={item.link} target="_blank"><li className="hover:text-GebetaMain py-2 px-4 hover:bg-gray-100 cursor-pointer">{item.text}</li></a>)
                     })
                 }
               </ul>
