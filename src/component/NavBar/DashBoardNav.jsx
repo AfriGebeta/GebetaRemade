@@ -67,7 +67,7 @@ const DashBoardNav =  ({color  ,textColor}) => {
                     elem={<Signup signupintosignin={fromSignupIntoSignIn} />}
             />
         
-        <nav className={`bg-${color} border-b w-full font-bold  md:static md:text-sm md:border-none`}>
+        <nav className={`bg-${color} border-b border-gray-700 p-2 w-full font-bold  md:static md:text-sm md:border-none`}>
             <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
                     <a href="javascript:void(0)">

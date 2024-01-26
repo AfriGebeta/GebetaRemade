@@ -5,7 +5,7 @@ import Footer from "../../component/Footer/Footer";
 import PlayGroundHeader from "./PlayGroundHeader";
 import MapView from "./MapView";
 import { PlayGroundProvider } from "../../context/PlayGround";
-
+import "./index.css"
 
 const PlayGround = () => {
   

@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+/* Styling the scrollbar track (background) */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Styling the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: darkgray; /* Color of the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners on the scrollbar thumb */
+}
+
+/* Styling the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: gray; /* Darker shade when hovering */
+}

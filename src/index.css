@@ -22,3 +22,7 @@ code {
   font-family: 'Trebuchet MS';
   src: url('/src/assets/font/trebuchet-ms/trebuc.woff') format('woff');
 }
+
+:root {
+  color-scheme: dark;
+}
