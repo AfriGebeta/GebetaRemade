@@ -174,14 +174,14 @@ const googleLogin = () => {
 
                         </button>
     
-                        <div class="flex items-center mt-[2%]">
+                        {/* <div class="flex items-center mt-[2%]">
                             <div class="flex-1 border-t border-gray-500"></div>
                             <span class="mx-4 text-white"> or </span>
                             <div class="flex-1 border-t border-gray-500"></div>
-                        </div>
+                        </div> */}
     
                         
-                        <div 
+                        {/* <div 
                         onClick={()=> googleLogin()}
                         className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                            <FaGoogle/>
@@ -199,7 +199,7 @@ const googleLogin = () => {
                           
                             <p>{loading ? <ClipLoader color="#ffffff" size={35} /> : <span className="hover:text-GebetaMain">Sign in with Github</span>} </p>
                             <p></p>
-                        </div>
+                        </div> */}
     
                         <div className="w-full mt-[15%] mb-[5%] text-center">
                             <p onClick={()=> signintosignup()}>new user ?<span className="hover:text-GebetaMain"> sign up here </span></p>

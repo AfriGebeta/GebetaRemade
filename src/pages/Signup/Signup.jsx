@@ -236,13 +236,13 @@ const signup = () => {
                         {loading ? <ClipLoader color="#ffffff" size={35} />  : "Continue"} 
                 </button>
 
-                <div class="flex items-center mt-[2%]">
+                {/* <div class="flex items-center mt-[2%]">
                     <div class="flex-1 border-t border-gray-500"></div>
                     <span class="mx-4 text-white"> or </span>
                     <div class="flex-1 border-t border-gray-500"></div>
-                </div>
+                </div> */}
 
-                <div 
+                {/* <div 
                 onClick={()=> googleSignup()}
                 className="w-[100%] mt-[5%]  border border-white  text-white font-bold py-3 px-4 rounded flex justify-between">
                     <FaGoogle/>
@@ -258,7 +258,7 @@ const signup = () => {
               
                     {loading ? <ClipLoader color="#ffffff" size={35} />  : <span className="hover:text-GebetaMain">Sign up with Github</span>} 
                     <p></p>
-                </div>
+                </div> */}
                 
                
 
