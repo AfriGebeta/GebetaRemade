@@ -3,6 +3,7 @@ import EmailConfirmation from "../EmailConfirmation/EmailConfirmation";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the eye icons
 import { userLogoutEndPointCaller } from "../../redux/api/userApi";
 // firebaase  
 import  {auth , provider} from "./../../firebase/Firebase"
@@ -20,15 +21,17 @@ function Signup({ signupintosignin ,  }) {
   const [errorMessage , setErrorMessage] = useState("")
   const [fireBaseId , setFirebaseId] = useState("")
   const [loading , setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [emailConfirmation , setEmailConfirmation] = useState(false)
+  const [showConfirmPassword , setConfirmPasswordVisibility] = useState(false)
   const handleUsername = (event) => setUserName(event.target.value);
   const handleEmail = (event) => setEmail(event.target.value);
   const handlePhone = (event) => setPhone(event.target.value);
   const handleCompanyName = (event) => setCompanyName(event.target.value);
   const handlePassword = (event) => setPassword(event.target.value);
   const handleConfirmPassword = (event) => setConfirmPassword(event.target.value);
-  
-
+  const togglePasswordVisibility = () =>  setShowPassword(!showPassword);
+  const toggleConfirmPassword = () => setConfirmPasswordVisibility(!showConfirmPassword)
 
   function validateInputs(username, email, phone, companyname, password, confirmPassword) {
     // Check if any input is empty
@@ -200,12 +203,21 @@ const signup = () => {
 
                 <div class="w-full mt-[8%]">
                     <div class="relative h-10 w-full min-w-[200px]">
-                        <input
-                        class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
-                        placeholder=" "
-                        type="password"
-                        onChange={handlePassword}
-                        />
+                    <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    value={password}
+                                    onChange={handlePassword}
+                                    className="h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all focus:border-2 disabled:border-0 disabled:bg-blue-gray-50"
+                                    placeholder=" "
+                                />
+                                 <span
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer "
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {showPassword ? <FaEyeSlash className="text-black" /> : <FaEye className="text-black" />}
+                                </span>
+                                </div>
                         <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                             Password
                         </label>
@@ -214,12 +226,22 @@ const signup = () => {
 
                 <div class="w-full mt-[8%]">
                     <div class="relative h-10 w-full min-w-[200px]">
-                        <input
-                        class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
-                        placeholder=" "
-                        type="password"
-                        onChange={handleConfirmPassword}
-                        />
+                       
+                        <div className="relative">
+                              
+                                 <input
+                                  type={showConfirmPassword ? "text" : "password"}
+                                    class=" h-full w-full py-6 rounded-[7px] border border-white border-t-transparent bg-transparent px-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:border-0 disabled:bg-blue-gray-50"
+                                    placeholder=" "
+                                    onChange={handleConfirmPassword}
+                                    />
+                                 <span
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer "
+                                    onClick={toggleConfirmPassword}
+                                >
+                                    {showConfirmPassword ? <FaEyeSlash className="text-white" /> : <FaEye className="text-white" />}
+                                </span>
+                                </div>
                         <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight  transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
                             Confirm password
                         </label>

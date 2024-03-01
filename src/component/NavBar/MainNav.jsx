@@ -54,7 +54,7 @@ const MainNav =  ({color  ,textColor}) => {
             type : "component",
 
             // {text : "Careers"} ,{ text: "Blog" }
-            component: <DualDropdowns color={color}  textColor = {textColor} dropdown1={[{ text: "About us" , path : "/about" }]}  dropdown2 = {[ { text: "Linkedin" , link: "https://et.linkedin.com/company/gebetamaps"}, { text: "Twitter", link:"https://twitter.com/GebetaMaps" }, { text: "Youtube", link:"https://www.youtube.com/@gebetamaps" }, { text: "Instagram", link: "https://www.instagram.com/gebetamaps?igsh=MWlmaWx0ZmU2NGUyOA==" }]}/>
+            component: <DualDropdowns color={color}  textColor = {textColor} dropdown1={[{ text: "About us" , path : "/about" }]}  dropdown2 = {[ { text: "Linkedin" , link: "https://et.linkedin.com/company/gebetamaps"}, { text: "Twitter", link:"https://twitter.com/GebetaMaps" }, { text: "Youtube", link:"https://www.youtube.com/@gebetamaps" }, { text: "Instagram", link: "https://www.instagram.com/gebetamaps?igsh=MWlmaWx0ZmU2NGUyOA==" } , {text : "Telegram" , link : "https://web.telegram.org/k/#@gebetamaps"}]}/>
         }
    ]
 

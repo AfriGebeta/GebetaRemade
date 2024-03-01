@@ -114,7 +114,7 @@ function Usage() {
                             onClick={getGraphData}
                             >
                                 
-                                {loading ? <ClipLoader color="#ffffff" size={35} />  : "Send"} 
+                                {loading ? <ClipLoader color="#ffffff" size={35} />  : "Show"} 
 
                         </button>
 </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import biruk from "./../../assets/img/output.png"
+import habtamu from "./../../assets/img/habtamu.jpg"
 const Testimonials = () => {
 
     const testimonials = [
@@ -8,6 +9,12 @@ const Testimonials = () => {
             name: "Biruk Fekade",
             title: "CTO at Adika",
             quote: "Gebeta Maps has consistently proven to be an invaluable asset for Adika. The seamless integration of their API into our systems has significantly enhanced our location-based services. The accuracy and up-to-date information provided by Gebeta Maps have played a crucial role in improving the overall user experience for our customers."
+        },
+        {
+            avatar: habtamu,
+            name: "Habtamu Tadesse",
+            title: "Founder and CEO",
+            quote: "I highly recommend Gebeta Maps as an essential mapping service for ZayRide. Their accurate and up-to-date maps have greatly improved navigation for our taxi drivers, ensuring efficient and reliable transportation services for our passengers."
         },
        
     ]

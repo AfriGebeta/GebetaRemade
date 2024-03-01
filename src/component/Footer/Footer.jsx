@@ -1,7 +1,7 @@
 import React , {useState,  useEffect }   from "react";
 import { useLocation } from 'react-router-dom';
-import { FaFacebook } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
+import { FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -34,12 +34,26 @@ const Footer = () => {
 
                 {/* icons */}
                 <div className={`flex space-x-4 text-${textColor}`}>
-
+                <a href="https://www.instagram.com/gebetamaps?igsh=MWlmaWx0ZmU2NGUyOA==" target="_blank" rel="noopener noreferrer">
                     < FaFacebook className="w-7 h-7 hover:text-GebetaMain" />
-                    < FaGoogle  className="w-7 h-7 hover:text-GebetaMain"  />
+                    </a>
+                 
+
+                    <a href="https://et.linkedin.com/company/gebetamaps" target="_blank" rel="noopener noreferrer">
                     < FaLinkedin  className="w-7 h-7 hover:text-GebetaMain"  />
+                    </a>
+
+                    <a href="https://www.youtube.com/@gebetamaps" target="_blank" rel="noopener noreferrer">
                     < FaYoutube  className="w-7 h-7 hover:text-GebetaMain" />
-                    < FaFacebook  className="w-7 h-7 hover:text-GebetaMain" />
+                    </a>
+
+                    <a href="https://twitter.com/GebetaMaps" target="_blank" rel="noopener noreferrer">
+                    < FaTwitter  className="w-7 h-7 hover:text-GebetaMain" />
+                    </a>
+
+                    <a href="https://web.telegram.org/k/#@gebetamaps" target="_blank" rel="noopener noreferrer">
+                    < FaTelegram  className="w-7 h-7 hover:text-GebetaMain" />
+                    </a>
 
                 </div>
                 
