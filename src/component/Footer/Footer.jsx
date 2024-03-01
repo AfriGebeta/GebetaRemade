@@ -1,6 +1,6 @@
 import React , {useState,  useEffect }   from "react";
 import { useLocation } from 'react-router-dom';
-import { FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
@@ -35,7 +35,7 @@ const Footer = () => {
                 {/* icons */}
                 <div className={`flex space-x-4 text-${textColor}`}>
                 <a href="https://www.instagram.com/gebetamaps?igsh=MWlmaWx0ZmU2NGUyOA==" target="_blank" rel="noopener noreferrer">
-                    < FaFacebook className="w-7 h-7 hover:text-GebetaMain" />
+                    < FaInstagram className="w-7 h-7 hover:text-GebetaMain" />
                     </a>
                  
 

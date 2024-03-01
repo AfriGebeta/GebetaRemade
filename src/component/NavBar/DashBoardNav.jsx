@@ -7,7 +7,7 @@ import Modal from "../Modal/Modal";
 import ProfileDropDown from '../DropDown/ProfileDropdown';
 import { useNavigate } from "react-router-dom"; 
 import { AuthContext } from '../../context/AuthProvider';
-
+import { useSelector } from "react-redux";
 
 
 
@@ -19,6 +19,8 @@ const DashBoardNav =  ({color  ,textColor}) => {
     const [signinModal, setSigninModal] = useState(false);
     const [signupModal, setSignUpModal] = useState(false);
    
+    const user = useSelector((state) => state).user
+
     const authContext = useContext(AuthContext); // Access the AuthContext
     const navigate = useNavigate();
    
@@ -120,9 +122,12 @@ const DashBoardNav =  ({color  ,textColor}) => {
                             })
                         }
                         <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
-                        <div className='hidden md:flex'><ProfileDropDown /></div>
+                        <div className='flex flex-col'>
+                            <ProfileDropDown />
+                        <p className="text-white mt-[5px]">{user.data.username}</p>
+                        </div>
 
-                  
+                        
                         <li  
                         onClick={(e) => { e.preventDefault(); handleLogout()}}
                         className={`text-${textColor} hover:text-GebetaMain`}>

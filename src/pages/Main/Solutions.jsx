@@ -3,8 +3,36 @@ import displayImage from "./../../assets/img/display.png";
 import onmVid from "./../../assets/vid/onm.mp4";
 import geoVid from "./../../assets/vid/gc.mp4";
 import routeVid from "./../../assets/vid/ro.mp4";
+import geoPhoto from "./../../assets/vid/videophoto/geocoding.png"
+import onmPhoto from "./../../assets/vid/videophoto/onm.png"
+import roPhoto from "./../../assets/vid/videophoto/ro.png"
+
+
+
 import { useEffect, useRef } from "react";
 import ReactPlayer from "react-player";
+
+const VideoPlayer = ({ className, url , thumbnail }) => {
+  return (
+    <ReactPlayer
+      className={className}
+      muted={true}
+      playing={true}
+      url={url}
+      loop={true}
+      playsinline={true}
+      light={thumbnail}
+      config={{
+        file: {
+          attributes: {
+            autoPlay: true,
+            muted: true,
+          },
+        },
+      }}
+    />
+  )
+}
 
 const Solutions = () => {
   return (
@@ -34,14 +62,10 @@ const Solutions = () => {
           </div>
 
           <div className=" mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden">
-            <ReactPlayer
-            className="opacity-85 hover:opacity-95"
-              muted={true}
-              playing={true}
-              url={geoVid}
-              loop={true}
-              playsinline={true}
-            />
+         
+            <VideoPlayer className="opacity-85 hover:opacity-95" url={geoVid} thumbnail={geoPhoto} />
+           
+
           </div>
         </div>
 
@@ -63,14 +87,9 @@ const Solutions = () => {
           </div>
 
           <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden">
-            <ReactPlayer
-            className="opacity-85 hover:opacity-95"
-              muted={true}
-              playing={true}
-              url={geoVid}
-              loop={true}
-              playsinline={true}
-            />
+           
+            <VideoPlayer className="opacity-85 hover:opacity-95" url={geoVid} thumbnail={geoPhoto} />
+          
           </div>
         </div>
       </div>
@@ -79,14 +98,9 @@ const Solutions = () => {
       <div className="mt-[5%]">
         <div className="hidden md:flex flex-col md:flex-row  text-white w-full  justify-between items-center ">
           <div className="md:ml-[10%] mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden">
-            <ReactPlayer
-            className="opacity-85 hover:opacity-95"
-              muted={true}
-              playing={true}
-              url={routeVid}
-              loop={true}
-              playsinline={true}
-            />
+          
+             <VideoPlayer className="opacity-85 hover:opacity-95" url={routeVid} thumbnail={roPhoto} />
+            
           </div>
 
           <div className="  md:ml-[10%] md:mr-[5%] flex-1">
@@ -122,14 +136,10 @@ const Solutions = () => {
           </div>
 
           <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden">
-            <ReactPlayer
-            className="opacity-85 hover:opacity-95"
-              muted={true}
-              playing={true}
-              url={routeVid}
-              loop={true}
-              playsinline={true}
-            />
+          
+            <VideoPlayer className="opacity-85 hover:opacity-95" url={routeVid} thumbnail={roPhoto} />
+
+            
           </div>
         </div>
       </div>
@@ -156,14 +166,10 @@ const Solutions = () => {
             </p>
           </div>
           <div className=" mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden">
-            <ReactPlayer
-            className="opacity-85 hover:opacity-95"
-              muted={true}
-              playing={true}
-              url={onmVid}
-              loop={true}
-              playsinline={true}
-            />
+       
+            <VideoPlayer className="opacity-85 hover:opacity-95" url={onmVid} thumbnail={onmPhoto}/>
+
+            
           </div>
         </div>
 
@@ -187,14 +193,10 @@ const Solutions = () => {
             </p>
           </div>
           <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden">
-            <ReactPlayer
-            className="opacity-85 hover:opacity-95"
-              muted={true}
-              playing={true}
-              url={onmVid}
-              loop={true}
-              playsinline={true}
-            />{" "}
+            
+            <VideoPlayer className="opacity-85 hover:opacity-95" url={onmVid} thumbnail={onmPhoto} />
+         
+              {" "}
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 
-import React , {useState , useContext} from "react";
+import React , {useState , useContext , useRef , useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { changeTopicPlayGround } from "../../redux/reducers/playgroundSlice";
 import { PlayGroundContext } from "../../context/PlayGround";
@@ -11,7 +11,31 @@ function GeocodingDropdown( ) {
     const toggleOpen = () => setIsOpen(!isOpen);
     const dispatch = useDispatch()
     const playContext = useContext(PlayGroundContext); 
-  
+    // Function to close the dropdown menu
+    const closeDropdown = () => {
+        setIsOpen(false);
+    };
+
+
+    // Ref to the dropdown menu
+    const dropdownRef = useRef(null);
+      // Event listener for clicks outside the dropdown
+      useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                closeDropdown();
+            }
+        };
+
+        // Add event listener on component mount
+        document.addEventListener("mousedown", handleClickOutside);
+        // Clean up event listener on component unmount
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+
     return (
         <div className="inline-flex bg-white border rounded-md ">
             <button
@@ -36,7 +60,9 @@ function GeocodingDropdown( ) {
                   </svg>
             </button>
             {isOpen && (
-                <div className="absolute left-0 z-10 w-56 mt-4  bg-white border border-gray-100 rounded-md shadow-lg">
+                <div 
+                ref={dropdownRef}
+                onMouseLeave={closeDropdown} className="absolute left-0 z-10 w-56 mt-4  bg-white border border-gray-100 rounded-md shadow-lg">
                    <div className="p-2">
                        <a
                             onClick={()=>{ 

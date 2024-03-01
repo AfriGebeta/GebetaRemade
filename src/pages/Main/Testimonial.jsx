@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import biruk from "./../../assets/img/output.png"
 import habtamu from "./../../assets/img/habtamu.jpg"
+import niduser from "./../../assets/img/niduser.jpeg"
 const Testimonials = () => {
 
     const testimonials = [
@@ -16,6 +17,12 @@ const Testimonials = () => {
             title: "Founder and CEO",
             quote: "I highly recommend Gebeta Maps as an essential mapping service for ZayRide. Their accurate and up-to-date maps have greatly improved navigation for our taxi drivers, ensuring efficient and reliable transportation services for our passengers."
         },
+        {
+            avatar : niduser,
+            name : "Abenezer Feleke",
+            title : "Head of Communications",
+            quote : "Our experience with Gebeta Maps was very satisfactory and would like to express our utmost appreciation with their mapping services. Their expertise has made a tangible impact on our website by enhancing its functionality and user-friendliness, particularly in terms of helping citizens locate our Registration centers with ease. We are pleased to recommend their services to others seeking reliable and effective mapping solutions."
+        }
        
     ]
 
