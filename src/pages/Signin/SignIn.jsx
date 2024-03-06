@@ -129,7 +129,7 @@ const googleLogin = () => {
             <div className="flex flex-col">
                     <p  className='  text-[#A0AABA] ' style={{fontFamily: "Zen Dots" }}>Welcome Back</p>
                     <p className='  text-white font-bold text-xl ' style={{fontFamily: "Zen Dots" }}>Log in to your Account </p>
-                    <div className="w-[95%] mt-[10%]">
+                    <div className="w-[95%] mt-[10%] flex flex-col gap-5">
                         {errorMessage != "" ? <p className="mb-[5%] text-red-400">{errorMessage}</p> : ""}
                         
                     

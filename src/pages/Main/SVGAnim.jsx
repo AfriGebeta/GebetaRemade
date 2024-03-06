@@ -38,7 +38,7 @@ const SVGAnimation = () => {
 }, []);
 
   return (
-    <RunningManSVG ref={svgRef} className=' mt-[25%] mb-[50%] md:mt-[5%] md:mb-[0] md:ml-[12%] md:ml-[1%] w-5/6 h-5/6'/>
+    <RunningManSVG ref={svgRef} className=' mt-[25%] mb-[40%] md:mt-[5%] md:mb-[0] lg:mb-[-10%] md:ml-[1%] w-5/6 h-5/6'/>
   );
 };
 

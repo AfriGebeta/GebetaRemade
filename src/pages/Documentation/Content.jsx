@@ -18,7 +18,7 @@ const IntroPage = () => {
               Using sdk
             </p>
             <p className="mt-[1%]">
-                In our commitment to simplicity and efficiency, we proudly introduce the Dark SDK and node js sdk   tailored for seamless integration with GebetaMaps. The Dark SDK focuses on the fundamental essence of functionality through API calls to our dedicated servers. This minimalistic yet powerful approach empowers developers to interact directly with GebetaMaps services, abstracting away unnecessary complexities and streamlining the integration process. 
+                In our commitment to simplicity and efficiency, we proudly introduce the Dart SDK and node js sdk   tailored for seamless integration with GebetaMaps. The Dark SDK focuses on the fundamental essence of functionality through API calls to our dedicated servers. This minimalistic yet powerful approach empowers developers to interact directly with GebetaMaps services, abstracting away unnecessary complexities and streamlining the integration process. 
             </p>
             <p className="mt-[1%]">
             The Dart SDK, specifically crafted for the Flutter framework, facilitates a smooth integration of GebetaMaps into cross-platform mobile, web, and desktop applications. Leveraging Dart's concise syntax and Flutter's reactive UI framework, developers can create visually appealing and responsive interfaces that seamlessly interact with GebetaMaps services. This SDK acts as the bridge between the Flutter front-end and GebetaMaps, ensuring a cohesive user experience across various platforms.
