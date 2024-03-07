@@ -5,30 +5,37 @@ import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { getUserUsageForGraph } from "../../redux/api/usageAPI";
 
-function APIUsage({graphData}) {
-
+function APIUsage({ graphData }) {
   const [labels, setLabels] = useState([]);
   const [data, setData] = useState([]);
 
-  const user = useSelector((state) => state).user
-  // 
-  useEffect(()=>{
-   
-      if(graphData.error == null ) {
-        console.log(graphData.data.data)
-        let labels = []
-        let data = []
-        for (let [key, value] of Object.entries(graphData.data.data.data)) {
-          labels.push(key)
-          data.push(value)
-        }
-        setLabels(labels)
-        setData(data)
+  const user = useSelector((state) => state).user;
+
+  // Function to sort the object by keys
+  function sortObjectByKeys(obj) {
+    const sortedKeys = Object.keys(obj).sort();
+    const sortedObj = {};
+    sortedKeys.forEach((key) => {
+      sortedObj[key] = obj[key];
+    });
+    return sortedObj;
+  }
+
+  useEffect(() => {
+    if (graphData.error == null) {
+      console.log(graphData.data.data.data);
+      let labels = [];
+      let data = [];
+      for (let [key, value] of Object.entries(
+        sortObjectByKeys(graphData.data.data.data)
+      )) {
+        labels.push(key);
+        data.push(value);
       }
-  },[graphData])
-
-
-
+      setLabels(labels);
+      setData(data);
+    }
+  }, [graphData]);
 
   const options = {
     responsive: true,
@@ -65,13 +72,10 @@ function APIUsage({graphData}) {
           <h2 className="m-0">API Usage</h2>
           <span>Track your api usage here</span>
         </div>
-        <div className="flex gap-4 items-center ">
-         
-        </div>
+        <div className="flex gap-4 items-center "></div>
       </div>
       <div></div>
       <div className="text-white  ">
-
         <div className="border border-dashed rounded-md border-white p-10 flex items-center justify-center sm:h-[200px] md:h-[200px] lg:h-[600px]">
           {data.length > 0 ? (
             <Line options={options} data={datas} className="!w-full" />
