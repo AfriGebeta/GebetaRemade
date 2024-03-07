@@ -11,16 +11,15 @@ import SVGAnimation from "./SVGAnim";
 
 function Main() {
   return (
-    <div className=" flex flex-col bg-Dark p-[5%] md:p-0">
+    <div className="flex flex-col bg-Dark p-4 md:p-0">
       <div className="flex flex-col w-full items-center relative">
         <SVGAnimation />
         <Hero />
       </div>
-
-      <OurCustomers />
-      <Solutions />
-      <Testimonials />
-      <Contact />
+      <OurCustomers className="flex flex-col md:flex-row" />
+      <Solutions className="flex flex-col md:flex-row" />
+      <Testimonials className="flex flex-col md:flex-row" />
+      <Contact className="flex flex-col md:flex-row" />
     </div>
   );
 }
