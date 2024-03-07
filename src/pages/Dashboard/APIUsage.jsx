@@ -11,19 +11,19 @@ function APIUsage(graphData) {
   const [data, setData] = useState([]);
 
   const user = useSelector((state) => state).user
-  // 
+
   useEffect(()=>{
       console.log(graphData)
-      // if(response.error == null) {
-      //   let labels = []
-      //   let data = []
-      //   for (let [key, value] of Object.entries(response.data.data)) {
-      //     labels.push(key)
-      //     data.push(value)
-      //   }
-      //   setLabels(labels)
-      //   setData(data)
-      // }
+      if(response.error == null) {
+        let labels = []
+        let data = []
+        for (let [key, value] of Object.entries(response.data.data)) {
+          labels.push(key)
+          data.push(value)
+        }
+        setLabels(labels)
+        setData(data.sort())
+      }
   },[])
 
 

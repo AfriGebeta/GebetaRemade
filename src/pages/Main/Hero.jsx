@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import runningman from "./../../assets/img/RunningMan.png";
 import { Link } from "react-router-dom";
 import Modal from "../../component/Modal/Modal";
@@ -23,6 +23,44 @@ const Hero = () => {
     setSigninModal(true);
   };
 
+  // State to hold the dynamic style
+  const [style, setStyle] = useState({
+    position: 'absolute',
+    top: '10%',
+    left: '75%',
+    transform: 'translateX(-50%)',
+  });
+
+  useEffect(() => {
+    // Function to update the style based on window width
+    function updateStyle() {
+      if (window.innerWidth < 640) {
+        setStyle({
+          ...style,
+          position: "absolute",
+          top: '10%',
+          left: '50%',
+          transform: "translateX(-50%)",
+        });
+      } else {
+        setStyle({
+          ...style,
+          position: "absolute",
+          top: '10%',
+          left: '75%',
+          transform: "translateX(-50%)",
+        });
+      }
+    }
+
+    // Update style on component mount and window resize
+    updateStyle();
+    window.addEventListener('resize', updateStyle);
+
+    // Cleanup event listener on component unmount
+    return () => window.removeEventListener('resize', updateStyle);
+  }, []);
+
   return (
     <>
       <Modal
@@ -40,12 +78,7 @@ const Hero = () => {
       {/* <img src={runningman} className=' mt-[15%] md:mt-[5%] md:ml-[12%] md:ml-[1%]' /> */}
       <div
         className=""
-        style={{
-          position: "absolute",
-          top: "10%",
-          left: "50%",
-          transform: "translateX(-50%)",
-        }}
+        style={style}
       >
         <p
           className="text-gray-200 mx-auto whitespace-pre-wrap  text-center text-5xl md:text-7xl  font-bold"

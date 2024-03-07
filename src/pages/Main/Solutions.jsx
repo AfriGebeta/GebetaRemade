@@ -3,6 +3,9 @@ import displayImage from "./../../assets/img/display.png";
 import onmVid from "./../../assets/vid/onm.mp4";
 import geoVid from "./../../assets/vid/gc.mp4";
 import routeVid from "./../../assets/vid/ro.mp4";
+import onmgif from "./../../assets/vid/onm.gif";
+import geogif from "./../../assets/vid/gc.gif";
+import routegif from "./../../assets/vid/ro.gif";
 import geoPhoto from "./../../assets/vid/videophoto/geocoding.png"
 import onmPhoto from "./../../assets/vid/videophoto/onm.png"
 import roPhoto from "./../../assets/vid/videophoto/ro.png"
@@ -10,29 +13,29 @@ import roPhoto from "./../../assets/vid/videophoto/ro.png"
 
 
 import { useEffect, useRef } from "react";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 
-const VideoPlayer = ({ className, url , thumbnail }) => {
-  return (
-    <ReactPlayer
-      className={className}
-      muted={true}
-      playing={true}
-      url={url}
-      loop={true}
-      playsinline={true}
-      light={thumbnail}
-      config={{
-        file: {
-          attributes: {
-            autoPlay: true,
-            muted: true,
-          },
-        },
-      }}
-    />
-  )
-}
+// const VideoPlayer = ({ className, url , thumbnail }) => {
+//   return (
+//     <ReactPlayer
+//       className={className}
+//       muted={true}
+//       playing={true}
+//       url={url}
+//       loop={true}
+//       playsinline={true}
+//       light={thumbnail}
+//       config={{
+//         file: {
+//           attributes: {
+//             autoPlay: true,
+//             muted: true,
+//           },
+//         },
+//       }}
+//     />
+//   )
+// }
 
 const Solutions = () => {
   return (
@@ -61,12 +64,11 @@ const Solutions = () => {
             </p>
           </div>
 
-          <div className=" mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden">
+          {/* <div className=" mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden"> */}
          
-            <VideoPlayer className="opacity-85 hover:opacity-95" url={geoVid} thumbnail={geoPhoto} />
-           
-
-          </div>
+            {/* <VideoPlayer className="opacity-85 hover:opacity-95" url={geoVid} thumbnail={geoPhoto} /> */}
+           <img src={geogif} className="opacity-85 hover:opacity-95  w-[30%]  m-[5%]  mt-[5%] rounded-lg overflow-hidden"/>
+          {/* </div> */}
         </div>
 
         <div className=" md:hidden flex flex-col md:flex-row  text-white w-[100%]  justify-between items-center  ">
@@ -86,22 +88,22 @@ const Solutions = () => {
             </p>
           </div>
 
-          <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden">
+          {/* <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden"> */}
            
-            <VideoPlayer className="opacity-85 hover:opacity-95" url={geoVid} thumbnail={geoPhoto} />
-          
-          </div>
+            {/* <VideoPlayer className="opacity-85 hover:opacity-95" url={geoVid} thumbnail={geoPhoto} /> */}
+            <img src={geogif} className="opacity-85 hover:opacity-95 w-[95%] mt-[5%]  rounded-lg overflow-hidden"/>
+          {/* </div> */}
         </div>
       </div>
       {/* second card */}
 
       <div className="mt-[5%]">
         <div className="hidden md:flex flex-col md:flex-row  text-white w-full  justify-between items-center ">
-          <div className="md:ml-[10%] mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden">
+          {/* <div className="md:ml-[10%] mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden"> */}
           
-             <VideoPlayer className="opacity-85 hover:opacity-95" url={routeVid} thumbnail={roPhoto} />
-            
-          </div>
+             {/* <VideoPlayer className="opacity-85 hover:opacity-95" url={routeVid} thumbnail={roPhoto} /> */}
+             <img src={routegif} className="opacity-85 hover:opacity-95  w-[30%]  m-[5%]  mt-[5%] rounded-lg overflow-hidden"/>
+          {/* </div> */}
 
           <div className="  md:ml-[10%] md:mr-[5%] flex-1">
             <p
@@ -135,12 +137,12 @@ const Solutions = () => {
             </p>
           </div>
 
-          <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden">
+          {/* <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden"> */}
           
-            <VideoPlayer className="opacity-85 hover:opacity-95" url={routeVid} thumbnail={roPhoto} />
-
+            {/* <VideoPlayer className="opacity-85 hover:opacity-95" url={routeVid} thumbnail={roPhoto} /> */}
+            <img src={routegif} className="opacity-85 hover:opacity-95 w-[95%] mt-[5%]  rounded-lg overflow-hidden"/>
             
-          </div>
+          {/* </div> */}
         </div>
       </div>
 
@@ -165,12 +167,12 @@ const Solutions = () => {
               streamlined capabilities of our "One to Many" service.
             </p>
           </div>
-          <div className=" mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden">
+          {/* <div className=" mt-[5%] md:mt-[0%] mr-[5%] rounded-lg overflow-hidden"> */}
        
-            <VideoPlayer className="opacity-85 hover:opacity-95" url={onmVid} thumbnail={onmPhoto}/>
-
+            {/* <VideoPlayer className="opacity-85 hover:opacity-95" url={onmVid} thumbnail={onmPhoto}/> */}
+            <img src={onmgif} className="opacity-85 hover:opacity-95  w-[30%]  m-[5%]  mt-[5%] rounded-lg overflow-hidden"/>
             
-          </div>
+          {/* </div> */}
         </div>
 
         <div className=" md:hidden flex flex-col md:flex-row  text-white w-[100%]  justify-between items-center   ">
@@ -192,12 +194,12 @@ const Solutions = () => {
               streamlined capabilities of our "One to Many" service.
             </p>
           </div>
-          <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden">
+          {/* <div className=" w-[95%] h-[50%] mt-[5%] rounded-lg overflow-hidden"> */}
             
-            <VideoPlayer className="opacity-85 hover:opacity-95" url={onmVid} thumbnail={onmPhoto} />
-         
+            {/* <VideoPlayer className="opacity-85 hover:opacity-95" url={onmVid} thumbnail={onmPhoto} /> */}
+            <img src={onmgif} className="opacity-85 hover:opacity-95 w-[95%] mt-[5%]  rounded-lg overflow-hidden "/>
               {" "}
-          </div>
+          {/* </div> */}
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ const Testimonials = () => {
         {
             avatar : niduser,
             name : "Abenezer Feleke",
-            title : "Head of Communications",
+            title : "NID, Head of Communications",
             quote : "Our experience with Gebeta Maps was very satisfactory and would like to express our utmost appreciation with their mapping services. Their expertise has made a tangible impact on our website by enhancing its functionality and user-friendliness, particularly in terms of helping citizens locate our Registration centers with ease. We are pleased to recommend their services to others seeking reliable and effective mapping solutions."
         }
        

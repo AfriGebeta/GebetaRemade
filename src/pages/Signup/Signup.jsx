@@ -138,10 +138,10 @@ const signup = () => {
     
 (
     <div className="md:card md:h-auto w-[100%] md:w-[45%] lg:w-[25%] md:rounded bg-Dark text-white p-10 absolute md:top-[10%] left-1/2 transform -translate-x-1/2 ">
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
             <p  className='  text-[#A0AABA] ' style={{fontFamily: "Zen Dots" }}>LET'S GET YOU STARTED</p>
             <p className='  text-white font-bold text-xl ' style={{fontFamily: "Zen Dots" }}>CREATE AN Account </p>
-            <div className="w-[95%] mt-[3%]  md:mt-[10%]">
+            <div className="w-[95%] mt-[3%] flex flex-col md:mt-[10%] gap-5">
             {errorMessage != "" ? <p className="mb-[5%] text-red-400">{errorMessage}</p> : ""}
                 <div class="w-full">
                     <div class="relative h-10 w-full min-w-[200px]">
