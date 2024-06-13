@@ -37,7 +37,7 @@ const SideBarForm = ({
         geocoding : selectedGeocoding == "forward" ? `https://mapapi.gebeta.app/api/v1/route/geocoding?name=${searchText}&apiKey=${token.token}` :
         `https://mapapi.gebeta.app/api/v1/route/revgeocoding?lat=${origin.lat == null ? "" : origin.lat}&lon=${origin.lng == null ? "" : origin.lng}&apiKey=${token.token}`,
         
-        direction :`https://mapapi.gebeta.app/api/v1/route/driving/direction/?la1=${origin.lat == null ? "{}" : origin.lat}&lo1=${origin.lat == null ? "{}" : origin.lng}&la2=${destination.lat == null ? "{}" : destination.lat}&lo2=${destination.lat == null ? "{}" : destination.lng}&apiKey=${token.token}`,
+        direction :`https://mapapi.gebeta.app/api/v1/route/driving/direction/la1=${origin.lat == null ? "{}" : origin.lat}&lo1=${origin.lat == null ? "{}" : origin.lng}&la2=${destination.lat == null ? "{}" : destination.lat}&lo2=${destination.lat == null ? "{}" : destination.lng}&apiKey=${token.token}`,
         tss : `https://mapapi.gebeta.app/api/route/tss/?${waypointsString}&apiKey=${token.token}`,
         onm : `https://mapapi.gebeta.app/api/route/onm/?${waypointsString}&origin=${origin.lat == null ? "{}" : `{${origin.lat},${origin.lng}}`}&apiKey=${token.token}`,
         matrix : `https://mapapi.gebeta.app/api/route/matrix/?${waypointsString}&apiKey=${token.token}`,
