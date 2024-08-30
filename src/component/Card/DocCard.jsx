@@ -10,25 +10,22 @@ function DocCard() {
     navigate("/documentation");
   };
   return (
-    <div
-      onClick={() => {
-        handleClick();
-      }}
-      className="p-6 bg-[#202022] text-[#777] self-start rounded-md w-[100%] md:w-[20%] md:max-w-full overflow-clip  "
-    >
-      <div className="flex gap-4 items-center px-5 py-2">
-        <img src={Logo} className="" fill="#777" />
-        <h2 className="m-0 uppercase">
-          Api
-          <br /> Documentation
-        </h2>
-        <img src={LocTargetIcon} />
+      <div
+          onClick={handleClick}
+          className="bg-[#202022] text-[#777] rounded-md w-full md:w-1/2 cursor-pointer overflow-hidden"
+      >
+        <div className="flex items-center p-4 gap-3">
+          <img src={Logo} alt="Logo" className="w-8 h-8"/>
+          <h2 className="uppercase leading-tight font-bold">
+            Api<br/>Documentation
+          </h2>
+          <img src={LocTargetIcon} alt="Target" className="ml-auto w-6 h-6"/>
+        </div>
+        <div className="p-4 pt-2">
+          <span className="text-sm">powered by</span>
+          <h2 className="text-lg mt-1 font-bold">GebetaMaps</h2>
+        </div>
       </div>
-      <div className="leading-3 py-3">
-        <span className="!m-0 !p-0 ">powered by</span>
-        <h2>GebetaMaps</h2>
-      </div>
-    </div>
   );
 }
 
