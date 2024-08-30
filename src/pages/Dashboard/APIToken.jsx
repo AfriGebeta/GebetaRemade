@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {CopyOutlined, DeleteFilled, EyeInvisibleFilled} from "@ant-design/icons";
+import {CopyFilled, CopyOutlined, DeleteFilled, EyeFilled, EyeInvisibleFilled} from "@ant-design/icons";
 import {useSelector, useDispatch} from "react-redux";
 import {setToken} from "../../redux/api/userApi";
 import Modal from "./../../component/Modal/Modal"
@@ -77,7 +77,7 @@ function APIToken() {
         <>
             <Notify value={notify}/>
             <div
-                className="bg-[#202022] rounded text-[#aaa] px-6 py-4">
+                className="bg-[#202022] rounded text-[#aaa] px-6 py-5 mt-2">
                 <div className="flex flex-wrap items-center gap-4">
                     <p className="text-sm font-medium text-white whitespace-nowrap"> API Token</p>
                     <input
@@ -86,11 +86,12 @@ function APIToken() {
                         value={user.data.token}
                         className="flex-grow min-w-0 text-gray-500 bg-transparent border-none shadow-sm rounded-lg"
                     />
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-6 items-center'>
                         <CopyOutlined onClick={copyToClipboard}/>
-                        <EyeInvisibleFilled onClick={handleEyeVisible}/>
+                        {!showToken ? <EyeInvisibleFilled onClick={handleEyeVisible}/> :
+                            <EyeFilled onClick={handleEyeVisible}/>}
                         <DeleteFilled
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:text-red-600 transition"
                             onClick={(event) => {
                                 event.preventDefault();
                                 deleteToken();
