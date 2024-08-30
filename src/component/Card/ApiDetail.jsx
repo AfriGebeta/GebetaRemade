@@ -51,38 +51,42 @@ function ApiDetail({metrics}) {
 
 
     return (
-
-        <div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 bg-[#202022] px-6 py-2 rounded">
-            <div className="flex items-center">
-                <h4 className="text-sm font-medium mr-2">API Token Status</h4>
-                <span className={` ${user.data.token != null ? "text-green-500" : "text-red-500"} font-semibold text-xs`}>
-           {user.data.token != null ? "active" : "inactive"}
-                </span>
+        <div className="bg-[#202022] px-4 py-6 rounded-md">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
+                <div className="flex flex-col">
+                    <h4 className="text-sm font-medium mb-1">API Token Status</h4>
+                    <span
+                        className={`${user.data.token != null ? "text-green-500" : "text-red-500"} font-semibold text-xs`}>
+        {user.data.token != null ? "active" : "inactive"}
+      </span>
+                </div>
+                <div className="flex flex-col">
+                    <h4 className="font-medium text-sm mb-1">Subscription</h4>
+                    <span className="text-green-500 text-xs font-semibold">pay-as-you-go</span>
+                </div>
+                <div className="flex flex-col">
+                    <h4 className="text-xs font-medium mb-1">Next Billing</h4>
+                    <h3 className="text-GebetaMain text-sm font-semibold">
+                        {user.data.purchasedDate != null ? addDate(user.data.purchasedDate) : "-"}
+                    </h3>
+                </div>
+                <div className="flex flex-col">
+                    <h4 className="text-xs font-medium text-secondary mb-1">Total Usage</h4>
+                    <h3 className="text-GebetaMain text-sm font-semibold">{getTotal()} calls</h3>
+                </div>
+                <div className="flex flex-col">
+                    <h4 className="text-secondary text-xs font-medium mb-1">Max Usage</h4>
+                    <h3 className="text-GebetaMain text-sm font-semibold">
+                        {getMinimum()[0]} - {getMinimum()[1]}
+                    </h3>
+                </div>
+                <div className="flex flex-col">
+                    <h4 className="text-secondary text-xs font-medium mb-1">Min Usage</h4>
+                    <h3 className="text-GebetaMain text-sm font-semibold">
+                        {getMaximum()[0]} - {getMaximum()[1]}
+                    </h3>
+                </div>
             </div>
-            <div className="flex items-center">
-                <h4 className="font-medium text-sm mr-2">Subscription</h4>
-                <span className="text-green-500 text-xs font-semibold">pay-as-you-go</span>
-            </div>
-            <div className="flex flex-col">
-                <h3 className="text-GebetaMain text-sm font-semibold">
-                    {user.data.purchasedDate != null ? addDate(user.data.purchasedDate) : "-"}
-                </h3>
-                <h4 className="text-xs font-medium">Next Billing</h4>
-            </div>
-            <div className="flex flex-col">
-                <h3 className="text-GebetaMain text-sm font-semibold m-0 pb-1">{getTotal()} calls</h3>
-                <h4 className="text-xs font-medium !text-secondary">Total Usage</h4>
-            </div>
-            <div className="flex flex-col">
-                <h3 className="text-GebetaMain text-sm font-semibold pb-1">{getMinimum()[0]} - {getMinimum()[1]}</h3>
-                <h4 className="!text-secondary text-xs font-medium ">Max Usage</h4>
-            </div>
-            <div className="flex flex-col">
-                <h3 className="text-GebetaMain text-sm font-semibold">{getMaximum()[0]} - {getMaximum()[1]}</h3>
-                <h4 className="!text-secondary text-xs font-medium">Min Usage</h4>
-            </div>
-
         </div>
 
     );
