@@ -1,62 +1,61 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import DocCard from "../../component/Card/DocCard";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const Cards = ({metrics }) => {
+const Cards = ({metrics}) => {
 
-    useEffect(()=>{
-      console.log(metrics)
+    useEffect(() => {
+        console.log(metrics)
     })
     const objs = [
-      {
-        package: "ONM",
-        calls: metrics.ONM  ,
-      },
-      {
-        package: "Matrix",
-        calls: metrics.Matrix,
-      },
-      {
-        package: "Direction",
-        calls: metrics.Direction,
-      },
-      {
-        package: "Tss",
-        calls: metrics.TSS,
-      },
-  
-      {
-        package: "Geocoding",
-        calls: metrics.Geocoding,
-      },
-  
-  
-      
+        {
+            package: "ONM",
+            calls: metrics.ONM,
+        },
+        {
+            package: "Matrix",
+            calls: metrics.Matrix,
+        },
+        {
+            package: "Direction",
+            calls: metrics.Direction,
+        },
+        {
+            package: "Tss",
+            calls: metrics.TSS,
+        },
+
+        {
+            package: "Geocoding",
+            calls: metrics.Geocoding,
+        },
+
+
     ];
 
 
-   return (
-<div className="flex gap-6 flex-wrap mt-[2%]">
-<DocCard />
-<div className="flex-1 flex grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 justify-evenly">
-  {objs.map((data, i) => (
-    <div
-      key={i}
-      className="p-4 bg-[#202022] flex-1 text-[#777] rounded-md flex justify-between min-w-full xs:min-w-[40%]"
-    >
-      <div className="leading-3">
-        <h2 className="p-0 m-0">{data.package}</h2>
-       
-      </div>
-      <div className="flex items-end space-x-2">
-        <h1 className="m-0">{data.calls}</h1>
-        <span>Calls</span>
-      </div>
-    </div>
-  ))}
-</div>
-</div>
-   )
+    return (
+        <div className="flex flex-col md:flex-row gap-6 mt-4">
+            <DocCard/>
+            <div className="w-3/2 flex flex-wrap gap-4">
+                {objs.map((data, i) => (
+                    <div
+                        key={i}
+                        className="w-full bg-[#202022] text-[#777] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px]"
+                    >
+                        <div>
+                            <h3 className="text-md font-bold uppercase text-white">{data.package}</h3>
+                            <span className='block text-xs font-medium lowercase'>endpoint</span>
+                        </div>
+                        <div className="text-right">
+                            <h4 className="font-semibold text-[18px] text-GebetaMain">{data.calls}</h4>
+                            <span className='font-medium text-xs'>Calls</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
 }
 
 export default Cards
