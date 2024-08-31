@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import logo from "./../../assets/img/icon/logo.png";
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
@@ -18,6 +18,7 @@ const DashBoardNav = ({ color, textColor }) => {
 
   const authContext = useContext(AuthContext); // Access the AuthContext
   const navigate = useNavigate();
+  const path = useLocation();
 
   const fromSignIntoSignUp = () => {
     setSignUpModal(true);
@@ -126,7 +127,7 @@ const DashBoardNav = ({ color, textColor }) => {
               })}
 
               <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
-              <p className="text-white mt-[5px]">{user.data.username}</p>
+              <p className={`${path.pathname === '/documentation' ? 'text-black' : 'text-white'} mt-[5px]`}>{user.data.username}</p>
               <div className="flex flex-col">
                 <ProfileDropDown />
               </div>
