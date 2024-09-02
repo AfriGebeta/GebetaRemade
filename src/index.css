@@ -2,27 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'PlusJackartaSans-Regular';
+  src: url('/src/assets/font/PlusJakartaSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'PlusJackartaSans-Medium';
+  src: url('/src/assets/font/PlusJakartaSans-Medium.ttf');
+}
+
 body {
   margin: 0;
- 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: PlusJackartaSans-Regular;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-
-@font-face {
-  font-family: 'Trebuchet MS';
-  src: url('/src/assets/font/trebuchet-ms/trebuc.woff') format('woff');
 }
 
 :root {
   color-scheme: dark;
+}
+
+.list-checkmark {
+  list-style-image: url('/src/assets/img/icon/checkmark-48.png');
 }
