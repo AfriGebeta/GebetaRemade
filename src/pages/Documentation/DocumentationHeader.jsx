@@ -9,7 +9,6 @@ const DocumentationHeader = () => {
                     <h3 className="text-gray-400 text-2xl font-bold">
                         Documentation
                     </h3>
-                 
                 </div>
               
             </div>

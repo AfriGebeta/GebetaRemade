@@ -17,7 +17,7 @@ function BillingHistory() {
                         </div>
                         <div className='text-xs space-y-1'>
                             <p>{item.startDate} - {item.endDate}</p>
-                            <p>{item.name} package</p>
+                            <p className='font-semibold'>{item.name} package</p>
                             <p>{formatter.format(item.calls)} calls</p>
                         </div>
                         <div className='flex justify-between text-sm'>

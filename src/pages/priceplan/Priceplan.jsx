@@ -14,7 +14,7 @@ function Plan({data}) {
     `}>
             <div>
                 <h3 className="font-bold text-lg mb-4">{data.name}</h3>
-                {data.name !== 'Corporate' ? (
+                {data.name !== 'Custom' ? (
                     <div className="flex">
                 <span
                     className="text-xs font-bold text-gray-400">
@@ -25,16 +25,15 @@ function Plan({data}) {
                 ) : (
                     <span className="text-sm font-semibold">Enterprise</span>
                 )}
-                <hr className={`${data.name !== 'Corporate' ? "mt-3" : "mt-6"} mb-3 border-gray-600`}/>
+                <hr className={`${data.name !== 'Custom' ? "mt-3" : "mt-6"} mb-3 border-gray-600`}/>
             </div>
 
             <div className="flex-grow">
-                <h2 className="text-sm font-bold mb-2">Core Features</h2>
                 <ul className="space-y-1">
                     {data.features.map((feature, i) => (
                         <li className="flex items-start text-xs py-1" key={i}>
                             <img src={checkmark} className='w-3 h-3 mr-1 mt-0.5 flex-shrink-0' alt='checkmark icon'/>
-                            <span className='font-medium'>{feature}</span>
+                            <span className='font-medium text-sm'>{feature}</span>
                         </li>
                     ))}
                 </ul>
@@ -52,7 +51,7 @@ function Plan({data}) {
                     <button
                         className='w-full transition duration-150 border border-gray-600 outline-none hover:bg-GebetaMain hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium'
                     >
-                        Select Plan
+                        Upgrage
                     </button>
                 )
                 }
@@ -73,15 +72,15 @@ function Plans() {
             description:
                 "GebetaMap’s Starter plan if your API usage is 0 - 100000 API calls.",
             features: [
-                "Geocoding Endpoint",
-                "Direction Endpoint",
+                "500 Geocoding calls",
+                "500 Direction calls",
                 "Matrix Endpoint",
                 "Route Optimization",
             ],
             status: Total >= 0 && Total <= 100000 ? "current" : "",
         },
         {
-            name: "Business",
+            name: "Student Pack",
             price: "575",
             description:
                 "GebetaMap's Business plan if your API usage is 100001 - 500000 API calls.",
@@ -107,7 +106,7 @@ function Plans() {
             status: Total >= 500001 && Total <= 1000000 ? "current" : "",
         },
         {
-            name: "Corporate",
+            name: "Custom",
             catagory: "Enterprise",
             description:
                 "GebetaMap’s Premium plan if your API usage is 1000001 - 5000000 API calls.",

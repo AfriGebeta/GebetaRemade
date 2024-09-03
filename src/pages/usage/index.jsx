@@ -19,11 +19,12 @@ function Usage() {
   const [selected, setSelected] = useState("All");
   const [loading, setLoading] = useState(false);
 
+
   useEffect(() => {
     getUserUsage(user.data.id).then((response) => {
-      if (response.error == null) setMetrics(response);
-    });
-  }, [metrics]);
+      if (response.error == null) setMetrics(response.data.data)
+    })
+  }, [metrics])
 
   function handleEndChange(event) {
     setEndingDate(event.target.value);

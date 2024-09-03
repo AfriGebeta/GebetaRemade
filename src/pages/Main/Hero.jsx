@@ -81,9 +81,7 @@ const Hero = () => {
         style={style}
       >
         <p
-          className="text-gray-200 mx-auto whitespace-pre-wrap  text-center text-5xl md:text-7xl  font-bold"
-          style={{ fontFamily: "Trebuchet MS" }}
-        >
+          className="text-gray-200 mx-auto whitespace-pre-wrap  text-center text-5xl md:text-7xl  font-bold">
           <span className="text-GebetaMain">GebetaMaps</span>
           {"\n"}
           Routing, Direction {"\n"}

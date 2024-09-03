@@ -117,7 +117,7 @@ const Content = ({ object, current }) => {
         <p className="mt-[2%]">{object.introduction}</p>
         <p className="mt-[2%]   font-bold text-xl">{object.usecase}</p>
         <p className="mt-[1%]">{object.useCaseText}</p>
-        <div className="font-bold ml-[2%]">
+        <div className="ml-[4%]">
           <ul className="list-disc mt-[1%]">
             {object.useCaselist.map((n) => (
               <li className="mb-2">{n}</li>
@@ -146,7 +146,7 @@ const Content = ({ object, current }) => {
         </p>
         <p className="mt-[1%]"> {object.restriction.header}</p>
 
-        <div className="font-bold ml-[2%]">
+        <div className="ml-[2%]">
           <ul className="list-disc mt-[1%]">
             {object.restriction.restrictions.map((n) => (
               <li className="mb-2">{n}</li>

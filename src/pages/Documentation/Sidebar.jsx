@@ -36,7 +36,7 @@ const Sidebar = () => {
                                 <li key={idx}>
                                 <p
                                     onClick={() => toggleItem(idx , item.href)}
-                                    className={`${documentation.current == item.href ? 'text-GebetaMain' : ''} font-semibold block w-full py-2 px-4 cursor-pointer hover:text-GebetaMain duration-150 ${expandedItems.includes(idx) ? 'active' : ''  }`}
+                                    className={`${documentation.current == item.href ? 'text-GebetaMain' : ''} font-semibold block w-full py-2 px-4 cursor-pointer text-md hover:text-GebetaMain duration-150 ${expandedItems.includes(idx) ? 'active' : ''  }`}
                                 >
                                     {item.name}
                                 </p>
@@ -56,7 +56,7 @@ const Sidebar = () => {
                                 to= "/playground"
                               >
                                 <p
-                                    className={` font-semibold block w-full py-2 px-4 hover:text-GebetaMain duration-150  }`}>
+                                    className={` font-semibold block w-full text-md py-2 px-4 hover:text-GebetaMain duration-150  }`}>
                                     PlayGround 
                                 </p>
                               </Link>

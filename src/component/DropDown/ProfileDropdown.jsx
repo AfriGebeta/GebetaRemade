@@ -19,7 +19,7 @@ const ProfileDropDown = (props) => {
   const ref = React.createRef();
 
   return (
-    <div className={`relative ${props.class} `}>
+    <div className={`relative ${props.class} cursor-pointer`}>
       <div className="flex items-center space-x-4 ">
         <div
           className="w-10 h-10 overflow-hidden outline-none hidden  md:flex items-center rounded-full ring-gray-400 ring-2"
