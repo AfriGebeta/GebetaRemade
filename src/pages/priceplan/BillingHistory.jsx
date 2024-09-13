@@ -13,18 +13,18 @@ function BillingHistory() {
                         </div>
                         <div className='flex items-center gap-2'>
                             <span className='bg-green-700 w-1 h-4'></span>
-                            <h4 className='text-sm font-medium text-GebetaMain'>ETB {item.price}</h4>
+                            <h4 className='text-sm font-semibold text-GebetaMain'>ETB {item.price}</h4>
                         </div>
-                        <div className='text-xs space-y-1'>
-                            <p>{item.startDate} - {item.endDate}</p>
-                            <p className='font-semibold'>{item.name} package</p>
-                            <p>{formatter.format(item.calls)} calls</p>
+                        <p className="pb-1 text-sm">{item.startDate} - {item.endDate}</p>
+                        <div>
+                            <p className='font-semibold text-md'>{item.name} package</p>
+                            <p className="mt-0">{formatter.format(item.calls)} calls</p>
                         </div>
                         <div className='flex justify-between text-sm'>
-                            <h4>Payment Status</h4>
+                            <h4 className="font-semibold">Payment Status</h4>
                             {item.status ?
-                                <h4 className='text-green-500 font-medium'>Completed</h4> :
-                                <h4 className='text-GebetaMain font-medium'>Pending</h4>
+                                <h4 className='text-green-500 font-semibold'>Completed</h4> :
+                                <h4 className='text-GebetaMain font-semibold'>Pending</h4>
                             }
                         </div>
                     </div>
