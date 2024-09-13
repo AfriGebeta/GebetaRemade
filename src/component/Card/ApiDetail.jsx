@@ -1,104 +1,74 @@
-import React, {useEffect, useState} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import {add, format} from "date-fns";
+import { add, format } from "date-fns";
 
-function ApiDetail({metrics}) {
+function ApiDetail({ metrics }) {
+  const user = useSelector((state) => state).user
 
-    const user = useSelector((state) => state).user
+  const isLoading = !metrics || Object.keys(metrics).length === 0;
 
-    const isLoading = !metrics || Object.keys(metrics).length === 0;
+  const getTotal = () => {
+    return metrics?.map((item) => item.total).reduce((acc, index) => acc + index, 0);
+  };
 
-    const addDate = (date) => {
-      try {
-        const dateString = new Date(date);
-        const _date = add(dateString, {
-          days: 30,
-        });
-  
-        return _date.toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric'
-        });
-      } catch (err) {
-        return "";
-      }
-    };
-  
-    const getTotal = () => {
-      return (metrics.ONM || 0) + (metrics.Direction || 0) + (metrics.Matrix || 0) + (metrics.TSS || 0) + (metrics.Geocoding || 0);
-    };
-  
-    const getMaximum = () => {
-      let max = Object.entries(metrics).reduce(
-        (max, entry) => ((entry[1] || 0) >= (max[1] || 0) ? entry : max),
-        [0, -Infinity]
-      );
-      return max;
-    };
-  
-    const getMinimum = () => {
-      let min = Object.entries(metrics).reduce(
-        (min, entry) => ((entry[1] || 0) <= (min[1] || 0) ? entry : min),
-        [0, +Infinity]
-      );
-      return min;
-    };
-  
-    const SkeletonItem = () => (
-      <div className="flex flex-col">
-        <div className="bg-gray-700 h-4 w-3/4 mb-2 rounded animate-pulse"></div>
-        <div className="bg-gray-700 h-4 w-1/2 rounded animate-pulse"></div>
+  const getMaximum = () => {
+    let maxValue = Math.max(...metrics.map(metric => metric.total))
+    let maxMessage = metrics.find(item => item.total = maxValue).calltype
+    return maxValue + " " + maxMessage.charAt(0).toUpperCase() + maxMessage.slice(1).toLowerCase();
+  };
+
+  const getMinimum = () => {
+    let minValue = Math.min(...metrics.map(metric => metric.total))
+    let minMessage = metrics.find(item => item.total = minValue).calltype
+    return minValue + " " + minMessage.charAt(0).toUpperCase() + minMessage.slice(1).toLowerCase();
+  };
+
+  const SkeletonItem = () => (
+    <div className="flex flex-col">
+      <div className="bg-gray-700 h-4 w-3/4 mb-2 rounded animate-pulse"></div>
+      <div className="bg-gray-700 h-4 w-1/2 rounded animate-pulse"></div>
+    </div>
+  );
+
+  return (
+    <div className="bg-[#202022] px-8 py-6 rounded-md">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+        {isLoading ? (
+          [...Array(5)].map((_, index) => <SkeletonItem key={index} />)
+        ) : (
+          <>
+            <div className="flex flex-col">
+              <h4 className="text-sm font-semibold mb-1">API Token Status</h4>
+              <span className={`${user.data.token != null ? "text-green-500" : "text-red-500"} font-semibold text-xs`}>
+                {user.data.user.token != null ? "active" : "inactive"}
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="font-semibold text-sm mb-1">Subscription</h4>
+              <span className="text-green-500 text-xs font-semibold">pay-as-you-go</span>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="font-semibold text-sm text-secondary mb-2">Total Usage</h4>
+              <h3 className="text-GebetaMain text-xs font-semibold">{getTotal()} calls</h3>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="text-secondary font-semibold text-sm mb-2">Max Usage</h4>
+              <h3 className="text-GebetaMain text-xs whitespace-nowrap font-semibold">
+                {getMaximum()} calls
+              </h3>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="text-secondary font-semibold text-sm mb-2">Min Usage</h4>
+              <h3 className="text-GebetaMain text-xs font-semibold">
+                {getMinimum()} calls
+              </h3>
+            </div>
+          </>
+        )}
       </div>
-    );
-  
-    return (
-      <div className="bg-[#202022] px-4 py-6 rounded-md">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
-          {isLoading ? (
-            // Render skeleton loaders when loading
-            [...Array(6)].map((_, index) => <SkeletonItem key={index} />)
-          ) : (
-            // Render actual content when not loading
-            <>
-              <div className="flex flex-col">
-                <h4 className="text-sm font-medium mb-1">API Token Status</h4>
-                <span className={`${user.data.token != null ? "text-green-500" : "text-red-500"} font-semibold text-xs`}>
-                  {user.data.token != null ? "active" : "inactive"}
-                </span>
-              </div>
-              <div className="flex flex-col">
-                <h4 className="font-medium text-sm mb-1">Subscription</h4>
-                <span className="text-green-500 text-xs font-semibold">pay-as-you-go</span>
-              </div>
-              <div className="flex flex-col">
-                <h4 className="text-xs font-medium mb-1">Next Billing</h4>
-                <h3 className="text-GebetaMain text-sm font-semibold">
-                  {user.data.purchasedDate != null ? addDate(user.data.purchasedDate) : "-"}
-                </h3>
-              </div>
-              <div className="flex flex-col">
-                <h4 className="text-xs font-medium text-secondary mb-1">Total Usage</h4>
-                <h3 className="text-GebetaMain text-sm font-semibold">{getTotal()} calls</h3>
-              </div>
-              <div className="flex flex-col">
-                <h4 className="text-secondary text-xs font-medium mb-1">Max Usage</h4>
-                <h3 className="text-GebetaMain text-sm font-semibold">
-                  {getMaximum()[0]} - {getMaximum()[1]}
-                </h3>
-              </div>
-              <div className="flex flex-col">
-                <h4 className="text-secondary text-xs font-medium mb-1">Min Usage</h4>
-                <h3 className="text-GebetaMain text-sm font-semibold">
-                  {getMinimum()[0]} - {getMinimum()[1]}
-                </h3>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    );
+    </div>
+  );
 }
 
 export default ApiDetail;
