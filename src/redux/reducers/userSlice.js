@@ -35,33 +35,31 @@ export const userSlice = createSlice({
         state.error = action.error.message;
       })
       
-      // set token 
-      .addCase(setToken.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(setToken.fulfilled, (state, action) => {
-        state.loading = false;
-        console.log(action.payload.data)
-        state.data = action.payload.data;
-      })
-      .addCase(setToken.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
+      // // set token 
+      // .addCase(setToken.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(setToken.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.data = action.payload.data;
+      // })
+      // .addCase(setToken.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = action.error.message;
+      // })
       
       // profile update
-      .addCase(updateprofile.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(updateprofile.fulfilled, (state, action) => {
-        state.loading = false;
-        console.log(action.payload.data)
-        state.data = action.payload.data;
-      })
-      .addCase(updateprofile.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      })
+      // .addCase(updateprofile.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(updateprofile.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.data = action.payload.data;
+      // })
+      // .addCase(updateprofile.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = action.error.message;
+      // })
 
       // confirm email userEmailConfirm
       .addCase(userEmailConfirm.pending, (state) => {
@@ -69,7 +67,6 @@ export const userSlice = createSlice({
       })
       .addCase(userEmailConfirm.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload.data)
         state.data = action.payload.data;
       })
       .addCase(userEmailConfirm.rejected, (state, action) => {
@@ -84,7 +81,6 @@ export const userSlice = createSlice({
       })
       .addCase(fireBaseLogin.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload.data)
         state.data = action.payload.data;
       })
       .addCase(fireBaseLogin.rejected, (state, action) => {
