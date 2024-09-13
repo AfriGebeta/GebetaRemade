@@ -23,14 +23,15 @@ function APIUsage({ graphData }) {
 
   useEffect(() => {
     if (graphData.error == null) {
+      console.log("haha",graphData)
       console.log(graphData.data.data.data);
       let labels = [];
       let data = [];
       for (let [key, value] of Object.entries(
         sortObjectByKeys(graphData.data.data.data)
       )) {
-        labels.push(key);
-        data.push(value);
+        labels.push(value.Day);
+        data.push(value.Total);
       }
       setLabels(labels);
       setData(data);
@@ -68,8 +69,8 @@ function APIUsage({ graphData }) {
   return (
     <div className="rounded-md px-4 py-3 bg-[#202022] mt-[12%] md:mt-[2%] ">
       <div className="flex justify-between items-center w-full sm:!sw">
-        <div>
-          <h2 className="m-0">API Usage</h2>
+        <div className="pb-4">
+          <h2 className="font-semibold">API Usage</h2>
           <span>Track your api usage here</span>
         </div>
         <div className="flex gap-4 items-center "></div>
