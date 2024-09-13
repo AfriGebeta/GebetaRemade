@@ -1,26 +1,18 @@
-import { API , handleApiError } from "./util";
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { API, handleApiError } from "./util";
+
+export const getUserUsage = async (apiToken, controller) => {
+  try {
+    const { data } = await API.get(`/api/usage/matrix`, {
+      headers: {
+        Authorization: `Bearer ${apiToken}`,
+      },
+      signal: controller.signal,
+    });
+
+    return { error: null, data };
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
 
 
-
-
-
-export const getUserUsage = async (userid) => {
-    try{
-        const { data } = await API.get(`api/v2/route/apicalls/getMonthlyMatrix?userid=`+userid)
-        return { error: null, data };
-    }catch (error) {
-        return handleApiError(error);
-      }
-}
-
-
-
-export const getUserUsageForGraph = async (userid) => {
-    try{
-        const { data } = await API.get(`api/v2/route/apicalls/getMonthlyApiCallForGraph?userid=`+userid)
-        return { error: null, data };
-    }catch (error) {
-        return handleApiError(error);
-      }
-}
