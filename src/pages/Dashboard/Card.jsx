@@ -31,17 +31,17 @@ const Cards = ({ metrics }) => {
             <div className="w-3/2 flex flex-wrap gap-4">
                 {isLoading
                     ? Array(5).fill(0).map((_, i) => <SkeletonCard key={i} />)
-                    : objs.map((data, i) => (
+                    : metrics.map((data, i) => (
                         <div
                             key={i}
                             className="w-full bg-[#202022] text-[#777] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px]"
                         >
                             <div>
-                                <h3 className="text-md font-bold uppercase text-white">{data.package}</h3>
+                                <h3 className="text-md font-bold uppercase text-white">{data.calltype}</h3>
                                 <span className='block text-xs font-medium lowercase'>endpoint</span>
                             </div>
                             <div className="text-right">
-                                <h4 className="font-semibold text-[18px] text-GebetaMain">{data.calls}</h4>
+                                <h4 className="font-semibold text-[18px] text-GebetaMain">{data.total}</h4>
                                 <span className='font-medium text-xs'>Calls</span>
                             </div>
                         </div>

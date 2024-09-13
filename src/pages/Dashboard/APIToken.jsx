@@ -1,107 +1,74 @@
-import React, {useState} from "react";
-import {CopyFilled, CopyOutlined, DeleteFilled, EyeFilled, EyeInvisibleFilled} from "@ant-design/icons";
-import {useSelector, useDispatch} from "react-redux";
-import {setToken} from "../../redux/api/userApi";
-import Modal from "./../../component/Modal/Modal"
+import { CopyOutlined, DeleteFilled, EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Notify from "../../component/Popup/Notify";
-import {setUserData} from "../../redux/reducers/userSlice";
-
+import { setToken } from "../../redux/api/userApi";
 
 function APIToken() {
-    const [showTokenModal, setTokenModal] = useState(false);
-    const [showLoading, setShowLoading] = useState(false);
     const [showToken, setShowToken] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [description, setDescription] = useState("");
-    const [textType, setTextType] = useState("text");
-    const [notify, setNotify] = useState({visible: false});
+    const [notify, setNotify] = useState({ visible: false });
 
-    const user = useSelector((state) => state).user
-    const dispatch = useDispatch()
+    const user = useSelector((state) => state.user);
+    const [tokenValue, setTokenValue] = useState(user.data.user.token || "");
 
-    const handleDescription = (event) => setDescription(event.target.value);
-
+    useEffect(() => {
+        setTokenValue(user.data.user.token || "");
+    }, [user.data.user.token]);
 
     const copyToClipboard = () => {
         try {
-            navigator.clipboard.writeText(user.data.token);
-            setNotify({visible: true, msg: "Copied", type: "success"});
-            setTimeout(() => setNotify({visible: false}), 2000);
+            navigator.clipboard.writeText(tokenValue);
+            setNotify({ visible: true, msg: "Copied", type: "success" });
+            setTimeout(() => setNotify({ visible: false }), 2000);
         } catch (err) {
             console.error('Failed to copy: ', err);
         }
     };
 
     const handleEyeVisible = () => {
-        try {
-            setShowToken(!showToken)
-            navigator.clipboard.writeText(user.data.token);
-            setNotify({visible: true, msg: "hidden", type: "success"});
-            setTimeout(() => setNotify({visible: false}), 2000);
-        } catch (err) {
-            console.error('Failed to copy: ', err);
-        }
-    }
-
-
-    const deleteToken = () => {
-        // Implement delete token logic
-
-        dispatch(setToken({id: user.data.id, token: "token"}))
-            .then((resultAction) => {
-                if (setToken.fulfilled.match(resultAction)) {
-
-                } else {
-                    alert("failed")
-                }
-            });
-
-
+        setShowToken(!showToken);
     };
 
-
-    const createToken = () => {
-
-        dispatch(setToken({id: user.data.id, email: "soemtext"}))
-            .then((resultAction) => {
-                if (setToken.fulfilled.match(resultAction)) {
-
-                } else {
-                    alert("failed")
-                }
-            });
-
-    }
+    const createToken = async () => {
+        try {
+            const response = await setToken(user.data.token);
+            console.log(tokenValue)
+            setTokenValue(JSON.stringify(response.token).slice(1,-1));
+            setNotify({ visible: true, msg: "Token created successfully", type: "success" });
+            setTimeout(() => setNotify({ visible: false }), 2000);
+        } catch (err) {
+            console.error('Failed to create token: ', err);
+            setNotify({ visible: true, msg: "Failed to create token", type: "error" });
+            setTimeout(() => setNotify({ visible: false }), 2000);
+        }
+    };
 
     return (
         <>
-            <Notify value={notify}/>
-            <div
-                className="bg-[#202022] rounded text-[#aaa] px-6 py-5 mt-2">
+            <Notify value={notify} />
+            <div className="bg-[#202022] rounded text-[#aaa] px-6 py-5 mt-2">
                 <div className="flex flex-wrap items-center gap-4">
                     <p className="text-sm font-medium text-white whitespace-nowrap"> API Token</p>
+                    <button
+                        className="border border-GebetaMain bg-transparent text-sm text-GebetaMain rounded py-2 px-3 mt-0 hover:bg-GebetaMain hover:text-white transition duration-300"
+                        onClick={createToken}
+                    >
+                        Create Token
+                    </button>
                     <input
                         type={showToken ? "text" : "password"}
-                        disabled
-                        value={user.data.token}
+                        readOnly
+                        value={tokenValue.slice(1,-1)}
                         className="flex-grow min-w-0 text-gray-500 bg-transparent border-none shadow-sm rounded-lg"
                     />
                     <div className='flex gap-6 items-center'>
-                        <CopyOutlined onClick={copyToClipboard}/>
-                        {!showToken ? <EyeInvisibleFilled onClick={handleEyeVisible}/> :
-                            <EyeFilled onClick={handleEyeVisible}/>}
-                        <DeleteFilled
-                            className="cursor-pointer hover:text-red-600 transition"
-                            onClick={(event) => {
-                                event.preventDefault();
-                                deleteToken();
-                            }}
-                        />
+                        <CopyOutlined onClick={copyToClipboard} />
+                        {!showToken ? <EyeInvisibleFilled onClick={handleEyeVisible} /> :
+                            <EyeFilled onClick={handleEyeVisible} />}
                     </div>
                 </div>
             </div>
         </>
-
     );
 }
 
