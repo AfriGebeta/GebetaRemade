@@ -21,11 +21,14 @@ function Usage() {
 
 
   useEffect(() => {
-    getUserUsage(user.data.id).then((response) => {
-      if (response.error == null) setMetrics(response.data.data)
-    })
-  }, [metrics])
+    const controller = new AbortController()
+    getUserUsage(user.data.token, controller)
+        .then((response) => {
+      setMetrics(response.data.data)})
+        .catch(error => console.log(error))
 
+  }, [])
+  
   function handleEndChange(event) {
     setEndingDate(event.target.value);
   }
@@ -42,33 +45,20 @@ function Usage() {
   const getGraphData = () => {
     setLoading(true);
     if (startingDate != "" > 0 && endingDate != "" > 0) {
-      if (selected == "All") {
-        getUserUsageForGraph(user.data.token, startingDate, endingDate).then(
-          (response) => {
-            if (response.error == null) {
-              setGraphData(response);
-            }
-          }
-        );
-      } else {
-        getSpecifcUserUsageForGraph(
-          user.data.token,
-          startingDate,
-          endingDate,
-          selected
-        ).then((response) => {
+      getUserUsageForGraph(selected.toUpperCase(), startingDate, endingDate, user.data.token).then(
+        (response) => {
           if (response.error == null) {
             setGraphData(response);
           }
-        });
-      }
+        }
+      );
     }
     setLoading(false);
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-Dark">
-      <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
+      <div className="w-[95%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
         <div className=" justify-between items-center">
           <div className="mt-[20%] md:mt-[3%]">
             <ApiDetail metrics={metrics} />
