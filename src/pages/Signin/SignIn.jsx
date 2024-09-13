@@ -64,6 +64,7 @@ function Signin({ signintosignup }) {
       "username": username,
       "password": password
     })).then((resultAction) => {
+        console.log(resultAction)
       if (userLogin.fulfilled.match(resultAction)) {
             if(resultAction.payload.data == null){
              
