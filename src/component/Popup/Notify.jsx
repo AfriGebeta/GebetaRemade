@@ -9,9 +9,6 @@ function Notify({value}) {
     setShow(value.visible?'block':'hidden')
     setTimeout(() => setShow('hidden'),value.timeout || 2000);
    },[value.visible])
-   useEffect(() => {
-    console.log(show);
-   }, [show]);
    
   return (
     <div className={" fixed top-0 right-0 left-0 text-center ml-auto mr-auto py-3 text-white "+show}>
