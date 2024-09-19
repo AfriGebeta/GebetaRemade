@@ -15,8 +15,7 @@ function APIToken() {
 
     useEffect(() => {
         // Remove the curly braces from the token string
-        const cleanToken = user.data.user.token ? user.data.user.token.replace(/^{|}$/g, ''): "";
-        setTokenValue(cleanToken);
+        setTokenValue(user.data.user.token[0]);
     }, [user.data.user.token]);
 
     const showNotification = (msg, type) => {
@@ -42,10 +41,10 @@ function APIToken() {
         try {
             const response = await setToken(user.data.token);
             console.log("New token received:", response.token);
-            
+
             // Update the service token in the Redux store
             dispatch(setUserData({
-                token:user.data.token,
+                token: user.data.token,
                 user: {
                     ...user.data.user,
                     token: response.token
