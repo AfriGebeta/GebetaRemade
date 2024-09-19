@@ -17,8 +17,14 @@ function Plan({ data, index }) {
             .catch(err => console.log(err));
     };
 
+    const isPurchased = data.name != 'Custom' ? user.data.user.credits.find(item=>item.bundle_id ==data.id) : false
+
+    console.log("bn" , data)
+    
+    // console.log( data?.credits?.find((item,i) => item.id == user.data.user.credits[i].bundle_id))
+
     return (
-        <div className={`relative flex flex-col gap-3 text-white bg-[#202022] p-6 rounded-md`} key={index}>
+        <div className={`relative flex flex-col gap-3 text-white ${isPurchased && data.name!='Custom' ? 'bg-GebetaMain' : 'bg-[#202022]'} p-6 rounded-md`} key={index}>
             <div className="relative">
                 <h3 className="font-bold text-lg mb-4">{data.name}</h3>
                 {data.name !== 'Custom' ? (
@@ -54,10 +60,10 @@ function Plan({ data, index }) {
 
             <div className="mt-2">
                 {data.name != "Custom" ? <button
-                    className='w-full transition duration-150 border border-gray-600 outline-none hover:bg-GebetaMain hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium'
+                    className={`w-full transition duration-150 border border-gray-600 outline-none ${isPurchased ? 'bg-white text-zinc-950' : ''} hover:bg-GebetaMain hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium`}
                     onClick={handleUpgrade}
                 >
-                    Upgrade
+                    {isPurchased ? 'Selected Plan' : 'Upgrade'}
                 </button>
                     :
                     <button
