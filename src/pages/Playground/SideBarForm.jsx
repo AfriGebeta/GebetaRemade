@@ -36,7 +36,7 @@ const SideBarForm = ({
     //url function
     const urlMap = {
         geocoding : selectedGeocoding == "forward" ? `${TEST_URL}/api/v1/route/geocoding?name=${searchText}&apiKey=${token.token}` :
-            `http://localhost:8081/api/v1/route/revgeocoding?lat=${origin.lat == null ? "" : origin.lat}&lon=${origin.lng == null ? "" : origin.lng}&apiKey=${token.token}`,
+            `${TEST_URL}/api/v1/route/revgeocoding?lat=${origin.lat == null ? "" : origin.lat}&lon=${origin.lng == null ? "" : origin.lng}&apiKey=${token.token}`,
 
         direction :`${TEST_URL}/api/v1/route/driving/direction/?la1=${origin.lat == null ? "{}" : origin.lat}&lo1=${origin.lat == null ? "{}" : origin.lng}&la2=${destination.lat == null ? "{}" : destination.lat}&lo2=${destination.lat == null ? "{}" : destination.lng}&apiKey=${token.token}`,
         tss : `${TEST_URL}/api/route/tss?${waypointsString}&apiKey=${token.token}`,
