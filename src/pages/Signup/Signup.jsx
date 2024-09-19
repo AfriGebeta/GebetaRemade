@@ -1,18 +1,23 @@
-import React, { useState } from "react";
-import EmailConfirmation from "../EmailConfirmation/EmailConfirmation";
-import { FaFacebook } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import React, { useState, useContext } from "react";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the eye icons
 import { userLogoutEndPointCaller } from "../../redux/api/userApi";
 // firebaase  
-import { auth, provider } from "./../../firebase/Firebase"
-import { GithubAuthProvider, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import { userLogin } from "../../redux/api/userApi";
+import { auth, provider } from "./../../firebase/Firebase";
+import { AuthContext } from "./../../context/AuthProvider";
+
+
 
 
 function Signup({ signupintosignin, }) {
     const [username, setUserName] = useState("");
+    const navigate = useNavigate()
+    const authContext = useContext(AuthContext); // Access the AuthContext
+    const dispatch = useDispatch()
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("")
     const [companyname, setCompanyName] = useState("")
@@ -121,9 +126,28 @@ function Signup({ signupintosignin, }) {
                 "phone": phone,
                 "fid": fireBaseId
             }).then((response) => {
-
                 if (response.error != null) setErrorMessage(response.error)
                 setLoading(false)
+                dispatch(userLogin({
+                    "username": username,
+                    "password": password
+                })).then((resultAction) => {
+                    console.log(resultAction)
+                    if (userLogin.fulfilled.match(resultAction)) {
+                        if (resultAction.payload.data == null) {
+
+                            setErrorMessage(resultAction.payload.error);
+                        } else {
+                            authContext.login();
+                            navigate("/dashboard");
+                        }
+                    } else {
+
+                        setErrorMessage(resultAction.error.message);
+                    }
+                    setLoading(false)
+
+                })
             })
         }
         setLoading(false)
