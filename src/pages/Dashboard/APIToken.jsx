@@ -1,27 +1,36 @@
-import { CopyOutlined, DeleteFilled, EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
+import { CopyOutlined, EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Notify from "../../component/Popup/Notify";
 import { setToken } from "../../redux/api/userApi";
+import { setUserData } from "../../redux/reducers/userSlice";
 
 function APIToken() {
     const [showToken, setShowToken] = useState(false);
     const [notify, setNotify] = useState({ visible: false });
+    const dispatch = useDispatch();
 
     const user = useSelector((state) => state.user);
-    const [tokenValue, setTokenValue] = useState(user.data.user.token || "");
+    const [tokenValue, setTokenValue] = useState("");
 
     useEffect(() => {
-        setTokenValue(user.data.user.token || "");
+        // Remove the curly braces from the token string
+        const cleanToken = user.data.user.token ? user.data.user.token.replace(/^{|}$/g, ''): "";
+        setTokenValue(cleanToken);
     }, [user.data.user.token]);
+
+    const showNotification = (msg, type) => {
+        setNotify({ visible: true, msg, type });
+        setTimeout(() => setNotify({ visible: false }), 2000);
+    };
 
     const copyToClipboard = () => {
         try {
             navigator.clipboard.writeText(tokenValue);
-            setNotify({ visible: true, msg: "Copied", type: "success" });
-            setTimeout(() => setNotify({ visible: false }), 2000);
+            showNotification("Copied", "success");
         } catch (err) {
             console.error('Failed to copy: ', err);
+            showNotification("Failed to copy", "error");
         }
     };
 
@@ -32,14 +41,21 @@ function APIToken() {
     const createToken = async () => {
         try {
             const response = await setToken(user.data.token);
-            console.log(tokenValue)
-            setTokenValue(JSON.stringify(response.token).slice(1,-1));
-            setNotify({ visible: true, msg: "Token created successfully", type: "success" });
-            setTimeout(() => setNotify({ visible: false }), 2000);
+            console.log("New token received:", response.token);
+            
+            // Update the service token in the Redux store
+            dispatch(setUserData({
+                token:user.data.token,
+                user: {
+                    ...user.data.user,
+                    token: response.token
+                }
+            }));
+
+            showNotification("Token created successfully", "success");
         } catch (err) {
             console.error('Failed to create token: ', err);
-            setNotify({ visible: true, msg: "Failed to create token", type: "error" });
-            setTimeout(() => setNotify({ visible: false }), 2000);
+            showNotification("Failed to create token", "error");
         }
     };
 
@@ -48,7 +64,7 @@ function APIToken() {
             <Notify value={notify} />
             <div className="bg-[#202022] rounded text-[#aaa] px-6 py-5 mt-2">
                 <div className="flex flex-wrap items-center gap-4">
-                    <p className="text-sm font-medium text-white whitespace-nowrap"> API Token</p>
+                    <p className="text-sm font-medium text-white whitespace-nowrap">API Token</p>
                     <button
                         className="border border-GebetaMain bg-transparent text-sm text-GebetaMain rounded py-2 px-3 mt-0 hover:bg-GebetaMain hover:text-white transition duration-300"
                         onClick={createToken}
@@ -58,7 +74,7 @@ function APIToken() {
                     <input
                         type={showToken ? "text" : "password"}
                         readOnly
-                        value={tokenValue.slice(1,-1)}
+                        value={tokenValue}
                         className="flex-grow min-w-0 text-gray-500 bg-transparent border-none shadow-sm rounded-lg"
                     />
                     <div className='flex gap-6 items-center'>
