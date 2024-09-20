@@ -11,13 +11,10 @@ function APIToken() {
     const dispatch = useDispatch();
 
     const user = useSelector((state) => state.user);
-    const [tokenValue, setTokenValue] = useState("");
-
+    const [tokenValue, setTokenValue] = useState(user.data.user.token.length > 0 ? user.data.user.token[user.data.user.token.length - 1] : "");
     useEffect(() => {
-        // Remove the curly braces from the token string
-        setTokenValue(user.data.user.token[0]);
-    }, [user.data.user.token]);
-
+        console.log(user.data.user.token[user.data.user.token.length - 1])
+    },[])
     const showNotification = (msg, type) => {
         setNotify({ visible: true, msg, type });
         setTimeout(() => setNotify({ visible: false }), 2000);
@@ -42,14 +39,15 @@ function APIToken() {
             const response = await setToken(user.data.token);
             console.log("New token received:", response.token);
 
-            // Update the service token in the Redux store
             dispatch(setUserData({
                 token: user.data.token,
                 user: {
                     ...user.data.user,
-                    token: response.token
+                    token: [...user.data.user.token, response.token]
                 }
             }));
+
+            setTokenValue(response.token)
 
             showNotification("Token created successfully", "success");
         } catch (err) {
