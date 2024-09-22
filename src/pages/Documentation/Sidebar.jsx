@@ -36,7 +36,7 @@ const Sidebar = () => {
                                 <li key={idx}>
                                 <p
                                     onClick={() => toggleItem(idx , item.href)}
-                                    className={`${documentation.current == item.href ? 'text-GebetaMain' : ''} font-semibold block w-full py-2 px-4 cursor-pointer text-md hover:text-GebetaMain duration-150 ${expandedItems.includes(idx) ? 'active' : ''  }`}
+                                    className={`${documentation.current == item.href ? 'text-GebetaMain bg-[#F2994A]/15' : ''} font-semibold block rounded-md w-full py-2 px-4 cursor-pointer text-md hover:text-GebetaMain duration-150 ${expandedItems.includes(idx) ? 'active' : ''  }`}
                                 >
                                     {item.name}
                                 </p>
