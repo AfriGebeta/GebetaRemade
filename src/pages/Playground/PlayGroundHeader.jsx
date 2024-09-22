@@ -10,7 +10,7 @@ const PlayGroundHeader = () => {
  
     const dispatch = useDispatch()
     return (
-        <div className="w-full mx-auto  pt-4 md:px-10">
+        <div className="w-full pt-4 px-8 md:px-10">
             <div className="">
                 <div className="flex space-x-4">
                         <h3 className="text-gray-800 text-2xl font-bold relative mx-[2%] md:mx-[0%]">
