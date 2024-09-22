@@ -10,28 +10,29 @@ const PlayGroundHeader = () => {
  
     const dispatch = useDispatch()
     return (
-        <div className="w-full mx-auto  pt-4 md:px-8">
+        <div className="w-full mx-auto  pt-4 md:px-10">
             <div className="">
-                <div className="max-w-lg ">
+                <div className="flex space-x-4">
                         <h3 className="text-gray-800 text-2xl font-bold relative mx-[2%] md:mx-[0%]">
-                            Playground | <GeocodingDropdown/>
-                        </h3>                
+                            Playground
+                        </h3>
+                    <GeocodingDropdown/>
                 </div>
-                <div className="md:w-full mt-[1%]">
-                    <div className="flex  text-gray-400 border mx-[2%] md:mx-[0%]">   
+                <div className="mt-4">
+                    <div className="flex text-gray-900">
                         <input 
                             type="text"
-                            placeholder={token.token}
+                            placeholder="Enter Your API Token"
                             id="username"
                             onChange={(e) => {setSearch(e.target.value)}}
-                            className="w-full p-2.5  bg-gray-300 outline-none"
+                            className="w-full p-2.5 text-3 font-medium bg-zinc-100 text-zinc-800 outline-none border border-grey-500 caret-GebetaMain focus:caret-GebetaMain"
                         />
 
                         <button
-                            className="px-6 py-2.5 text-white border-r bg-GebetaMain"
+                            className="px-8 py-2.5 text-white font-semibold border-r bg-GebetaMain"
                             onClick={() => { dispatch(changeToken(search)) }}
                         >
-                            add
+                            Add
                         </button>               
                     </div>
                 </div>
