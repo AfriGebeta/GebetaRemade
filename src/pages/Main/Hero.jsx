@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import runningman from "./../../assets/img/RunningMan.png";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Modal from "../../component/Modal/Modal";
 import Signin from "../Signin/SignIn";
 import Signup from "../Signup/Signup";
@@ -12,6 +12,7 @@ const Hero = () => {
   const [signinModal, setSigninModal] = useState(false);
   const [signupModal, setSignUpModal] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const navigate = useNavigate()
 
   const fromSignIntoSignUp = () => {
     setSignUpModal(true);
@@ -97,7 +98,7 @@ const Hero = () => {
         </p>
         <div class=" mt-[20%] md:mt-[10%] inline-flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full max-w-6xl mx-auto space-y-5 md:space-y-0 ">
         <button
-          onClick={() => setSignUpModal(true)}
+          onClick={() => navigate('/pricing')}
           class="rounded-full  md:mt-[0%] text-lg font-semibold px-6 py-3 bg-GebetaMain text-white "
         >
           {" "}
