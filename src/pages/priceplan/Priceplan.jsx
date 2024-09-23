@@ -19,7 +19,7 @@ function Plan({data, index}) {
     };
 
     const isPurchased = data.name !== 'Custom' ? user.data?.user?.credits?.find(item => item.bundle_id === data.id) : false
-    const isLogin = !!user.data.token
+    const isLogin = localStorage.getItem('isAuthenticated')
     return (
         <div
             className={`relative flex flex-col gap-3 text-white ${isPurchased && data.name !== 'Custom' ? 'bg-GebetaMain/30' : 'bg-[#202022]'} p-6 h-[420px] rounded-lg`}
