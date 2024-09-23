@@ -47,8 +47,8 @@ function Plan({ data, index }) {
             <div className="flex-grow">
                 <ul className="space-y-1">
                     {data.included_call_types.map((feature, i) => (
-                        <li className="flex items-start space-x-1 text-xs py-1" key={i}>
-                            <FaCheck className="block text-sm text-GebetaMain shrink-0" />
+                        <li className="flex items-center space-x-1 text-xs py-1" key={i}>
+                            <FaCheck className="block text-sm text-green-400 mr-2 shrink-0" />
                             <span className='font-medium text-sm'>{data.call_caps[i] || '0'} {feature.charAt(0).toUpperCase() + feature.slice(1).toLowerCase()} calls</span>
                         </li>
                     ))}
@@ -88,10 +88,10 @@ function Plans() {
             "Unlimited"
         ],
         included_call_types: [
-            "Geocoding Endpoint",
-            "Direction Endpoint",
-            "Matrix Endpoint",
-            "Route Optimization",
+            "Geocoding",
+            "Direction",
+            "Matrix",
+            "Route",
         ],
     };
 
