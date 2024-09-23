@@ -9,9 +9,9 @@ import {
   getSpecifcUserUsageForGraph,
 } from "./../../redux/api/apiCallApi";
 import ClipLoader from "react-spinners/ClipLoader";
+import {useQuery} from "@tanstack/react-query";
 
 function Usage() {
-  const [metrics, setMetrics] = useState({});
   const user = useSelector((state) => state).user;
   const [graphData, setGraphData] = useState({ error: "no data" });
   const [startingDate, setStartingDate] = useState("");
@@ -20,14 +20,12 @@ function Usage() {
   const [loading, setLoading] = useState(false);
 
 
-  useEffect(() => {
-    const controller = new AbortController()
-    getUserUsage(user.data.token, controller)
-        .then((response) => {
-      setMetrics(response.data.data)})
-        .catch(error => console.log(error))
 
-  }, [])
+  const {data, isLoading} = useQuery({
+    queryKey: ['metrics'],
+    queryFn: () => getUserUsage(user.data.token),
+    staleTime: 5 * 60 * 1000
+  })
   
   function handleEndChange(event) {
     setEndingDate(event.target.value);
@@ -61,7 +59,7 @@ function Usage() {
       <div className="w-[95%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
         <div className=" justify-between items-center">
           <div className="mt-[20%] md:mt-[3%]">
-            <ApiDetail metrics={metrics} />
+            <ApiDetail metrics={data} />
           </div>
           <div className="bg-[#202022] mt-[12%] md:mt-[2%] mb-[2%]">
             <div className="flex flex-col md:flex-row md:items-center   py-5 mx-[1%] md:space-x-14">

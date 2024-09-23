@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import DocCard from "../../component/Card/DocCard";
+import {useQuery} from "@tanstack/react-query";
+import {getUserUsage} from "../../redux/api/usageAPI";
+import {useSelector} from "react-redux";
 
 const Cards = ({ metrics }) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [metricsData, setMetricsData] = useState([]);
+    const user = useSelector((state) => state).user;
+    const {data, isLoading} = useQuery({
+        queryKey: ['metrics'],
+        queryFn: () => getUserUsage(user.data.token),
+        staleTime: 5 * 60 * 1000
+    })
 
     const defaultMetrics = [
         { calltype: "ONM", total: 0 },
@@ -12,23 +19,6 @@ const Cards = ({ metrics }) => {
         { calltype: "TSS", total: 0 },
         { calltype: "Geocoding", total: 0 },
     ];
-
-    useEffect(() => {
-        if (metrics === null || metrics === undefined) {
-            setMetricsData(defaultMetrics);
-        } else if (Array.isArray(metrics) && metrics.length > 0) {
-            setMetricsData(metrics);
-        } else if (typeof metrics === 'object' && Object.keys(metrics).length > 0) {
-            const objs = defaultMetrics.map(item => ({
-                ...item,
-                total: metrics[item.calltype] ?? 0
-            }));
-            setMetricsData(objs);
-        } else {
-            setMetricsData(defaultMetrics);
-        }
-        setIsLoading(false);
-    }, [metrics]);
 
     const SkeletonCard = () => (
         <div className="w-full bg-[#202022] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px] animate-pulse">
@@ -50,7 +40,7 @@ const Cards = ({ metrics }) => {
                 {isLoading ? (
                     Array(5).fill(0).map((_, i) => <SkeletonCard key={i} />)
                 ) : (
-                    metricsData.map((data, i) => (
+                    data.map((data, i) => (
                         <div
                             key={i}
                             className="w-full bg-[#202022] text-[#777] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px]"
