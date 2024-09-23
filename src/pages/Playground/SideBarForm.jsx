@@ -247,11 +247,8 @@ const SideBarForm = ({
                 <div className="mt-[1%]">
 
                 </div>
-                <button className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 bg-GebetaMain outline-none mt-[4%]`} onClick={(e)=> {calculate()}}> {object.type === "geocoding" ? "search" : "calculate"}</button>
-                {object.type === "direction" ? <p className='mt-[2%] font-bold text-xl text-[#A0AABA] mt-[5%] mx-[2%] md:mx-[0%]'>Optional parameter</p> : ""}
-
-
-
+                <button className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 bg-GebetaMain text-white font-bold text- outline-none mt-[4%]`} onClick={(e)=> {calculate()}}> {object.type === "geocoding" ? "search" : "calculate"}</button>
+                {object.type === "direction" ? <p className='mt-[8%] mb-1 font-bold text-lg text-zinc-600 mt-[5%] mx-[2%] md:mx-[0%]'>Optional parameter</p> : ""}
 
                 {
                     object.optionalParameter.map((n) => (
