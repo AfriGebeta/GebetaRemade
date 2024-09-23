@@ -58,7 +58,7 @@ function Usage() {
     <div className="flex flex-col min-h-screen bg-Dark">
       <div className="w-[95%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
         <div className=" justify-between items-center">
-          <div className="mt-[20%] md:mt-[3%]">
+          <div className="mt-[2%] md:mt-[3%]">
             <ApiDetail metrics={data} />
           </div>
           <div className="bg-[#202022] mt-[12%] md:mt-[2%] mb-[2%]">
