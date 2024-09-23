@@ -61,7 +61,7 @@ const SideBarForm = ({
             case "start":
                 return (
                     <button
-                        className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 ${selectedButton === "start" ? "bg-GebetaMain" : "bg-gray-300"} outline-none mt-[1%]`}
+                        className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 ${selectedButton === "start" ? "bg-GebetaMain" : "bg-gray-300"} outline-none focus:text-white mt-[1%]`}
                         onClick={(e) => {
                             e.preventDefault();
                             setSelectedButtonFunction("start");
@@ -74,7 +74,7 @@ const SideBarForm = ({
                 if (request !== "geocoding")
                     return (
                         <button
-                            className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 ${selectedButton === "waypoint" ? "bg-GebetaMain" : "bg-gray-300"} outline-none mt-[4%]`}
+                            className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 ${selectedButton === "waypoint" ? "bg-GebetaMain" : "bg-gray-300"} focus:text-white outline-none mt-[4%]`}
                             onClick={(e) => {
                                 e.preventDefault();
                                 setSelectedButtonFunction("waypoint");
@@ -87,7 +87,7 @@ const SideBarForm = ({
             case "destination":
                 return (
                     <button
-                        className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 ${selectedButton === "destination" ? "bg-GebetaMain" : "bg-gray-300"} outline-none mt-[4%]`}
+                        className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 ${selectedButton === "destination" ? "bg-GebetaMain" : "bg-gray-300"} focus:text-white outline-none mt-[4%]`}
                         onClick={(e) => {
                             e.preventDefault();
                             setSelectedButtonFunction("destination");
@@ -247,7 +247,7 @@ const SideBarForm = ({
                 <div className="mt-[1%]">
 
                 </div>
-                <button className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 bg-GebetaMain text-white font-bold text- outline-none mt-[4%]`} onClick={(e)=> {calculate()}}> {object.type === "geocoding" ? "search" : "calculate"}</button>
+                <button className={`  mx-[2%] md:mx-[0%] w-[96%] p-2.5 bg-GebetaMain text-white font-bold outline-none mt-[4%]`} onClick={(e)=> {calculate()}}> {object.type === "geocoding" ? "search" : "calculate"}</button>
                 {object.type === "direction" ? <p className='mt-[8%] mb-1 font-bold text-lg text-zinc-600 mt-[5%] mx-[2%] md:mx-[0%]'>Optional parameter</p> : ""}
 
                 {
