@@ -1,14 +1,11 @@
 import { API, handleApiError } from "./util";
 
-export const getAllCredits = async ({ page, limit }, controller) => {
+export const getAllCredits = async ({ page, limit }) => {
   try {
     const data = await API.get(
       `/api/credit-bundle/getAll?page=${page}&limit=${limit}`,
-      {
-        signal: controller.signal,
-      }
     );
-    return { data };
+    return data.data.data;
   } catch (error) {
     return handleApiError(error);
   }
