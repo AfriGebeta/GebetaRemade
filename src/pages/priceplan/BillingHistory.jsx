@@ -20,7 +20,7 @@ function BillingHistory() {
     }
 
     const {data, isLoading} = useQuery({
-        queryKey: ['billing'],
+        queryKey: ['billing', user.data.token],
         queryFn: () => getAllBilling(user.data.token)
     })
 
