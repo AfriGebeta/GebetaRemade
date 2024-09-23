@@ -156,7 +156,7 @@ function Signup({ signupintosignin, }) {
 
     return (
         <>
-            <div className="md:card md:h-auto w-[100%] md:w-[45%] lg:w-[25%] md:rounded bg-Dark text-white p-10 absolute md:top-[10%] left-1/2 transform -translate-x-1/2 ">
+            <div className="md:card md:h-auto w-[100%] md:w-[45%] lg:w-[25%] md:rounded bg-Dark text-white p-10 absolute md:top-[10%] left-1/2 transform -translate-x-1/2 " style={{zIndex:9999}}>
                 <div className="flex flex-col gap-4">
                     <p className='  text-[#A0AABA] ' style={{ fontFamily: "Zen Dots" }}>LET'S GET YOU STARTED</p>
                     <p className='  text-white font-bold text-xl ' style={{ fontFamily: "Zen Dots" }}>CREATE AN Account </p>
