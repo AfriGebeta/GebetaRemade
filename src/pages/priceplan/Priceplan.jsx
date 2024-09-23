@@ -27,7 +27,7 @@ function Plan({data, index}) {
             <div className="relative">
                 <h3 className="font-bold text-lg mb-4">{data.name}</h3>
                 {data.name !== 'Custom' ? (
-                    <div className="flex">
+                    <div className="w-5 flex gap-x-2">
                         <span
                             className={`text-xs font-bold ${isPurchased ? "text-white" : "text-zinc-300"} `}>ETB</span>
                         <h1 className="font-bold text-3xl">{data.price}</h1>
@@ -66,7 +66,7 @@ function Plan({data, index}) {
                         onClick={handleUpgrade}
                         disabled={isPurchased}
                     >
-                        {isPurchased ? `Selected Plan` : isLogin ? 'Upgrade' : 'Buy Now'}
+                        {isPurchased ? `Selected Plan` : isLogin ? 'Upgrade' : 'Select Plan'}
                     </button>
                     :
                     <button
