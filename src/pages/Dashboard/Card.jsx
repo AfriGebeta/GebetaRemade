@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 const Cards = ({ metrics }) => {
     const user = useSelector((state) => state).user;
     const {data, isLoading} = useQuery({
-        queryKey: ['metrics'],
+        queryKey: ['metrics', user.data.token],
         queryFn: () => getUserUsage(user.data.token),
         staleTime: 5 * 60 * 1000
     })
