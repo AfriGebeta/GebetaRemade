@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {getAllBilling} from "../../redux/api/billingAPI";
 import {useSelector} from "react-redux";
-import {getCredit} from "../../redux/api/creditsApi";
 import billing from '../../assets/img/billing.png'
 import {useQuery} from "@tanstack/react-query";
+import chapa from '../../assets/img/chapa.png'
 
 function BillingHistory() {
     const user = useSelector((state) => state.user);
@@ -27,9 +27,6 @@ function BillingHistory() {
     })
 
     const totalPages = Math.ceil(data?.count / limit)
-    const handlePagination = (page) => {
-        setCurrentPage(page)
-    }
 
     console.log("data", data)
 
@@ -76,6 +73,7 @@ function BillingHistory() {
                                                 <h4 className='text-GebetaMain font-semibold'>{installment.status}</h4>
                                             </div>
                                             <div className='flex items-center gap-2'>
+                                                {installment.method === 'CHAPA' ? <img src={chapa} alt="chapa logo" className='bg-[#202022] text-[#202022] w-5 h-5'/> : ''}
                                                 <h4 className='text-green-500 font-semibold'>{installment.method}</h4>
                                                 <span className='bg-green-700 w-1 h-4'></span>
                                                 <h4 className='text-sm font-semibold text-GebetaMain'>{installment.amount} ETB</h4>
