@@ -25,7 +25,8 @@ function Plan({ data, index }) {
                 <h3 className="font-bold text-lg mb-4">{data.name}</h3>
                 {data.name !== 'Custom' ? (
                     <div className="flex">
-                        <span className="text-xs font-bold text-gray-400">ETB</span>
+                        <span
+                            className={`text-xs font-bold ${isPurchased ? "text-white" : "text-zinc-300"} `}>ETB</span>
                         <h1 className="font-bold text-3xl">{data.price}</h1>
                     </div>
                 ) : (
@@ -56,8 +57,9 @@ function Plan({ data, index }) {
 
             <div className="mt-2">
                 {data.name != "Custom" ? <button
-                    className={`w-full transition duration-150 border border-gray-600 outline-none ${isPurchased ? 'bg-white text-zinc-950' : ''} hover:bg-zince-950 hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium`}
+                    className={`w-full transition duration-150 border border-zinc-700 borer-2 outline-none ${isPurchased ? 'bg-white text-zinc-950 border-none' : 'hover:bg-GebetaMain'} hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium`}
                     onClick={handleUpgrade}
+                    disabled={isPurchased}
                 >
                     {isPurchased ? 'Selected Plan' : 'Upgrade'}
                 </button>
