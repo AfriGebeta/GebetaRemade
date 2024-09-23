@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { getAllBilling } from "../../redux/api/billingAPI";
-import { useSelector } from "react-redux";
-import { getCredit } from "../../redux/api/creditsApi";
+import React, {useEffect, useState} from "react";
+import {getAllBilling} from "../../redux/api/billingAPI";
+import {useSelector} from "react-redux";
+import {getCredit} from "../../redux/api/creditsApi";
 import billing from '../../assets/img/billing.png'
+import {useQuery} from "@tanstack/react-query";
 
 function BillingHistory() {
     const user = useSelector(state => state.user)
@@ -18,26 +19,42 @@ function BillingHistory() {
         return `${month}/${day}/${year}`;
     }
 
-    useEffect(() => {
-        async function getBillingData() {
-            const response = await getAllBilling(user.data.token)
-            console.log(response)
-            setBillingData(response.places)
-        }
+    const {data, isLoading} = useQuery({
+        queryKey: ['billing'],
+        queryFn: () => getAllBilling(user.data.token)
+    })
 
-        getBillingData()
-    }, [])
-
-    console.log(billingData)
+    const SkeletonCard = () => (
+        <div className='flex flex-col gap-6 pb-4 pt-5 animate-pulse'>
+            <div className='flex justify-between itlast:border-b-0ems-center'>
+                <div className='w-32 h-4 bg-gray-600 rounded-md'></div>
+                <div className='w-20 h-4 bg-gray-600 rounded-md'></div>
+            </div>
+            <div className='flex flex-col gap-4'>
+                <div className='w-full h-4 bg-gray-600 rounded-md'></div>
+                <div className='w-full h-4 bg-gray-600 rounded-md'></div>
+                <div className='flex justify-between items-center gap-4'>
+                    <div className='flex items-center gap-2'>
+                        <div className='w-24 h-4 bg-gray-600 rounded-md'></div>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                        <div className='w-16 h-4 bg-gray-600 rounded-md'></div>
+                        <div className='w-12 h-4 bg-gray-600 rounded-md'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <div className='bg-[#202022] text-[#ccc] p-4 rounded-lg min-h-[60vh]'>
-            {billingData?.length > 0 ?
+            {isLoading ? Array(2).fill(0).map((_, i) => <SkeletonCard key={i}/>) : data ?
                 <>
                     <h2 className='text-xl text-white font-semibold mb-4'>Billing History</h2>
                     <div className="space-y-4">
-                        {billingData?.map((item, index) => (
-                            <div key={index} className='flex flex-col gap-6 pb-4 border-b border-gray-700 last:border-b-0'>
+                        {data?.map((item, index) => (
+                            <div key={index}
+                                 className='flex flex-col gap-6 pb-4 border-b border-gray-700 last:border-b-0'>
                                 <div className='flex justify-between items-center'>
                                     <h4 className='text-base text-white font-semibold'>{item?.credit.credit_bundle.name} Pac.</h4>
                                     <h5 className='text-[#ccc] text-xs font-medium'>{formatDate(item.created_at)}</h5>
@@ -64,7 +81,7 @@ function BillingHistory() {
                 </>
                 : (
                     <div className="flex flex-col justify-center text-center">
-                        <img className="w-full h-[250px] text-GebetaMain" src={billing} alt="billing image"/>
+                        <img className="w-full h-[250px]" src={billing} alt="billing image"/>
                         <p>No Billing History</p>
                     </div>
                 )}
