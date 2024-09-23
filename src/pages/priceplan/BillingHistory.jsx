@@ -22,7 +22,7 @@ function BillingHistory() {
         async function getBillingData() {
             const response = await getAllBilling(user.data.token)
             console.log(response)
-            setBillingData(response)
+            setBillingData(response.places)
         }
 
         getBillingData()
@@ -39,20 +39,22 @@ function BillingHistory() {
                         {billingData?.map((item, index) => (
                             <div key={index} className='flex flex-col gap-6 pb-4 border-b border-gray-700 last:border-b-0'>
                                 <div className='flex justify-between items-center'>
-                                    <h4 className='text-base text-white font-semibold'>Business Pac.</h4>
+                                    <h4 className='text-base text-white font-semibold'>{item?.credit.credit_bundle.name} Pac.</h4>
                                     <h5 className='text-[#ccc] text-xs font-medium'>{formatDate(item.created_at)}</h5>
-                                </div>
-                                <div className='flex items-center gap-2'>
-                                    <span className='bg-green-700 w-1 h-4'></span>
-                                    <h4 className='text-sm font-semibold text-GebetaMain'>{item.amount_due} ETB</h4>
                                 </div>
                                 <div className='flex justify-between text-sm'>
                                     <h4 className="font-semibold">Payment Status</h4>
                                     {item?.installments?.map((installment) => (
-                                        <>
-                                            <h4 className='text-green-500 font-semibold'>{installment.method}</h4>
-                                            <h4 className='text-GebetaMain font-semibold'>{installment.status}</h4>
-                                        </>
+                                        <div className='flex flex-col justify-between gap-4'>
+                                            <div className='flex items-center gap-2'>
+                                                <h4 className='text-GebetaMain font-semibold'>{installment.status}</h4>
+                                            </div>
+                                            <div className='flex items-center gap-2'>
+                                                <h4 className='text-green-500 font-semibold'>{installment.method}</h4>
+                                                <span className='bg-green-700 w-1 h-4'></span>
+                                                <h4 className='text-sm font-semibold text-GebetaMain'>{installment.amount} ETB</h4>
+                                            </div>
+                                        </div>
                                     ))
                                     }
                                 </div>
