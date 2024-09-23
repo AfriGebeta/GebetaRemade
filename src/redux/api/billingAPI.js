@@ -11,7 +11,7 @@ export const getAllBilling = async (apiToken) => {
         Authorization: `Bearer ${apiToken}`,
       },
     });
-    return response.data.data.places;
+    return response.data.data.places || [];
   } catch (error) {
     return handleApiError(error);
   }
