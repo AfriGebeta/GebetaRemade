@@ -43,7 +43,7 @@ const ProfileDropDown = (props) => {
             className="w-12 h-12 overflow-hidden rounded-full flex justify-center items-center relative overflow-hidden"
             style={{ lineHeight: "12rem" }}
           >
-            <span className={`!m-0 !p-0 uppercase text-[3vh] ${path.pathname === '/documentation' ? 'text-grey' : 'text-white'}`}>
+            <span className={`!m-0 !p-0 uppercase text-[3vh] ${path.pathname === '/documentation' || path.pathname === '/playground'  ? 'text-zinc-900' : 'text-white'}`}>
               {user.data.user.username.charAt(0)}
             </span>
           </div>
