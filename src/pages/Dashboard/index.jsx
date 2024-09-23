@@ -1,35 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux"
+import React, {useState, useEffect} from "react";
+import {useSelector, useDispatch} from "react-redux"
 import ApiDetail from "../../component/Card/ApiDetail";
 import Cards from "./Card";
 import ApiToken from "./APIToken";
-import { getUserUsage } from "../../redux/api/usageAPI";
-
+import {getUserUsage} from "../../redux/api/usageAPI";
+import {useQuery} from "@tanstack/react-query";
 
 function Dashboard() {
-    const [metrics, setMetrics] = useState({})
-    const user = useSelector((state) => state).user
-
-    useEffect(() => {
-        const controller = new AbortController()
-        getUserUsage(user.data.token, controller).then((response) => {
-            if (response.error == null) {
-                setMetrics(response.data.data)
-            }
-        })
-
-        return () => controller.abort()
-    }, [])
-
     return (
         <div className="bg-Dark flex flex-col min-h-screen">
             <div className="w-[95%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
                 <div className=" justify-between items-center">
-                    <ApiToken />
+                    <ApiToken/>
                     <div className="mt-[1.5%]">
-                        <ApiDetail metrics={metrics} />
+                        <ApiDetail/>
                     </div>
-                    <Cards metrics={metrics} />
+                    <Cards />
                 </div>
             </div>
 
