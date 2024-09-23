@@ -6,9 +6,7 @@ import billing from '../../assets/img/billing.png'
 import {useQuery} from "@tanstack/react-query";
 
 function BillingHistory() {
-    const user = useSelector(state => state.user)
-
-    const [billingData, setBillingData] = useState([])
+    const user = useSelector((state) => state.user);
 
     function formatDate(inputDate) {
         const date = new Date(inputDate);
@@ -20,9 +18,12 @@ function BillingHistory() {
     }
 
     const {data, isLoading} = useQuery({
-        queryKey: ['billing', user.data.token],
-        queryFn: () => getAllBilling(user.data.token)
+        queryKey: ['history', user.data.token],
+        queryFn: () => getAllBilling(user.data.token),
+        staleTime: 5 * 60 * 1000
     })
+
+    console.log("data", data)
 
     const SkeletonCard = () => (
         <div className='flex flex-col gap-6 pb-4 pt-5 animate-pulse'>
@@ -48,7 +49,7 @@ function BillingHistory() {
 
     return (
         <div className='bg-[#202022] text-[#ccc] p-4 rounded-lg min-h-[60vh]'>
-            {isLoading ? Array(2).fill(0).map((_, i) => <SkeletonCard key={i}/>) : data ?
+            {isLoading ? Array(2).fill(0).map((_, i) => <SkeletonCard key={i}/>) : data.length > 0 ?
                 <>
                     <h2 className='text-xl text-white font-semibold mb-4'>Billing History</h2>
                     <div className="space-y-4">
