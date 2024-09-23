@@ -4,13 +4,13 @@ import { getCredit } from "../../redux/api/creditsApi";
 import {useQuery} from "@tanstack/react-query";
 import {getUserUsage} from "../../redux/api/usageAPI";
 
-function ApiDetail({ metrics }) {
+function ApiDetail() {
   const user = useSelector((state) => state.user);
   const [purchasedPlans, setPurchasedPlans] = useState('')
 
 
   const {data, isLoading} = useQuery({
-    queryKey: ['metrics'],
+    queryKey: ['metrics', user.data.token],
     queryFn: () => getUserUsage(user.data.token),
     staleTime: 5 * 60 * 1000
   })
@@ -39,7 +39,7 @@ function ApiDetail({ metrics }) {
 
   const getMaximum = () => {
     let maxValue = Math.max(...data.map(metric => metric.total));
-    let maxMessage = data.find(item => item.total === maxValue).calltype;
+    let maxMessage = data.find(item => item.total === maxValue)?.calltype;
     return `${maxValue} ${maxMessage.charAt(0).toUpperCase() + maxMessage.slice(1).toLowerCase()}`;
   };
 
@@ -80,13 +80,13 @@ function ApiDetail({ metrics }) {
             <div className="flex flex-col">
               <h4 className="text-secondary font-semibold text-sm mb-2">Max Usage</h4>
               <h3 className="text-GebetaMain text-xs whitespace-nowrap font-semibold">
-                {getMaximum()} calls
+                {data.length > 0 ? getMaximum() : 0} calls
               </h3>
             </div>
             <div className="flex flex-col">
               <h4 className="text-secondary font-semibold text-sm mb-2">Min Usage</h4>
               <h3 className="text-GebetaMain text-xs font-semibold">
-                {getMinimum()} calls
+                {data.length > 0 ? getMinimum() : 0} calls
               </h3>
             </div>
           </>
