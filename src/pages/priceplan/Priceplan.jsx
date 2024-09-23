@@ -17,10 +17,10 @@ function Plan({ data, index }) {
             .catch(err => console.log(err));
     };
 
-    const isPurchased = data.name != 'Custom' ? user.data.user.credits.find(item=>item.bundle_id ==data.id) : false
-
+    const isPurchased = data.name != 'Custom' ? user.data?.user?.credits?.find(item=>item.bundle_id ==data.id) : false
+    const isLogin = !!user.data.token
     return (
-        <div className={`relative flex flex-col gap-3 text-white ${isPurchased && data.name!='Custom' ? 'bg-GebetaMain' : 'bg-[#202022]'} p-6 rounded-md`} key={index}>
+        <div className={`relative flex flex-col gap-3 text-white ${isPurchased && data.name!='Custom' ? 'bg-GebetaMain/30' : 'bg-[#202022]'} p-6 h-[420px] rounded-lg`} key={index}>
             <div className="relative">
                 <h3 className="font-bold text-lg mb-4">{data.name}</h3>
                 {data.name !== 'Custom' ? (
@@ -61,7 +61,7 @@ function Plan({ data, index }) {
                     onClick={handleUpgrade}
                     disabled={isPurchased}
                 >
-                    {isPurchased ? 'Selected Plan' : 'Upgrade'}
+                    {isPurchased ?  `Selected Plan` : isLogin ? 'Upgrade' : 'Buy Now'}
                 </button>
                     :
                     <button
