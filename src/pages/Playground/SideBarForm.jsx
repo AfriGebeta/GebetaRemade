@@ -236,7 +236,7 @@ const SideBarForm = ({
 
                 <ul className="list-disc mt-[2%]">
                     {
-                        apiResponse.data != null ?
+                        object.type === "geocoding" &&  apiResponse.data != null ?
                             apiResponse.data.map((n) => <li className="ml-[4%]">{n.name}</li>)
                             : ""
                     }
