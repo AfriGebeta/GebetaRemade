@@ -11,14 +11,14 @@ function APIToken() {
     const dispatch = useDispatch();
 
     const user = useSelector((state) => state.user);
-    const [tokenValue, setTokenValue] = useState(user.data.user.token.length > 0 ? user.data.user.token[user.data.user.token.length - 1] : "");
-    useEffect(() => {
-        console.log(user.data.user.token[user.data.user.token.length - 1])
-    },[])
+    const [tokenValue, setTokenValue] = useState(user?.data?.user?.token ? user.data.user.token[user.data.user.token.length - 1] : "");
+
     const showNotification = (msg, type) => {
         setNotify({ visible: true, msg, type });
         setTimeout(() => setNotify({ visible: false }), 2000);
     };
+
+    console.log(user?.data?.user)
 
     const copyToClipboard = () => {
         try {
