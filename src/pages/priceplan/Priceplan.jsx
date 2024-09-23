@@ -18,11 +18,11 @@ function Plan({data, index}) {
             .catch(err => console.log(err));
     };
 
-    const isPurchased = data.name != 'Custom' ? user.data?.user?.credits?.find(item => item.bundle_id == data.id) : false
+    const isPurchased = data.name !== 'Custom' ? user.data?.user?.credits?.find(item => item.bundle_id === data.id) : false
     const isLogin = !!user.data.token
     return (
         <div
-            className={`relative flex flex-col gap-3 text-white ${isPurchased && data.name != 'Custom' ? 'bg-GebetaMain/30' : 'bg-[#202022]'} p-6 h-[420px] rounded-lg`}
+            className={`relative flex flex-col gap-3 text-white ${isPurchased && data.name !== 'Custom' ? 'bg-GebetaMain/30' : 'bg-[#202022]'} p-6 h-[420px] rounded-lg`}
             key={index}>
             <div className="relative">
                 <h3 className="font-bold text-lg mb-4">{data.name}</h3>
@@ -111,16 +111,20 @@ function Plans() {
         </div>
     );
 
+    const user = useSelector(state => state.user)
+
     const {data, isLoading} = useQuery({
-        queryKey: ['plans'],
-        queryFn: () => getAllCredits({page: 1, limit: 10})
+        queryKey: ['plans', user.data.token],
+        queryFn: () => getAllCredits({page: 1, limit: 10}),
+        staleTime: 5 * 60 * 1000
     })
+    console.log(data)
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {isLoading ?
                 Array(5).fill(0).map((_, i) => <SkeletonCard key={i}/>) :
-                data?.map((credit, index) => (
+                data?.credit_bundles.map((credit, index) => (
                     <Plan data={credit} index={index} key={index}/>
                 ))}
 
