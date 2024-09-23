@@ -17,11 +17,19 @@ function BillingHistory() {
         return `${month}/${day}/${year}`;
     }
 
+    const [currentPage, setCurrentPage] = useState(1)
+    const limit = 4
+
     const {data, isLoading} = useQuery({
-        queryKey: ['history', user.data.token],
-        queryFn: () => getAllBilling(user.data.token),
+        queryKey: ['history', user.data.token, currentPage],
+        queryFn: () => getAllBilling(user.data.token, currentPage, limit),
         staleTime: 5 * 60 * 1000
     })
+
+    const totalPages = Math.ceil(data?.count / limit)
+    const handlePagination = (page) => {
+        setCurrentPage(page)
+    }
 
     console.log("data", data)
 
@@ -49,11 +57,11 @@ function BillingHistory() {
 
     return (
         <div className='bg-[#202022] text-[#ccc] p-4 rounded-lg min-h-[60vh]'>
-            {isLoading ? Array(2).fill(0).map((_, i) => <SkeletonCard key={i}/>) : data.length > 0 ?
+            {isLoading ? Array(2).fill(0).map((_, i) => <SkeletonCard key={i}/>) : data.billing.length > 0 ?
                 <>
                     <h2 className='text-xl text-white font-semibold mb-4'>Billing History</h2>
                     <div className="space-y-4">
-                        {data?.map((item, index) => (
+                        {data?.billing.map((item, index) => (
                             <div key={index}
                                  className='flex flex-col gap-6 pb-4 border-b border-gray-700 last:border-b-0'>
                                 <div className='flex justify-between items-center'>
@@ -78,6 +86,19 @@ function BillingHistory() {
                                 </div>
                             </div>
                         ))}
+                        <div className='flex justify-between'>
+                            <button
+                                onClick={() => setCurrentPage((page) => page - 1)}
+                                disabled={currentPage === 1 || data.billing.length === 0}
+                                className='bg-GebetaMain text-white px-4 py-2 rounded-md disabled:opacity-50'
+                            >
+                                Previous</button>
+                            <button
+                                onClick={() => setCurrentPage((page) => page + 1)}
+                                disabled={currentPage === totalPages || data.billing.length === 0}
+                                className='bg-GebetaMain text-white px-4 py-2 rounded-md disabled:opacity-50'
+                            >Next</button>
+                        </div>
                     </div>
                 </>
                 : (
