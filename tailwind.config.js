@@ -6,7 +6,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,tx,tsx}"],
   theme: {
     extend: {
-    
+      zIndex: {
+        '1-important' : '1 !important',
+      },
       colors: {
         'GebetaMain': '#F2994A',
         'Dark': '#111',
