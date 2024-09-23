@@ -1,5 +1,6 @@
 import React , {useState , useEffect} from "react";
 import Tooltip from "react-tooltip";
+import Priceplan from "../priceplan/Priceplan";
 
 const PricingSlider = ({ text }) => {
   const [sliderValue, setSliderValue] = useState(0);
@@ -45,26 +46,22 @@ const Pricing = () => {
   // Return the JSX element
   return (
     <div className=" text-white  w-[100%] md:w-[60%] ">
-      <div className="mt-[2%] mx-[3%]">
-          <p>The Routes API uses a pay-as-you-go pricing model. The Gebeta maps  APIs  arer billed by usage. Cost is calculated by</p>
-          <p>api call  × Price per each use</p>
+      {/*<div className="mt-[2%] mx-[3%]">*/}
+      {/*    <p>The Routes API uses a pay-as-you-go pricing model. The Gebeta maps  APIs  arer billed by usage. Cost is calculated by</p>*/}
+      {/*    <p>api call  × Price per each use</p>*/}
+      {/*  <p className="mt-[1%]"> Use our Pricing and Usage calculator to estimate your usage cost per API . </p>*/}
+      {/*  <div className="w-full mt-[4%] bg-[#202022] rounded-md">*/}
+      {/*     <div className="w-[80%] mx-auto py-[4%]">*/}
+      {/*     <PricingSlider text = {"Direction API"}/>*/}
+      {/*      <PricingSlider text = {"Matrix API"}/>*/}
+      {/*      <PricingSlider text = {"ONM API"}/>*/}
+      {/*      <PricingSlider text = {"Tss API"}/>*/}
+      {/*      <PricingSlider text = {"Geocoding API"}/>*/}
+      {/*     </div>*/}
+      {/*  </div>  */}
+      {/*</div>*/}
 
-        <p className="mt-[1%]"> Use our Pricing and Usage calculator to estimate your usage cost per API . </p>
-        <div className="w-full mt-[4%] bg-[#202022] rounded-md">
-           <div className="w-[80%] mx-auto py-[4%]">
-           <PricingSlider text = {"Direction API"}/>
-            <PricingSlider text = {"Matrix API"}/>
-            <PricingSlider text = {"ONM API"}/>
-            <PricingSlider text = {"Tss API"}/>
-            <PricingSlider text = {"Geocoding API"}/>
-
-           </div>
-
-        </div>  
-
-       
-        
-      </div>
+        <Priceplan />
       
 
     </div>
