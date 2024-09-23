@@ -102,7 +102,7 @@ const Map = ({selectedButton}) => {
          
            console.log(coordinate)
         return (
-        <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} >
+        <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} className='z-1-important' >
             <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
