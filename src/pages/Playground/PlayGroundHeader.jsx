@@ -29,7 +29,7 @@ const PlayGroundHeader = () => {
                         />
 
                         <button
-                            className="px-8 py-2.5 text-white font-semibold border-r bg-GebetaMain"
+                            className="px-8 py-2.5 text-white text-3 font-semibold border-r bg-GebetaMain hover:bg-GebetaMain/30"
                             onClick={() => { dispatch(changeToken(search)) }}
                         >
                             Add
