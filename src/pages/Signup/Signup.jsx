@@ -9,6 +9,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { userLogin } from "../../redux/api/userApi";
 import { auth, provider } from "./../../firebase/Firebase";
 import { AuthContext } from "./../../context/AuthProvider";
+import {buyCredit} from "../../redux/api/buyCreditApi";
 
 
 
@@ -139,7 +140,23 @@ function Signup({ signupintosignin, }) {
                             setErrorMessage(resultAction.payload.error);
                         } else {
                             authContext.login();
-                            navigate("/dashboard");
+                            if(localStorage.getItem('redirect')) {
+                                localStorage.removeItem('redirect')
+                                navigate("/priceplan");
+
+                                const id=localStorage.getItem('plan')
+
+                                buyCredit(resultAction.payload.data.token, id)
+                                    .then(response => {
+                                        if (response.data.data.status === "success") {
+                                            window.open(response.data.data.Data.checkout_url, '_blank');
+                                        }
+                                    })
+                                    .catch(err => console.log(err));
+                            }
+                            else {
+                                navigate("/dashboard");
+                            }
                         }
                     } else {
 
