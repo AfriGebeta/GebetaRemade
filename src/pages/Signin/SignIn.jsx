@@ -13,6 +13,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Loading";
 import { GithubAuthProvider, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {buyCredit} from "../../redux/api/buyCreditApi";
+import {persistor} from "../../redux/store";
 
 
 function Signin({ signintosignup }) {
@@ -68,8 +69,8 @@ function Signin({ signintosignup }) {
             console.log(resultAction)
             if (userLogin.fulfilled.match(resultAction)) {
                 if (resultAction.payload.data == null) {
-
                     setErrorMessage(resultAction.payload.error);
+                    persistor.purge()
                 } else {
                     authContext.login();
                     if(localStorage.getItem('redirect')) {
