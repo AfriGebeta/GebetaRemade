@@ -1,8 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { FaFacebook } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
+import { useDispatch } from "react-redux"
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the eye icons
 import { AuthContext } from "./../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +10,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Loading";
 import { GithubAuthProvider, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {buyCredit} from "../../redux/api/buyCreditApi";
-import {persistor} from "../../redux/store";
 
 
 function Signin({ signintosignup }) {
@@ -31,7 +27,6 @@ function Signin({ signintosignup }) {
     const handlePassword = (event) => setPassword(event.target.value);
     const handleForgotPassword = () => setForgotPassword(!forgotPassword)
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
-    const user = useSelector((state) => state).user;
 
     const signInGithub = () => {
         const provider = new GithubAuthProvider();
@@ -70,7 +65,7 @@ function Signin({ signintosignup }) {
             if (userLogin.fulfilled.match(resultAction)) {
                 if (resultAction.payload.data == null) {
                     setErrorMessage(resultAction.payload.error);
-                    persistor.purge()
+                    // persistor.purge()
                 } else {
                     authContext.login();
                     if(localStorage.getItem('redirect')) {
@@ -79,7 +74,7 @@ function Signin({ signintosignup }) {
 
                         const id=localStorage.getItem('plan')
 
-                        buyCredit(user.data.token, id)
+                        buyCredit(resultAction.payload.data.token, id)
                             .then(response => {
                                 if (response.data.data.status === "success") {
                                     window.open(response.data.data.Data.checkout_url, '_blank');
