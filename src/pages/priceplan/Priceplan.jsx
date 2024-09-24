@@ -31,14 +31,6 @@ function Plan({data, index}) {
             localStorage.setItem('plan', id)
             localStorage.setItem('redirect', true)
             setSigninModal(true)
-
-            // buyCredit(user.data.token, id)
-            //     .then(response => {
-            //         if (response.data.data.status === "success") {
-            //             window.open(response.data.data.Data.checkout_url, '_blank');
-            //         }
-            //     })
-            //     .catch(err => console.log(err));
         } else {
             if (data.name !== "Custom") {
                 buyCredit(user.data.token, id)
@@ -160,8 +152,6 @@ function Plans() {
             </div>
         </div>
     );
-
-    const user = useSelector(state => state.user)
 
     const {data, isLoading} = useQuery({
         queryKey: ['plans'],
