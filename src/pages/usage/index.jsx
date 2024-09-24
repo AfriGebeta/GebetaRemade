@@ -14,8 +14,15 @@ import {useQuery} from "@tanstack/react-query";
 function Usage() {
   const user = useSelector((state) => state).user;
   const [graphData, setGraphData] = useState({ error: "no data" });
-  const [startingDate, setStartingDate] = useState("");
-  const [endingDate, setEndingDate] = useState("");
+
+  const date = new Date()
+  const currentDate = date.toJSON().slice(0, 10)
+
+  const thirtyDaysAgoInMillis = date.getTime() - (30*24*60*60*1000)
+  const thirtyDaysAgo = new Date(thirtyDaysAgoInMillis).toJSON().slice(0, 10)
+
+  const [startingDate, setStartingDate] = useState(thirtyDaysAgo);
+  const [endingDate, setEndingDate] = useState(currentDate);
   const [selected, setSelected] = useState("All");
   const [loading, setLoading] = useState(false);
 
