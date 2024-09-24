@@ -22,6 +22,7 @@ import Confirm from './pages/EmailConfirmation/Confirm';
 import Terms from './pages/Terms';
 import ResetPassword from './pages/ResetPassword'
 import "@fontsource/zen-dots";
+import Contact from "./pages/Contact";
 
 
 // tod do fix this route error  
@@ -42,7 +43,8 @@ function App() {
             <Route path = "/reset-password" element={<ResetPassword/>} />
             
             <Route path = "/confirm" element = {<Confirm/>} />
-            <Route path="/about" element={<About />} /> 
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             {/* private route  */}
             <Route path="/dashboard" element={
               <PrivateRoute>
