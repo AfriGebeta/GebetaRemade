@@ -54,6 +54,12 @@ function Usage() {
     setLoading(false);
   };
 
+  useEffect(() => {
+    if(startingDate !=null && endingDate !=null){
+      getGraphData()
+    }
+  },[startingDate, endingDate])
+
   return (
     <div className="flex flex-col min-h-screen bg-Dark">
       <div className="w-[95%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
@@ -110,13 +116,13 @@ function Usage() {
                 />
               </div>
 
-              <button
-                className=" mt-[2%] md:mt-[0%] w-full md:w-[30%]  bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 rounded"
-                type="button"
-                onClick={getGraphData}
-              >
-                {loading ? <ClipLoader color="#ffffff" size={35} /> : "Show"}
-              </button>
+              {/*<button*/}
+              {/*  className=" mt-[2%] md:mt-[0%] w-full md:w-[30%]  bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 rounded"*/}
+              {/*  type="button"*/}
+              {/*  onClick={getGraphData}*/}
+              {/*>*/}
+              {/*  {loading ? <ClipLoader color="#ffffff" size={35} /> : "Show"}*/}
+              {/*</button>*/}
             </div>
           </div>
 
