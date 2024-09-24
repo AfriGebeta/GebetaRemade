@@ -164,7 +164,7 @@ function Plans() {
     const user = useSelector(state => state.user)
 
     const {data, isLoading} = useQuery({
-        queryKey: ['plans', user.data.token],
+        queryKey: ['plans'],
         queryFn: () => getAllCredits({page: 1, limit: 10}),
         staleTime: 5 * 60 * 1000
     })
