@@ -112,7 +112,7 @@ function Plan({data, index}) {
                         :
                         <button
                             className='w-full transition duration-150 border border-gray-600 outline-none hover:bg-GebetaMain hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium'
-                            onClick={handleUpgrade}
+                            onClick={() => navigate('/contact')}
                         >
                             Contact Us
                         </button>
