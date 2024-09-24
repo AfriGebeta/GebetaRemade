@@ -12,6 +12,7 @@ import { auth, provider } from "./../../firebase/Firebase"
 import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Loading";
 import { GithubAuthProvider, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {buyCredit} from "../../redux/api/buyCreditApi";
 
 
 function Signin({ signintosignup }) {
@@ -29,7 +30,7 @@ function Signin({ signintosignup }) {
     const handlePassword = (event) => setPassword(event.target.value);
     const handleForgotPassword = () => setForgotPassword(!forgotPassword)
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
-
+    const user = useSelector((state) => state).user;
 
     const signInGithub = () => {
         const provider = new GithubAuthProvider();
@@ -71,7 +72,23 @@ function Signin({ signintosignup }) {
                     setErrorMessage(resultAction.payload.error);
                 } else {
                     authContext.login();
-                    navigate("/dashboard");
+                    if(localStorage.getItem('redirect')) {
+                        localStorage.removeItem('redirect')
+                        navigate("/priceplan");
+
+                        const id=localStorage.getItem('plan')
+
+                        buyCredit(user.data.token, id)
+                            .then(response => {
+                                if (response.data.data.status === "success") {
+                                    window.open(response.data.data.Data.checkout_url, '_blank');
+                                }
+                            })
+                            .catch(err => console.log(err));
+                    }
+                    else {
+                        navigate("/dashboard");
+                    }
                 }
             } else {
 
