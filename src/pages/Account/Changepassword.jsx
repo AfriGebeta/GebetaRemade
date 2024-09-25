@@ -33,7 +33,7 @@ function ChangePassword({currentState}) {
                             setNotify({visible: true, msg: "Updated", type: "success"});
                             setTimeout(() => setNotify({visible: false}), 2000);
                         } else {
-                            setNotify({visible: true, msg: "Update failed", type: "success"});
+                            setNotify({visible: true, msg: "Update failed", type: "failure"});
                             setTimeout(() => setNotify({visible: false}), 2000);
                         }
                         setLoading(false)
@@ -67,7 +67,7 @@ function ChangePassword({currentState}) {
                             setNotify({visible: true, msg: "Updated", type: "success"});
                             setTimeout(() => setNotify({visible: false}), 2000);
                         } else {
-                            setNotify({visible: true, msg: "Update failed", type: "success"});
+                            setNotify({visible: true, msg: "Update failed", type: "failure"});
                             setTimeout(() => setNotify({visible: false}), 2000);
                         }
                         setLoading(false)
