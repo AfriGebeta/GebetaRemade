@@ -9,7 +9,7 @@ function ApiDetail() {
   const [purchasedPlans, setPurchasedPlans] = useState('')
 
 
-  const {data, isLoading} = useQuery({
+  const {data, isLoading, error} = useQuery({
     queryKey: ['metrics', user.data.token],
     queryFn: () => getUserUsage(user.data.token),
     staleTime: 5 * 60 * 1000
@@ -25,25 +25,21 @@ function ApiDetail() {
     }
   }, [])
 
-  const defaultMetrics = [
-    { calltype: "ONM", total: 0 },
-    { calltype: "Matrix", total: 0 },
-    { calltype: "Direction", total: 0 },
-    { calltype: "TSS", total: 0 },
-    { calltype: "Geocoding", total: 0 },
-  ];
-
   const getTotal = () => {
+    console.log(data)
+    if(!data || data.length===0) return 0;
     return data.reduce((acc, item) => acc + item.total, 0);
   };
 
   const getMaximum = () => {
+    if(!data || data.length===0) return "0";
     let maxValue = Math.max(...data.map(metric => metric.total));
     let maxMessage = data.find(item => item.total === maxValue)?.calltype;
     return `${maxValue} ${maxMessage.charAt(0).toUpperCase() + maxMessage.slice(1).toLowerCase()}`;
   };
 
   const getMinimum = () => {
+    if(!data || data.length===0) return "0"
     let minValue = Math.min(...data.map(metric => metric.total));
     let minMessage = data.find(item => item.total === minValue).calltype;
     return `${minValue} ${minMessage.charAt(0).toUpperCase() + minMessage.slice(1).toLowerCase()}`;
@@ -80,13 +76,13 @@ function ApiDetail() {
             <div className="flex flex-col">
               <h4 className="text-secondary font-semibold text-sm mb-2">Max Usage</h4>
               <h3 className="text-GebetaMain text-xs whitespace-nowrap font-semibold">
-                {data.length > 0 ? getMaximum() : 0} calls
+                {getMaximum()} calls
               </h3>
             </div>
             <div className="flex flex-col">
               <h4 className="text-secondary font-semibold text-sm mb-2">Min Usage</h4>
               <h3 className="text-GebetaMain text-xs font-semibold">
-                {data.length > 0 ? getMinimum() : 0} calls
+                {getMinimum()} calls
               </h3>
             </div>
           </>
