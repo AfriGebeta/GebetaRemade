@@ -12,6 +12,11 @@
   src: url('/src/assets/font/PlusJakartaSans-Medium.ttf');
 }
 
+@font-face {
+  font-family: 'RubickOne';
+  src: url('/src/assets/font/RubikOne-Regular.ttf');
+}
+
 body {
   margin: 0;
   font-family: PlusJackartaSans-Regular;
