@@ -13,12 +13,26 @@ const Cards = ({ metrics }) => {
     })
 
     const defaultMetrics = [
+        { calltype: "GEOCODING", total: 0 },
+        { calltype: "DIRECTION", total: 0 },
         { calltype: "ONM", total: 0 },
-        { calltype: "Matrix", total: 0 },
-        { calltype: "Direction", total: 0 },
+        { calltype: "MATRIX", total: 0 },
         { calltype: "TSS", total: 0 },
-        { calltype: "Geocoding", total: 0 },
     ];
+
+    const mergedMetrics = React.useMemo(() => {
+        if (!data) return defaultMetrics;
+
+        const metricsMap = data.reduce((acc, item) => {
+            acc[item.calltype] = item.total;
+            return acc;
+        }, {});
+
+        return defaultMetrics.map(metric => ({
+            calltype: metric.calltype,
+            total: metricsMap[metric.calltype] || 0
+        }));
+    }, [data]);
 
     const SkeletonCard = () => (
         <div className="w-full bg-[#202022] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px] animate-pulse">
@@ -40,7 +54,7 @@ const Cards = ({ metrics }) => {
                 {isLoading ? (
                     Array(5).fill(0).map((_, i) => <SkeletonCard key={i} />)
                 ) : (
-                    data.map((data, i) => (
+                    mergedMetrics.map((data, i) => (
                         <div
                             key={i}
                             className="w-full bg-[#202022] text-[#777] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px]"
