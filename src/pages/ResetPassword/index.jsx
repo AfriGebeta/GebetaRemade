@@ -35,7 +35,7 @@ const Confirm = () => {
 
 
         if (password != confirmPassword) {
-            setNotify({visible: true, msg: "password doesnt match", type: "success"});
+            setNotify({visible: true, msg: "password doesnt match", type: "failure"});
             setTimeout(() => setNotify({visible: false}), 2000);
             return;
         }
@@ -48,7 +48,7 @@ const Confirm = () => {
                     authContext.login();
                     navigate("/dashboard")
                 } else {
-                    setNotify({visible: true, msg: "Update failed", type: "success"});
+                    setNotify({visible: true, msg: "Update failed", type: "failure"});
                     setTimeout(() => setNotify({visible: false}), 2000);
                 }
 
