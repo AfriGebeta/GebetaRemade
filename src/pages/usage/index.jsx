@@ -133,7 +133,7 @@ function Usage() {
             </div>
           </div>
 
-          <APIUsage graphData={graphData} />
+          <APIUsage graphData={graphData} isLoading={isLoading}/>
         </div>
       </div>
     </div>
