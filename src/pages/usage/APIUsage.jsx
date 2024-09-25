@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { CategoryScale } from "chart.js";
-import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-import { getUserUsageForGraph } from "../../redux/api/usageAPI";
+import {ScaleLoader} from "react-spinners";
 
-function APIUsage({ graphData }) {
+function APIUsage({ graphData, isLoading }) {
   const [labels, setLabels] = useState([]);
   const [data, setData] = useState([]);
-
-  const user = useSelector((state) => state).user;
 
   // Function to sort the object by keys
   function sortObjectByKeys(obj) {
@@ -78,7 +74,7 @@ function APIUsage({ graphData }) {
       <div></div>
       <div className="text-white  ">
         <div className="border border-dashed rounded-md border-white p-10 flex items-center justify-center sm:h-[200px] md:h-[200px] lg:h-[600px]">
-          {data.length > 0 ? (
+          {isLoading ? <ScaleLoader color="white" /> : data.length > 0 ? (
             <Line options={options} data={datas} className="!w-full" />
           ) : (
             <h3 className="text-white">
