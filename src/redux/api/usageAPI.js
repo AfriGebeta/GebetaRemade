@@ -1,17 +1,13 @@
-import { API, handleApiError } from "./util";
+import { API } from "./util";
 
 export const getUserUsage = async (apiToken) => {
-  try {
     const { data } = await API.get(`/api/usage/matrix`, {
       headers: {
         Authorization: `Bearer ${apiToken}`,
       },
     });
 
-    return data.data;
-  } catch (error) {
-    return handleApiError(error);
-  }
+    return data.data
 };
 
 
