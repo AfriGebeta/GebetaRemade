@@ -65,7 +65,7 @@ function Usage() {
     if(startingDate !=null && endingDate !=null){
       getGraphData()
     }
-  },[startingDate, endingDate])
+  },[startingDate, endingDate,selected])
 
   return (
     <div className="flex flex-col min-h-screen bg-Dark">
