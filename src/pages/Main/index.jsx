@@ -17,7 +17,7 @@ function Main() {
               <SVGAnimation/>
               <Hero/>
           </div>
-          <Banner />
+          {/*<Banner />*/}
           <OurCustomers className="flex flex-col md:flex-row"/>
           <Solutions className="flex flex-col md:flex-row"/>
           <Testimonials className="flex flex-col md:flex-row"/>
