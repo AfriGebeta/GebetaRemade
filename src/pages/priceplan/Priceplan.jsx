@@ -83,7 +83,7 @@ function Plan({data, index}) {
 
                     )}
                     {data.name !== 'Custom' && <span
-                        className="absolute top-1 right-2 bg-green-600 inline-block px-2 py-1 rounded text-xs font-semibold">
+                        className="absolute top-12 right-1 bg-green-600 inline-block px-2 py-1 rounded text-xs font-semibold">
                     {data.expiredIn} days
                 </span>}
                     <hr className={`${data.name !== 'Custom' ? "mt-3" : "mt-6"} mb-3 border-gray-600`}/>
