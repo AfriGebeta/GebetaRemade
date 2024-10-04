@@ -8,7 +8,7 @@ function Modal({elem,children,open,close}) {
   }
   
   return (
-    <div className="">
+    <div className="absolute">
       <div>{children}</div>
       {
         open && 

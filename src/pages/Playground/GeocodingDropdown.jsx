@@ -69,7 +69,7 @@ function GeocodingDropdown( ) {
                                 dispatch(changeTopicPlayGround("geocoding"))
                                 playContext.clearEveryThing();
                             }}
-                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                            className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-GebetaMain/15 hover:text-gray-700"
                        >
                            Geocoding
                        </a>
@@ -78,7 +78,7 @@ function GeocodingDropdown( ) {
                             dispatch(changeTopicPlayGround("direction"))
                             playContext.clearEveryThing();
                         }}
-                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-GebetaMain/15 hover:text-gray-700"
                        >
                           Direction
                        </a>
@@ -87,7 +87,7 @@ function GeocodingDropdown( ) {
                             dispatch(changeTopicPlayGround("matrix"))
                             playContext.clearEveryThing();
                         }}
-                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-GebetaMain/15 hover:text-gray-700"
                        >
                            Matrix
                        </a>
@@ -96,7 +96,7 @@ function GeocodingDropdown( ) {
                             dispatch(changeTopicPlayGround("onm"))
                             playContext.clearEveryThing();
                         }}
-                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-GebetaMain/15 hover:text-gray-700"
                        >
                            ONM
                        </a>
@@ -105,7 +105,7 @@ function GeocodingDropdown( ) {
                             dispatch(changeTopicPlayGround("tss"))
                             playContext.clearEveryThing();
                         }}
-                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                           className="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-GebetaMain/15 hover:text-gray-700"
                        >
                            TSS
                        </a>

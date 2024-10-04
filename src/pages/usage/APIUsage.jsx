@@ -4,8 +4,9 @@ import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 import { getUserUsageForGraph } from "../../redux/api/usageAPI";
+import {ScaleLoader} from "react-spinners";
 
-function APIUsage({ graphData }) {
+function APIUsage({ graphData, isLoading }) {
   const [labels, setLabels] = useState([]);
   const [data, setData] = useState([]);
 
@@ -23,14 +24,15 @@ function APIUsage({ graphData }) {
 
   useEffect(() => {
     if (graphData.error == null) {
+      console.log("haha",graphData)
       console.log(graphData.data.data.data);
       let labels = [];
       let data = [];
       for (let [key, value] of Object.entries(
         sortObjectByKeys(graphData.data.data.data)
       )) {
-        labels.push(key);
-        data.push(value);
+        labels.push(value.Day);
+        data.push(value.Total);
       }
       setLabels(labels);
       setData(data);
@@ -66,10 +68,10 @@ function APIUsage({ graphData }) {
   };
 
   return (
-    <div className="rounded-md px-4 py-3 bg-[#202022] mt-[12%] md:mt-[2%] ">
+    <div className="rounded-md px-4 py-3 bg-[#202022] md:mt-[2%] ">
       <div className="flex justify-between items-center w-full sm:!sw">
-        <div>
-          <h2 className="m-0">API Usage</h2>
+        <div className="pb-4">
+          <h2 className="font-semibold">API Usage</h2>
           <span>Track your api usage here</span>
         </div>
         <div className="flex gap-4 items-center "></div>
@@ -77,7 +79,7 @@ function APIUsage({ graphData }) {
       <div></div>
       <div className="text-white  ">
         <div className="border border-dashed rounded-md border-white p-10 flex items-center justify-center sm:h-[200px] md:h-[200px] lg:h-[600px]">
-          {data.length > 0 ? (
+          {isLoading ? <ScaleLoader color="white" /> : data.length > 0 ? (
             <Line options={options} data={datas} className="!w-full" />
           ) : (
             <h3 className="text-white">

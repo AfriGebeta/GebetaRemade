@@ -19,7 +19,7 @@ const Documentation = () => {
         <div className="flex md:flex-row flex-col relative">
           <Sidebar />
           <div  className="w-[100%] md:w-[70%]  overflow-y-auto max-h-[calc] ml-[calc]" >
-            <p className="md:mt-[2%] text-[#A0AABA] md:text-2xl text-xl md:ml-[0%] ml-[3%]" style={{ fontFamily: "Zen Dots" }}>
+            <p className="md:mt-[2%] text-[#A0AABA] md:text-2xl text-xl md:ml-[0%] ml-[3%] font-bold">
               Overview
             </p>
           

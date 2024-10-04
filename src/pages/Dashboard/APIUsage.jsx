@@ -58,7 +58,7 @@ function APIUsage(graphData) {
   };
 
   return (
-    <div className="rounded-md px-4 py-3 bg-[#202022] mt-[12%] md:mt-[2%] ">
+    <div className="rounded-md px-4 py-3 bg-[#202022] md:mt-[2%] ">
       <div className="flex justify-between items-center w-full sm:!sw">
         <div>
           <h2 className="m-0">API Usage</h2>

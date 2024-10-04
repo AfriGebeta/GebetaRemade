@@ -6,6 +6,7 @@ import greenIcon from "./../../assets/img/green.png"
 import blackIcon from "./../../assets/img/black.png"
 import 'leaflet/dist/leaflet.css';
 import { PlayGroundContext } from "../../context/PlayGround";
+import LogoControl from "./LogoControl";
 
 const Map = ({selectedButton}) => {
         const playContext = useContext(PlayGroundContext); // Access the AuthContext
@@ -101,7 +102,7 @@ const Map = ({selectedButton}) => {
          
            console.log(coordinate)
         return (
-        <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} >
+        <MapContainer center={position} zoom={13} style={{ height: '100%', width: '100%' }} className='z-1-important' >
             <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -131,7 +132,7 @@ const Map = ({selectedButton}) => {
 
           <Polyline positions={full_path} color={getRandomColor()} />
 
-
+            <LogoControl />
             <MyComponent/>
         </MapContainer>
         );

@@ -1,62 +1,78 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DocCard from "../../component/Card/DocCard";
-import { Link } from "react-router-dom";
+import {useQuery} from "@tanstack/react-query";
+import {getUserUsage} from "../../redux/api/usageAPI";
+import {useSelector} from "react-redux";
 
-const Cards = ({metrics }) => {
-
-    useEffect(()=>{
-      console.log(metrics)
+const Cards = ({ metrics }) => {
+    const user = useSelector((state) => state).user;
+    const {data, isLoading} = useQuery({
+        queryKey: ['metrics', user.data.token],
+        queryFn: () => getUserUsage(user.data.token),
+        staleTime: 5 * 60 * 1000
     })
-    const objs = [
-      {
-        package: "ONM",
-        calls: metrics.ONM  ,
-      },
-      {
-        package: "Matrix",
-        calls: metrics.Matrix,
-      },
-      {
-        package: "Direction",
-        calls: metrics.Direction,
-      },
-      {
-        package: "Tss",
-        calls: metrics.TSS,
-      },
-  
-      {
-        package: "Geocoding",
-        calls: metrics.Geocoding,
-      },
-  
-  
-      
+
+    const defaultMetrics = [
+        { calltype: "GEOCODING", total: 0 },
+        { calltype: "DIRECTION", total: 0 },
+        { calltype: "ONM", total: 0 },
+        { calltype: "MATRIX", total: 0 },
+        { calltype: "TSS", total: 0 },
     ];
 
+    const mergedMetrics = React.useMemo(() => {
+        if (!data) return defaultMetrics;
 
-   return (
-<div className="flex gap-6 flex-wrap mt-[2%]">
-<DocCard />
-<div className="flex-1 flex grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 justify-evenly">
-  {objs.map((data, i) => (
-    <div
-      key={i}
-      className="p-4 bg-[#202022] flex-1 text-[#777] rounded-md flex justify-between min-w-full xs:min-w-[40%]"
-    >
-      <div className="leading-3">
-        <h2 className="p-0 m-0">{data.package}</h2>
-       
-      </div>
-      <div className="flex items-end space-x-2">
-        <h1 className="m-0">{data.calls}</h1>
-        <span>Calls</span>
-      </div>
-    </div>
-  ))}
-</div>
-</div>
-   )
-}
+        const metricsMap = data.reduce((acc, item) => {
+            acc[item.calltype] = item.total;
+            return acc;
+        }, {});
 
-export default Cards
+        return defaultMetrics.map(metric => ({
+            calltype: metric.calltype,
+            total: metricsMap[metric.calltype] || 0
+        }));
+    }, [data]);
+
+    const SkeletonCard = () => (
+        <div className="w-full bg-[#202022] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px] animate-pulse">
+            <div>
+                <div className="h-5 w-20 bg-gray-700 rounded mb-2"></div>
+                <div className="h-3 w-16 bg-gray-700 rounded"></div>
+            </div>
+            <div className="text-right">
+                <div className="h-6 w-12 bg-gray-700 rounded mb-1"></div>
+                <div className="h-3 w-8 bg-gray-700 rounded"></div>
+            </div>
+        </div>
+    );
+
+    return (
+        <div className="flex flex-col md:flex-row gap-6 mt-4">
+            <DocCard />
+            <div className="w-3/2 flex flex-wrap gap-4">
+                {isLoading ? (
+                    Array(5).fill(0).map((_, i) => <SkeletonCard key={i} />)
+                ) : (
+                    mergedMetrics.map((data, i) => (
+                        <div
+                            key={i}
+                            className="w-full bg-[#202022] text-[#777] rounded-lg shadow-md p-4 flex-1 flex justify-between items-center min-w-[200px]"
+                        >
+                            <div>
+                                <h3 className="text-md font-bold uppercase text-white">{data.calltype}</h3>
+                                <span className='block text-xs font-medium lowercase'>endpoint</span>
+                            </div>
+                            <div className="text-right">
+                                <h4 className="font-semibold text-[18px] text-GebetaMain">{data.total}</h4>
+                                <span className='font-medium text-xs'>Calls</span>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default Cards;

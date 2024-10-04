@@ -9,22 +9,31 @@ import {
   getSpecifcUserUsageForGraph,
 } from "./../../redux/api/apiCallApi";
 import ClipLoader from "react-spinners/ClipLoader";
+import {useQuery} from "@tanstack/react-query";
 
 function Usage() {
-  const [metrics, setMetrics] = useState({});
   const user = useSelector((state) => state).user;
   const [graphData, setGraphData] = useState({ error: "no data" });
-  const [startingDate, setStartingDate] = useState("");
-  const [endingDate, setEndingDate] = useState("");
+
+  const date = new Date()
+  const currentDate = date.toJSON().slice(0, 10)
+
+  const thirtyDaysAgoInMillis = date.getTime() - (30*24*60*60*1000)
+  const thirtyDaysAgo = new Date(thirtyDaysAgoInMillis).toJSON().slice(0, 10)
+
+  const [startingDate, setStartingDate] = useState(thirtyDaysAgo);
+  const [endingDate, setEndingDate] = useState(currentDate);
   const [selected, setSelected] = useState("All");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    getUserUsage(user.data.id).then((response) => {
-      if (response.error == null) setMetrics(response);
-    });
-  }, [metrics]);
 
+
+  const {data, isLoading} = useQuery({
+    queryKey: ['metrics', user.data.token],
+    queryFn: () => getUserUsage(user.data.token),
+    staleTime: 5 * 60 * 1000
+  })
+  
   function handleEndChange(event) {
     setEndingDate(event.target.value);
   }
@@ -41,36 +50,29 @@ function Usage() {
   const getGraphData = () => {
     setLoading(true);
     if (startingDate != "" > 0 && endingDate != "" > 0) {
-      if (selected == "All") {
-        getUserUsageForGraph(user.data.token, startingDate, endingDate).then(
-          (response) => {
-            if (response.error == null) {
-              setGraphData(response);
-            }
-          }
-        );
-      } else {
-        getSpecifcUserUsageForGraph(
-          user.data.token,
-          startingDate,
-          endingDate,
-          selected
-        ).then((response) => {
+      getUserUsageForGraph(selected.toUpperCase(), startingDate, endingDate, user.data.token).then(
+        (response) => {
           if (response.error == null) {
             setGraphData(response);
           }
-        });
-      }
+        }
+      );
     }
     setLoading(false);
   };
 
+  useEffect(() => {
+    if(startingDate !=null && endingDate !=null){
+      getGraphData()
+    }
+  },[startingDate, endingDate,selected])
+
   return (
     <div className="flex flex-col min-h-screen bg-Dark">
-      <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
+      <div className="w-[95%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
         <div className=" justify-between items-center">
-          <div className="mt-[20%] md:mt-[3%]">
-            <ApiDetail metrics={metrics} />
+          <div className="mt-[2%] md:mt-[3%]">
+            <ApiDetail metrics={data} />
           </div>
           <div className="bg-[#202022] mt-[12%] md:mt-[2%] mb-[2%]">
             <div className="flex flex-col md:flex-row md:items-center   py-5 mx-[1%] md:space-x-14">
@@ -121,17 +123,17 @@ function Usage() {
                 />
               </div>
 
-              <button
-                className=" mt-[2%] md:mt-[0%] w-full md:w-[30%]  bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 rounded"
-                type="button"
-                onClick={getGraphData}
-              >
-                {loading ? <ClipLoader color="#ffffff" size={35} /> : "Show"}
-              </button>
+              {/*<button*/}
+              {/*  className=" mt-[2%] md:mt-[0%] w-full md:w-[30%]  bg-GebetaMain hover:bg-GebetaDark-700 text-white font-bold py-3 rounded"*/}
+              {/*  type="button"*/}
+              {/*  onClick={getGraphData}*/}
+              {/*>*/}
+              {/*  {loading ? <ClipLoader color="#ffffff" size={35} /> : "Show"}*/}
+              {/*</button>*/}
             </div>
           </div>
 
-          <APIUsage graphData={graphData} />
+          <APIUsage graphData={graphData} isLoading={isLoading}/>
         </div>
       </div>
     </div>

@@ -1,31 +1,22 @@
-import { API , handleApiError } from "./util";
+import { API, handleApiError } from "./util";
 
-
-import { createAsyncThunk } from '@reduxjs/toolkit';
-
-
-export const getUserUsageForGraph = async (apiKey , startingDate , endingDate ) => {
-    try{  
-      
-      const data = await API.get(`/api/report/getUsage?apiKey=${apiKey}&startingDate=${startingDate}&endingDate=${endingDate}`)
-      return { error: null, data };
-    }
-    catch (error) {
-      return handleApiError(error);
-    }
-}
-
-
-export const getSpecifcUserUsageForGraph = async (apiKey , startingDate , endingDate , callType ) => {
-  try{  
-    
-    const data = await API.get(`/api/report/getSpecificUsage?apiKey=${apiKey}&startingDate=${startingDate}&endingDate=${endingDate}&callType=${callType}`)
+export const getUserUsageForGraph = async (
+  selected,
+  startDate = "2017-02-20",
+  endDate = "2024-02-16",
+  apiToken
+) => {
+  try {
+    const data = await API.get(
+      `/api/usage/graph?type=${selected}&startDate=${startDate}&endDate=${endDate}`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+        },
+      }
+    );
     return { error: null, data };
-  }
-  catch (error) {
+  } catch (error) {
     return handleApiError(error);
   }
-}
-
-
-
+};

@@ -1,41 +1,30 @@
-import React,{useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux"
 import ApiDetail from "../../component/Card/ApiDetail";
 import Plans from "./Priceplan";
 import { getUserUsage } from "../../redux/api/usageAPI";
+import BillingHistory from "./BillingHistory";
+import ApiToken from "./";
 
 
 function Priceplan() {
-  const [metrics , setMetrics] = useState({})
-  const user = useSelector((state) => state).user
 
-  useEffect(()=>{
-    getUserUsage(user.data.id).then((response)=>{
-      if(response.error == null) setMetrics(response.data.data)
-    })
-  },[])
-
-  return (
-    <div className="flex flex-col min-h-screen bg-Dark">
- 
-    <div className="w-[80%] mx-auto text-[#ccc] text-child flex flex-col flex-grow">
-      <div className=" justify-between items-center">
-        <div className="mt-[20%] md:mt-[3%]">
-            <ApiDetail metrics = {metrics} />
+    return (
+        <div className="bg-Dark min-h-screen">
+            <div className="container mx-auto px-6 py-8">
+                <div className="grid grid-cols-1 text-[#ccc] lg:grid-cols-3 gap-4">
+                    <div className="lg:col-span-2 space-y-4">
+                        <ApiDetail />
+                        <Plans />
+                    </div>
+                    <div className="lg:col-span-1">
+                        <BillingHistory />
+                    </div>
+                </div>
+            </div>
         </div>
-    
-      <Plans/>
-        
-      </div>
-    </div> 
-
-    
-  
-  </div>
-
-   
-  );
+    )
 }
 
 export default Priceplan;

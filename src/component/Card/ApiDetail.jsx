@@ -1,97 +1,94 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getCredit } from "../../redux/api/creditsApi";
+import {useQuery} from "@tanstack/react-query";
+import {getUserUsage} from "../../redux/api/usageAPI";
 
-import { add, format } from "date-fns";
-
-function ApiDetail({ metrics }) {
-  
-  const user = useSelector((state) => state).user
-
- 
+function ApiDetail() {
+  const user = useSelector((state) => state.user);
+  const [purchasedPlans, setPurchasedPlans] = useState('')
 
 
-  const addDate = (date) => {
-    try {
-      const dateString = new Date(date);
-      const _date = add(dateString, {
-        days: 30,
-      });
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['metrics', user.data.token],
+    queryFn: () => getUserUsage(user.data.token),
+    staleTime: 5 * 60 * 1000
+  })
 
-      return String(format(_date, "YYY-MM-d"));
-    } catch (err) {
-      return "";
+  useEffect(() => {
+    if (user?.data?.user?.token) {
+      setPurchasedPlans("Credits")
     }
-  };
+
+    if (user?.data?.user?.purchased_date != null) {
+      setPurchasedPlans("Pay as you go")
+    }
+  }, [])
 
   const getTotal = () => {
-    return (metrics.ONM || 0) + (metrics.Direction || 0) + (metrics.Matrix || 0) + (metrics.TSS || 0) + (metrics.Geocoding || 0);
-   };
+    console.log(data)
+    if(!data || data.length===0) return 0;
+    return data.reduce((acc, item) => acc + item.total, 0);
+  };
 
-   const getMaximum = () => {
-    let max = Object.entries(metrics).reduce(
-    (max, entry) => ((entry[1] || 0) >= (max[1] || 0) ? entry : max),
-    [0, -Infinity]
-    );
-   
-    return max;
-   };
-   
+  const getMaximum = () => {
+    if(!data || data.length===0) return "0";
+    let maxValue = Math.max(...data.map(metric => metric.total));
+    let maxMessage = data.find(item => item.total === maxValue)?.calltype;
+    return `${maxValue} ${maxMessage.charAt(0).toUpperCase() + maxMessage.slice(1).toLowerCase()}`;
+  };
 
   const getMinimum = () => {
-    let min = Object.entries(metrics).reduce(
-      (min, entry) => ((entry[1] || 0) <= (min[1] || 0) ? entry : min),
-      [0, +Infinity]
-    );
-    return min;
+    if(!data || data.length===0) return "0"
+    let minValue = Math.min(...data.map(metric => metric.total));
+    let minMessage = data.find(item => item.total === minValue).calltype;
+    return `${minValue} ${minMessage.charAt(0).toUpperCase() + minMessage.slice(1).toLowerCase()}`;
   };
+
+  const SkeletonItem = () => (
+    <div className="flex flex-col">
+      <div className="bg-gray-700 h-4 w-3/4 mb-2 rounded animate-pulse"></div>
+      <div className="bg-gray-700 h-4 w-1/2 rounded animate-pulse"></div>
+    </div>
+  );
+
   return (
-
-    <div className="flex-1 flex flex-col w-full grid grid-cols-2  md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-6 justify-evenly bg-[#202022]  py-3 px-3 ">
-    <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
-        <h4 className="m-0 pr-2">API Token Status</h4>
-        <span className={` ${user.data.token != null ? "text-green-500" : "text-red-500"}`}>
-           {user.data.token != null ? "active" : "inactive"}
-        </span>
+    <div className="bg-[#202022] px-8 py-6 rounded-md">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+        {isLoading ? (
+          [...Array(5)].map((_, index) => <SkeletonItem key={index} />)
+        ) : (
+          <>
+            <div className="flex flex-col">
+              <h4 className="text-sm font-semibold mb-1">API Token Status</h4>
+              <span className={`${user.data.token != null ? "text-green-500" : "text-red-500"} font-semibold text-xs`}>
+                {user.data.user.token != null ? "active" : "inactive"}
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="font-semibold text-sm mb-1">Subscription</h4>
+              <span className="text-green-500 text-xs font-semibold">{purchasedPlans}</span>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="font-semibold text-sm text-secondary mb-2">Total Usage</h4>
+              <h3 className="text-GebetaMain text-xs font-semibold">{getTotal()} calls</h3>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="text-secondary font-semibold text-sm mb-2">Max Usage</h4>
+              <h3 className="text-GebetaMain text-xs whitespace-nowrap font-semibold">
+                {getMaximum()} calls
+              </h3>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="text-secondary font-semibold text-sm mb-2">Min Usage</h4>
+              <h3 className="text-GebetaMain text-xs font-semibold">
+                {getMinimum()} calls
+              </h3>
+            </div>
+          </>
+        )}
       </div>
-      <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
-        <h4 className="m-0 pr-2">Subscription</h4>
-        <span className="text-green-500">pay-as-you-go</span>
-      </div>
-      <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
-       
-        <h4 className=" m-0 pr-2">Next Billing</h4>
-        <h3 className="!text-secondary">
-          {user.data.purchasedDate != null ? addDate(user.data.purchasedDate) : "-"}
-        </h3>
-      </div>
-      <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
-        <h4 className="!text-secondary m-0 pr-2">Total Usage</h4>
-        <h3 className="m-0">{getTotal()}</h3>
-        
-      </div>
-      <div className="leading-4 pl-2 flex flex-row flex-wrap items-center whitespace-nowrap snap-start">
- 
-    
-       
-
-        <h4 className="!text-secondary m-0 pr-2">Max Usage</h4>
-        <h3 className="">
-         
-        {getMinimum()[0]} - {getMinimum()[1]}
-       </h3>
-        
-      </div>
-      <div className="leading-4 pl-2 flex flex-row-rev flex-wrap items-center whitespace-nowrap snap-start">
-      <h4 className="!text-secondary m-0 pr-2">Min Usage</h4>
-        <h3 className="">
-          {getMaximum()[0]}  - {getMaximum()[1]} 
-         
-       </h3>
-        
-      </div>
-
-  </div>
-
+    </div>
   );
 }
 
