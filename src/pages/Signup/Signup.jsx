@@ -216,7 +216,7 @@ function InputField({ id, name, type, autoComplete, required, placeholder, value
                 type={type}
                 autoComplete={autoComplete}
                 required={required}
-                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:GebetaMain/70 focus:border-GebetaMain/70 focus:z-10 sm:text-sm"
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
@@ -237,7 +237,7 @@ function PasswordField({ id, name, placeholder, value, onChange, showPassword, t
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 required
-                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm pr-10"
+                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:GebetaMain/70 focus:border-GebetaMain/70 focus:z-10 sm:text-sm pr-10"
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
