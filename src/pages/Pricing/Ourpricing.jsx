@@ -18,7 +18,7 @@ const PricingSlider = ({ text }) => {
         <input
           type="range"
           min="0"
-          max="1000000"
+          max="50000"
           step="1"
           value={sliderValue}
           onChange={handleSliderChange}
