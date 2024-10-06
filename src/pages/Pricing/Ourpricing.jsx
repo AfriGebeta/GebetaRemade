@@ -45,7 +45,7 @@ const Pricing = () => {
 
   // Return the JSX element
   return (
-    <div className=" text-white  w-[100%] md:w-[60%] ">
+    <div className="text-white px-12">
         <Priceplan />
         <div className="mt-[6%]">
             <p>The Routes API uses a pay-as-you-go pricing model. The Gebeta maps  APIs  arer billed by usage. Cost is calculated by</p>
