@@ -16,8 +16,6 @@ function APIToken() {
         defaultValue: null,
     })
 
-    console.log("current user", currentProfile)
-
     const [tokenValue, setTokenValue] = useState(currentProfile?.user?.token ? currentProfile.user.token[currentProfile.user.token.length - 1] : "");
 
     const showNotification = (msg, type) => {
@@ -25,7 +23,6 @@ function APIToken() {
         setTimeout(() => setNotify({ visible: false }), 2000);
     };
 
-    // console.log(user?.data?.user)
 
     const copyToClipboard = () => {
         try {
@@ -43,11 +40,10 @@ function APIToken() {
 
     const createToken = async () => {
         try {
-            const response = await setToken(currentProfile?.user?.token);
-            console.log("New token received:", response.token);
+            const response = await setToken(currentProfile.token);
 
             dispatch(setUserData({
-                token: currentProfile.user.token,
+                token: currentProfile.token,
                 user: {
                     ...currentProfile.user,
                     token: [...currentProfile.user.token, response.token]
