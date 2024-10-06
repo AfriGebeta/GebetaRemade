@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {getAllBilling} from "../../redux/api/billingAPI";
 import {useSelector} from "react-redux";
-import billing from '../../assets/img/billing.png'
+import billing from '../../assets/img/billing.svg'
 import {useQuery} from "@tanstack/react-query";
 import chapa from '../../assets/img/chapa.png'
 import useLocalStorage from "../../hooks/use-local-storage";
@@ -75,7 +75,8 @@ function BillingHistory() {
                                                 <h4 className='text-GebetaMain font-semibold'>{installment.status}</h4>
                                             </div>
                                             <div className='flex items-center gap-2'>
-                                                {installment.method === 'CHAPA' ? <img src={chapa} alt="chapa logo" className='bg-[#202022] text-[#202022] w-5 h-5'/> : ''}
+                                                {installment.method === 'CHAPA' ? <img src={chapa} alt="chapa logo"
+                                                                                       className='bg-[#202022] text-[#202022] w-5 h-5'/> : ''}
                                                 <h4 className='text-green-500 font-semibold'>{installment.method}</h4>
                                                 <span className='bg-green-700 w-1 h-4'></span>
                                                 <h4 className='text-sm font-semibold text-GebetaMain'>{installment.amount} ETB</h4>
@@ -86,24 +87,26 @@ function BillingHistory() {
                                 </div>
                             </div>
                         ))}
-                        <div className='flex justify-between'>
-                            <button
-                                onClick={() => setCurrentPage((page) => page - 1)}
-                                disabled={currentPage === 1 || data.billing.length === 0}
-                                className='bg-GebetaMain text-white px-4 py-2 rounded-md disabled:opacity-50'
-                            >
-                                Previous</button>
-                            <button
-                                onClick={() => setCurrentPage((page) => page + 1)}
-                                disabled={currentPage === totalPages || data.billing.length === 0}
-                                className='bg-GebetaMain text-white px-4 py-2 rounded-md disabled:opacity-50'
-                            >Next</button>
-                        </div>
+                    </div>
+                    <div className='flex justify-between'>
+                        <button
+                            onClick={() => setCurrentPage((page) => page - 1)}
+                            disabled={currentPage === 1 || data.billing.length === 0}
+                            className='bg-GebetaMain text-white px-4 py-2 rounded-md disabled:opacity-50'
+                        >
+                            Previous
+                        </button>
+                        <button
+                            onClick={() => setCurrentPage((page) => page + 1)}
+                            disabled={currentPage === totalPages || data.billing.length === 0}
+                            className='bg-GebetaMain text-white px-4 py-2 rounded-md disabled:opacity-50'
+                        >Next
+                        </button>
                     </div>
                 </>
                 : (
-                    <div className="flex flex-col justify-center text-center">
-                        <img className="w-full h-[250px]" src={billing} alt="billing image"/>
+                    <div className="h-[350px] flex flex-col justify-center gap-4 items-center">
+                        <img src={billing} className='w-[80px] h-[80px]'/>
                         <p>No Billing History</p>
                     </div>
                 )}
