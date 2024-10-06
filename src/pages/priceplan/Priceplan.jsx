@@ -92,7 +92,7 @@ function Plan({data, index}) {
 
                     )}
                     {data.name !== 'Custom' && <span
-                        className="absolute top-12 right-1 bg-green-600 inline-block px-2 py-1 rounded text-xs font-semibold">
+                        className="absolute top-8 -right-4 bg-green-600 inline-block px-1 py-1 rounded text-xs font-semibold">
                     -{data.expiredIn} off
                 </span>}
                     <hr className={`${data.name !== 'Custom' ? "mt-3" : "mt-6"} mb-3 border-gray-600`}/>
@@ -161,7 +161,7 @@ function Plans() {
     })
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-6">
             {isLoading ?
                 Array(3).fill(0).map((_, i) => <SkeletonCard key={i}/>) :
                 data?.credit_bundles?.map((credit, index) => (
