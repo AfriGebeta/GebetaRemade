@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux"
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the eye icons
 import { AuthContext } from "./../../context/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { userLogin, fireBaseLogin } from "../../redux/api/userApi";
 import EmailConfirmationForgotPassword from "../EmailConfirmation/EmailConfirmationForgotPassword";
 import { auth, provider } from "./../../firebase/Firebase"
@@ -10,14 +10,20 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Loading from "../Loading";
 import { GithubAuthProvider, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {buyCredit} from "../../redux/api/buyCreditApi";
+import useLocalStorage from "../../hooks/use-local-storage";
+import {setUserData} from "../../redux/reducers/userSlice";
 
 
-function Signin({ signintosignup }) {
+function Signin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [_, setCurrentProfile] = useLocalStorage({
+        key: 'currentProfile',
+        defaultValue: null,
+    })
 
     const authContext = useContext(AuthContext);
     const navigate = useNavigate();
@@ -36,6 +42,9 @@ function Signin({ signintosignup }) {
                         setErrorMessage(resultAction.payload.error);
                     } else {
                         authContext.login();
+                        console.log(resultAction.payload.data)
+                        dispatch(setUserData(resultAction.payload.data.user));
+                        setCurrentProfile({...resultAction.payload.data})
                         handleRedirect(resultAction.payload.data.token);
                     }
                 } else {
@@ -101,7 +110,8 @@ function Signin({ signintosignup }) {
                                     className="absolute inset-y-0 right-0 pr-3 flex items-center"
                                     onClick={togglePasswordVisibility}
                                 >
-                                    {showPassword ? <FaEyeSlash className="text-gray-400" /> : <FaEye className="text-gray-400" />}
+                                    {showPassword ? <FaEyeSlash className="text-gray-400"/> :
+                                        <FaEye className="text-gray-400"/>}
                                 </button>
                             </div>
                         </div>
@@ -114,7 +124,7 @@ function Signin({ signintosignup }) {
                             onClick={handleSignIn}
                             disabled={loading}
                         >
-                            {loading ? <ClipLoader color="#ffffff" size={20} /> : "Sign in"}
+                            {loading ? <ClipLoader color="#ffffff" size={20}/> : "Sign in"}
                         </button>
                     </div>
                 </form>
@@ -122,9 +132,9 @@ function Signin({ signintosignup }) {
                 <div className="text-sm text-center">
                     <p>
                         Don't have an account?{" "}
-                        <button onClick={signintosignup} className="font-medium text-GebetaMain hover:text-GebetaMain/70">
+                        <Link to="/auth/sign-up" className="font-medium text-GebetaMain hover:text-GebetaMain/70">
                             Sign up
-                        </button>
+                        </Link>
                     </p>
                 </div>
             </div>
