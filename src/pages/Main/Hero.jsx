@@ -64,18 +64,6 @@ const Hero = () => {
 
   return (
     <>
-      <Modal
-        open={signinModal}
-        close={() => setSigninModal(false)}
-        elem={<Signin signintosignup={fromSignIntoSignUp} />}
-      />
-
-      <Modal
-        open={signupModal}
-        close={() => setSignUpModal(false)}
-        elem={<Signup signupintosignin={fromSignupIntoSignIn} />}
-      />
-
       {/* <img src={runningman} className=' mt-[15%] md:mt-[5%] md:ml-[12%] md:ml-[1%]' /> */}
       <div
         className=""
@@ -96,17 +84,16 @@ const Hero = () => {
         >
           LET US FIND YOUR WAY
         </p>
-        <div class=" mt-[20%] md:mt-[10%] inline-flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full max-w-6xl mx-auto space-y-5 md:space-y-0 ">
+        <div className=" mt-[20%] md:mt-[10%] inline-flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full max-w-6xl mx-auto space-y-5 md:space-y-0 ">
         <button
           onClick={() => navigate('/pricing')}
-          class="rounded-full  md:mt-[0%] text-lg font-semibold px-6 py-3 bg-GebetaMain text-white "
+          className="rounded-full  md:mt-[0%] text-lg font-semibold px-6 py-3 bg-GebetaMain text-white "
         >
-          {" "}
           <span className="px-5">Get Started</span>
         </button>
 
         <Link to="/documentation">
-          <button class="rounded-full  md:mt-[0%]  text-lg font-semibold px-6 py-3  border border-gray-700 text-white ">
+          <button className="rounded-full  md:mt-[0%]  text-lg font-semibold px-6 py-3  border border-gray-700 text-white ">
             <span className="px-5">Read Docs</span>
           </button>
         </Link>

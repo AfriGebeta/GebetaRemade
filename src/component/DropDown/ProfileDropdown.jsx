@@ -2,13 +2,17 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { useSelector } from "react-redux";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 const ProfileDropDown = (props) => {
   const [state, setState] = useState(false);
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
   const path = useLocation();
-  const user = useSelector((state) => state).user;
+  const [currentProfile, _] = useLocalStorage({
+    key: 'currentProfile',
+    defaultValue: null,
+  })
   const ref = useRef(null);
 
   const handleLogout = () => {
@@ -44,7 +48,7 @@ const ProfileDropDown = (props) => {
             style={{ lineHeight: "12rem" }}
           >
             <span className={`!m-0 !p-0 uppercase text-[3vh] ${path.pathname === '/documentation' || path.pathname === '/playground'  ? 'text-zinc-900' : 'text-white'}`}>
-              {user.data.user.username.charAt(0)}
+              {currentProfile.user.username.charAt(0)}
             </span>
           </div>
         </div>

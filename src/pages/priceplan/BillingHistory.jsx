@@ -4,9 +4,13 @@ import {useSelector} from "react-redux";
 import billing from '../../assets/img/billing.png'
 import {useQuery} from "@tanstack/react-query";
 import chapa from '../../assets/img/chapa.png'
+import useLocalStorage from "../../hooks/use-local-storage";
 
 function BillingHistory() {
-    const user = useSelector((state) => state.user);
+    const [currentProfile, _] = useLocalStorage({
+        key: 'currentProfile',
+        defaultValue: null,
+    })
 
     function formatDate(inputDate) {
         const date = new Date(inputDate);
@@ -21,14 +25,12 @@ function BillingHistory() {
     const limit = 4
 
     const {data, isLoading} = useQuery({
-        queryKey: ['history', user.data.token, currentPage],
-        queryFn: () => getAllBilling(user.data.token, currentPage, limit),
+        queryKey: ['history', currentProfile.token, currentPage],
+        queryFn: () => getAllBilling(currentProfile.token, currentPage, limit),
         staleTime: 5 * 60 * 1000
     })
 
     const totalPages = Math.ceil(data?.count / limit)
-
-    console.log("data", data)
 
     const SkeletonCard = () => (
         <div className='flex flex-col gap-6 pb-4 pt-5 animate-pulse'>
@@ -54,11 +56,11 @@ function BillingHistory() {
 
     return (
         <div className='bg-[#202022] text-[#ccc] p-4 rounded-lg min-h-[60vh]'>
-            {isLoading ? Array(2).fill(0).map((_, i) => <SkeletonCard key={i}/>) : data.billing.length > 0 ?
+            {isLoading ? Array(2).fill(0).map((_, i) => <SkeletonCard key={i}/>) : data?.billing?.length > 0 ?
                 <>
                     <h2 className='text-xl text-white font-semibold mb-4'>Billing History</h2>
                     <div className="space-y-4">
-                        {data?.billing.map((item, index) => (
+                        {data?.billing?.map((item, index) => (
                             <div key={index}
                                  className='flex flex-col gap-6 pb-4 border-b border-gray-700 last:border-b-0'>
                                 <div className='flex justify-between items-center'>

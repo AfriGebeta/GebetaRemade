@@ -10,9 +10,14 @@ import {
 } from "./../../redux/api/apiCallApi";
 import ClipLoader from "react-spinners/ClipLoader";
 import {useQuery} from "@tanstack/react-query";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 function Usage() {
-  const user = useSelector((state) => state).user;
+  const [currentProfile, _] = useLocalStorage({
+    key: 'currentProfile',
+    defaultValue: null,
+  })
+
   const [graphData, setGraphData] = useState({ error: "no data" });
 
   const date = new Date()
@@ -29,8 +34,8 @@ function Usage() {
 
 
   const {data, isLoading} = useQuery({
-    queryKey: ['metrics', user.data.token],
-    queryFn: () => getUserUsage(user.data.token),
+    queryKey: ['metrics', currentProfile.token],
+    queryFn: () => getUserUsage(currentProfile.token),
     staleTime: 5 * 60 * 1000
   })
   
@@ -50,7 +55,7 @@ function Usage() {
   const getGraphData = () => {
     setLoading(true);
     if (startingDate != "" > 0 && endingDate != "" > 0) {
-      getUserUsageForGraph(selected.toUpperCase(), startingDate, endingDate, user.data.token).then(
+      getUserUsageForGraph(selected.toUpperCase(), startingDate, endingDate, currentProfile.token).then(
         (response) => {
           if (response.error == null) {
             setGraphData(response);

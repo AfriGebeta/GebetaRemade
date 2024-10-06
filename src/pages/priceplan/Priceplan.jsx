@@ -8,9 +8,13 @@ import {useNavigate} from "react-router-dom";
 import Signin from "../Signin/SignIn";
 import Modal from "../../component/Modal/Modal";
 import Signup from "../Signup/Signup";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 function Plan({data, index}) {
-    const user = useSelector((state) => state).user;
+    const [currentProfile, _] = useLocalStorage({
+        key: 'currentProfile',
+        defaultValue: null,
+    })
     const isLogin = localStorage.getItem('isAuthenticated')
     const [signinModal, setSigninModal] = useState(false);
     const [signupModal, setSignUpModal] = useState(false);
@@ -33,7 +37,7 @@ function Plan({data, index}) {
             setSigninModal(true)
         } else {
             if (data.name !== "Custom") {
-                buyCredit(user.data.token, id)
+                buyCredit(currentProfile?.token, id)
                     .then(response => {
                         if (response.data.data.status === "success") {
                             window.open(response.data.data.Data.checkout_url, '_blank');
@@ -44,10 +48,15 @@ function Plan({data, index}) {
                 navigate('/contact')
             }
         }
-
     };
 
-    const isPurchased = data.name !== 'Custom' ? user.data?.user?.credits?.find(item => item.bundle_id === data.id) : false
+    const isPurchased = data.name !== 'Custom' ? currentProfile?.user?.credits?.find(item => item.bundle_id === data.id) : false
+
+    const getButtonText = () => {
+        if (data.name === "Custom") return "Contact Us";
+        if (isPurchased) return "Selected Plan";
+        return "Select Plan";
+    }
     return (
         <>
             <Modal
@@ -71,7 +80,7 @@ function Plan({data, index}) {
                         <div className="w-5 flex gap-x-2">
                         <span
                             className={`text-xs font-bold ${isPurchased ? "text-white" : "text-zinc-300"} `}>ETB</span>
-                            <h1 className="font-bold text-3xl">{data.price}</h1>
+                            <h1 className="font-bold text-3xl">{data.price}<span className='text-[14px]'>/month</span></h1>
                         </div>
                     ) : (
                         <div className="flex flex-col space-y-1">
@@ -84,7 +93,7 @@ function Plan({data, index}) {
                     )}
                     {data.name !== 'Custom' && <span
                         className="absolute top-12 right-1 bg-green-600 inline-block px-2 py-1 rounded text-xs font-semibold">
-                    {data.expiredIn} days
+                    -{data.expiredIn} off
                 </span>}
                     <hr className={`${data.name !== 'Custom' ? "mt-3" : "mt-6"} mb-3 border-gray-600`}/>
                 </div>
@@ -102,21 +111,13 @@ function Plan({data, index}) {
                 </div>
 
                 <div className="mt-2">
-                    {data.name != "Custom" ? <button
-                            className={`w-full transition duration-150 border border-zinc-700 borer-2 outline-none ${isPurchased ? 'bg-white text-zinc-950 border-none' : 'hover:bg-GebetaMain'} hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium`}
-                            onClick={() => handleUpgrade(data.id)}
-                            disabled={isPurchased}
-                        >
-                            {isPurchased ? `Selected Plan` : isLogin ? 'Upgrade' : 'Select Plan'}
-                        </button>
-                        :
-                        <button
-                            className='w-full transition duration-150 border border-gray-600 outline-none hover:bg-GebetaMain hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium'
-                            onClick={() => navigate('/contact')}
-                        >
-                            Contact Us
-                        </button>
-                    }
+                    <button
+                        className={`w-full transition duration-150 border border-zinc-700 borer-2 outline-none ${isPurchased ? 'bg-white text-zinc-950 border-none' : 'hover:bg-GebetaMain'} hover:border-GebetaMain rounded-md px-3 py-1.5 text-sm font-medium`}
+                        onClick={() => data.name === "Custom" ? navigate('/contact') : handleUpgrade(data.id)}
+                        disabled={isPurchased}
+                    >
+                        {getButtonText()}
+                    </button>
                 </div>
             </div>
         </>
@@ -158,13 +159,12 @@ function Plans() {
         queryFn: () => getAllCredits({page: 1, limit: 10}),
         staleTime: 5 * 60 * 1000
     })
-    console.log(data)
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
             {isLoading ?
-                Array(5).fill(0).map((_, i) => <SkeletonCard key={i}/>) :
-                data?.credit_bundles.map((credit, index) => (
+                Array(3).fill(0).map((_, i) => <SkeletonCard key={i}/>) :
+                data?.credit_bundles?.map((credit, index) => (
                     <Plan data={credit} index={index} key={index}/>
                 ))}
 

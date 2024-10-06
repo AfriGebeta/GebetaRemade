@@ -4,21 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import Notify from "../../component/Popup/Notify";
 import { setToken } from "../../redux/api/userApi";
 import { setUserData } from "../../redux/reducers/userSlice";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 function APIToken() {
     const [showToken, setShowToken] = useState(false);
     const [notify, setNotify] = useState({ visible: false });
     const dispatch = useDispatch();
 
-    const user = useSelector((state) => state.user);
-    const [tokenValue, setTokenValue] = useState(user?.data?.user?.token ? user.data.user.token[user.data.user.token.length - 1] : "");
+    const [currentProfile, _] = useLocalStorage({
+        key: 'currentProfile',
+        defaultValue: null,
+    })
+
+    console.log("current user", currentProfile)
+
+    const [tokenValue, setTokenValue] = useState(currentProfile?.user?.token ? currentProfile.user.token[currentProfile.user.token.length - 1] : "");
 
     const showNotification = (msg, type) => {
         setNotify({ visible: true, msg, type });
         setTimeout(() => setNotify({ visible: false }), 2000);
     };
 
-    console.log(user?.data?.user)
+    // console.log(user?.data?.user)
 
     const copyToClipboard = () => {
         try {
@@ -36,14 +43,14 @@ function APIToken() {
 
     const createToken = async () => {
         try {
-            const response = await setToken(user.data.token);
+            const response = await setToken(currentProfile?.user?.token);
             console.log("New token received:", response.token);
 
             dispatch(setUserData({
-                token: user.data.token,
+                token: currentProfile.user.token,
                 user: {
-                    ...user.data.user,
-                    token: [...user.data.user.token, response.token]
+                    ...currentProfile.user,
+                    token: [...currentProfile.user.token, response.token]
                 }
             }));
 

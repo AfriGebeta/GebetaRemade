@@ -23,6 +23,8 @@ import Terms from './pages/Terms';
 import ResetPassword from './pages/ResetPassword'
 import "@fontsource/zen-dots";
 import Contact from "./pages/Contact";
+import Signin from "./pages/Signin/SignIn";
+import Signup from "./pages/Signup/Signup";
 
 
 // tod do fix this route error  
@@ -38,6 +40,8 @@ function App() {
              <Route path="/documentation" element={<Documentation />} />
              <Route path="/playground" element={<PlayGround />} /> 
              {/* <Route path="/products" element={<Products />} />  */}
+            <Route path="/auth/sign-up" element={<Signup />} />
+            <Route path="/auth/sign-in" element={<Signin />} />
             <Route path = "/privacy" element={<Privacy/>} />
             <Route path = "/terms" element={<Terms/>} />
             <Route path = "/reset-password" element={<ResetPassword/>} />

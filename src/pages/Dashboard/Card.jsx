@@ -3,12 +3,17 @@ import DocCard from "../../component/Card/DocCard";
 import {useQuery} from "@tanstack/react-query";
 import {getUserUsage} from "../../redux/api/usageAPI";
 import {useSelector} from "react-redux";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 const Cards = ({ metrics }) => {
-    const user = useSelector((state) => state).user;
+    const [currentProfile, _] = useLocalStorage({
+        key: 'currentProfile',
+        defaultValue: null,
+    })
+
     const {data, isLoading} = useQuery({
-        queryKey: ['metrics', user.data.token],
-        queryFn: () => getUserUsage(user.data.token),
+        queryKey: ['metrics', currentProfile.token],
+        queryFn: () => getUserUsage(currentProfile.token),
         staleTime: 5 * 60 * 1000
     })
 
