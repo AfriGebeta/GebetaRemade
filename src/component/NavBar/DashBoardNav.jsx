@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import logo from "./../../assets/img/icon/logo.png";
+import logo from "./../../assets/img/icon/logo.svg";
 import {Link, NavLink, useLocation} from "react-router-dom";
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
@@ -65,8 +65,8 @@ const DashBoardNav = ({ color, textColor }) => {
         >
           <div className="items-center px-4 mx-auto md:flex md:px-8">
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <Link to='/'>
-                <img src={logo} width={120} height={50} alt="Logo"/>
+              <Link to='/' className='text-GebetaMain flex items-center gap-2'>
+                <img src={logo} width={30} height={25} alt="Logo"/>{" "} GebetaMaps
               </Link>
               <div className="md:hidden">
                 <button

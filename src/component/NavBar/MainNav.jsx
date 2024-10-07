@@ -1,5 +1,5 @@
 import React ,{ useState , useEffect ,useRef} from 'react'
-import logo from "./../../assets/img/icon/logo.png";
+import logo from "./../../assets/img/icon/logo.svg";
 import DualDropdowns from '../DropDown/DualDropdowns';
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
@@ -79,16 +79,8 @@ const MainNav =  ({color  ,textColor}) => {
         <nav className={`bg-${color} border-b border-gray-700 p-2 md:p-4 w-full font-bold  md:static md:text-sm md:border-none`}>
             <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                <Link 
-                    to="/">
-                    <a href="">
-                        <img
-                            src={logo}
-                            width={120}
-                            height={50}
-                            
-                        />
-                    </a>
+                    <Link to='/' className='text-GebetaMain flex items-center'>
+                        <img src={logo} width={30} height={25} alt="Logo"/>{" "} GebetaMaps
                     </Link>
                     <div className="md:hidden">
                         <button className="text-gray-500 hover:text-gray-800"
