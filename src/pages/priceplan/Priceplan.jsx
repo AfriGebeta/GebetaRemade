@@ -160,16 +160,64 @@ function Plans() {
         staleTime: 5 * 60 * 1000
     })
 
+    const [activeTab, setActiveTab] = useState("monthly");
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
+
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-6">
-            {isLoading ?
-                Array(3).fill(0).map((_, i) => <SkeletonCard key={i}/>) :
-                data?.credit_bundles?.map((credit, index) => (
-                    <Plan data={credit} index={index} key={index}/>
-                ))}
+        <div>
+            <div className="flex justify-center mb-8">
+                <div className="bg-GebetaMain p-1 rounded-full inline-flex">
+                    <div className="relative">
+                        <div
+                            className="absolute inset-0 flex"
+                            aria-hidden="true"
+                        >
+                            <div
+                                className={`w-1/2 bg-white rounded-full transition-all duration-300 ease-out ${
+                                    activeTab === "yearly" ? "translate-x-full" : ""
+                                }`}
+                            ></div>
+                        </div>
+                        <div className="relative flex">
+                            <button
+                                type="button"
+                                className={`w-24 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+                                    activeTab === "monthly"
+                                        ? "text-GebetaMain"
+                                        : "text-white"
+                                }`}
+                                onClick={() => handleTabChange("monthly")}
+                            >
+                                Monthly
+                            </button>
+                            <button
+                                type="button"
+                                className={`w-24 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ${
+                                    activeTab === "yearly"
+                                        ? "text-GebetaMain"
+                                        : "text-white"
+                                }`}
+                                onClick={() => handleTabChange("yearly")}
+                            >
+                                Yearly
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+                {isLoading ?
+                    Array(3).fill(0).map((_, i) => <SkeletonCard key={i}/>) :
+                    data?.credit_bundles?.map((credit, index) => (
+                        <Plan data={credit} index={index} key={index}/>
+                    ))}
 
 
-            <Plan data={enterprise} index={data?.length || 1}/> {/* Include enterprise plan */}
+                <Plan data={enterprise} index={data?.length || 1}/> {/* Include enterprise plan */}
+            </div>
         </div>
     );
 }
