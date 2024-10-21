@@ -4,17 +4,19 @@ import { userLogoutEndPointCaller } from "../../redux/api/userApi";
 // firebaase  
 import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { userLogin } from "../../redux/api/userApi";
 import { auth, provider } from "./../../firebase/Firebase";
 import { AuthContext } from "./../../context/AuthProvider";
 import {buyCredit} from "../../redux/api/buyCreditApi";
+import useLocalStorage from "../../hooks/use-local-storage";
+import {setUserData} from "../../redux/reducers/userSlice";
 
 
 
 
-function Signup({ signupintosignin }) {
+function Signup() {
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -26,6 +28,10 @@ function Signup({ signupintosignin }) {
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setConfirmPasswordVisibility] = useState(false);
+    const [_, setCurrentProfile] = useLocalStorage({
+        key: 'currentProfile',
+        defaultValue: null,
+    })
 
     const navigate = useNavigate();
     const authContext = useContext(AuthContext);
@@ -86,6 +92,8 @@ function Signup({ signupintosignin }) {
                             setErrorMessage(resultAction.payload.error);
                         } else {
                             authContext.login();
+                            dispatch(setUserData(resultAction.payload.data));
+                            setCurrentProfile({...resultAction.payload.data})
                             if (localStorage.getItem("redirect")) {
                                 localStorage.removeItem("redirect");
                                 navigate("/priceplan");
@@ -115,7 +123,7 @@ function Signup({ signupintosignin }) {
             <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-md">
                 <div>
                     <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Create an account</h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">Let's get you started</p>
+                    <p className="mt-2 text-center text-sm text-gray-600">Join us today</p>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={(e) => e.preventDefault()}>
                     {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
@@ -187,16 +195,16 @@ function Signup({ signupintosignin }) {
                             onClick={signup}
                             disabled={loading}
                         >
-                            {loading ? <ClipLoader color="#ffffff" size={20} /> : "Sign up"}
+                            {loading ? <ClipLoader color="#ffffff" size={20}/> : "Sign up"}
                         </button>
                     </div>
                 </form>
                 <div className="text-sm text-center">
                     <p>
                         Already have an account?{" "}
-                        <button onClick={signupintosignin} className="font-medium text-GebetaMain hover:text-GebetaMain/70">
+                        <Link to="/auth/sign-in" className="font-medium text-GebetaMain hover:text-GebetaMain/70">
                             Sign in
-                        </button>
+                        </Link>
                     </p>
                 </div>
             </div>
@@ -204,7 +212,7 @@ function Signup({ signupintosignin }) {
     );
 }
 
-function InputField({ id, name, type, autoComplete, required, placeholder, value, onChange }) {
+function InputField({id, name, type, autoComplete, required, placeholder, value, onChange}) {
     return (
         <div>
             <label htmlFor={id} className="sr-only">
@@ -244,7 +252,7 @@ function PasswordField({ id, name, placeholder, value, onChange, showPassword, t
             />
             <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center z-10"
                 onClick={togglePasswordVisibility}
             >
                 {showPassword ? (

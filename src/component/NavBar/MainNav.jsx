@@ -129,18 +129,15 @@ const MainNav =  ({color  ,textColor}) => {
                         <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
                         <div className='space-y-3 items-center gap-x-6 md:flex md:space-y-0'>
                             <li>
-                                <p className={`hover:text-GebetaMain block py-3 text-center text-${textColor} hover:text-GebetaMain border rounded-lg md:border-none`}
-                                    onClick={() => setSigninModal(true)}
-                                >
+                                <Link to="/auth/sign-in" className={`hover:text-GebetaMain block py-3 text-center text-${textColor} hover:text-GebetaMain border rounded-lg md:border-none`}>
                                     Log in
-                                </p>
+                                </Link>
                             </li>
                             <li>
-                                <p 
-                                onClick={() => setSignUpModal(true)}
-                                className=" py-3 px-4 font-medium text-center text-white bg-GebetaMain hover:bg-GebetaMain-200 active:bg-GebetaMain-200 active:shadow-none rounded-lg shadow  ">
+                                <Link to='/auth/sign-up'
+                                      className=" py-3 px-4 text-center text-white bg-GebetaMain hover:bg-GebetaMain/200 active:bg-GebetaMain-200 active:shadow-none rounded-lg shadow">
                                     Sign up
-                                </p>
+                                </Link>
                             </li>
                         </div>
                      

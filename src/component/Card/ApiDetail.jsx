@@ -3,30 +3,33 @@ import { useSelector } from "react-redux";
 import { getCredit } from "../../redux/api/creditsApi";
 import {useQuery} from "@tanstack/react-query";
 import {getUserUsage} from "../../redux/api/usageAPI";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 function ApiDetail() {
-  const user = useSelector((state) => state.user);
+  const [currentProfile, _] = useLocalStorage({
+    key: 'currentProfile',
+    defaultValue: null,
+  })
   const [purchasedPlans, setPurchasedPlans] = useState('')
 
 
   const {data, isLoading, error} = useQuery({
-    queryKey: ['metrics', user.data.token],
-    queryFn: () => getUserUsage(user.data.token),
+    queryKey: ['metrics', currentProfile.token],
+    queryFn: () => getUserUsage(currentProfile.token),
     staleTime: 5 * 60 * 1000
   })
 
   useEffect(() => {
-    if (user?.data?.user?.token) {
+    if (currentProfile?.user?.token) {
       setPurchasedPlans("Credits")
     }
 
-    if (user?.data?.user?.purchased_date != null) {
+    if (currentProfile?.user?.purchased_date != null) {
       setPurchasedPlans("Pay as you go")
     }
   }, [])
 
   const getTotal = () => {
-    console.log(data)
     if(!data || data.length===0) return 0;
     return data.reduce((acc, item) => acc + item.total, 0);
   };
@@ -61,8 +64,8 @@ function ApiDetail() {
           <>
             <div className="flex flex-col">
               <h4 className="text-sm font-semibold mb-1">API Token Status</h4>
-              <span className={`${user.data.token != null ? "text-green-500" : "text-red-500"} font-semibold text-xs`}>
-                {user.data.user.token != null ? "active" : "inactive"}
+              <span className={`${currentProfile?.token != null ? "text-green-500" : "text-red-500"} font-semibold text-xs`}>
+                {currentProfile?.user?.token != null ? "active" : "inactive"}
               </span>
             </div>
             <div className="flex flex-col">

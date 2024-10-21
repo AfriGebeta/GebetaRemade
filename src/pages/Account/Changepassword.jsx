@@ -3,17 +3,21 @@ import {updateprofile} from '../../redux/api/userApi'
 import {useSelector, useDispatch} from 'react-redux'
 import Notify from '../../component/Popup/Notify'
 import ClipLoader from "react-spinners/ClipLoader";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 function ChangePassword({currentState}) {
+    const [currentProfile, _] = useLocalStorage({
+        key: 'currentProfile',
+        defaultValue: null,
+    })
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [companyname, setCompanyName] = useState("")
-    const [email, setEmail] = useState("")
-    const [phone, setPhone] = useState("")
+    const [companyname, setCompanyName] = useState(currentProfile.user.company_name ?? "")
+    const [email, setEmail] = useState(currentProfile.user.email ?? "")
+    const [phone, setPhone] = useState(currentProfile.user.phone ?? "")
     const [isLoading, setLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [notify, setNotify] = useState({visible: false});
-    const user = useSelector((state) => state).user
 
     const isEmpty = (str) => {
         if (typeof str == 'undefined' || !str || str.length === 0 || str === "" || !/[^\s]/.test(str) || /^\s*$/.test(str) || str.replace(/\s/g, "") === "")
@@ -27,7 +31,7 @@ function ChangePassword({currentState}) {
             if (password != confirmPassword) {
                 setErrorMessage("password doesnt match")
             } else {
-                updateprofile({id: user.data.id, password: password}, user.data.token)
+                updateprofile({id: currentProfile.user.id, password: password}, currentProfile.token)
                     .then(response => {
                         if (response.data) {
                             setNotify({visible: true, msg: "Updated", type: "success"});
@@ -43,7 +47,7 @@ function ChangePassword({currentState}) {
         } else {
             if (companyname != "" || phone != "" || email != "") {
 
-                let data = {id: user.data.id}
+                let data = {id: currentProfile.id}
 
                 if (!isEmpty(companyname)) {
                     Object.assign(data, {"companyname": companyname})
@@ -61,7 +65,7 @@ function ChangePassword({currentState}) {
                 }
 
 
-                updateprofile(data, user.data.token)
+                updateprofile(data, currentProfile.token)
                     .then((response) => {
                         if (response.data) {
                             setNotify({visible: true, msg: "Updated", type: "success"});
@@ -110,7 +114,7 @@ function ChangePassword({currentState}) {
 
                         <div className={`${currentState == "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
-                                placeholder={user.data.companyname}
+                                value={companyname}
                                 className=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
                                 onChange={onCompanyNameChange}
                             />
@@ -122,7 +126,7 @@ function ChangePassword({currentState}) {
 
                         <div className={`${currentState == "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
-                                placeholder={user.data.email}
+                                value={email}
                                 className=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
                                 onChange={onEmailChange}
                             />
@@ -135,7 +139,7 @@ function ChangePassword({currentState}) {
                         <div className={`${currentState == "Password" ? "hidden" : ""} relative h-10 w-full min-w-[200px]`}>
                             <input
                                 className=" h-full py-6 w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3  font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all   focus:border-2   disabled:border-0 disabled:bg-blue-gray-50"
-                                placeholder={user.data.name}
+                                value={phone}
                                 onChange={onPhoneChange}
                             />
                             <label

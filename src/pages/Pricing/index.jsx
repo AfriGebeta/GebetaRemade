@@ -66,7 +66,7 @@ const FaqsCard = (props) => {
         },
         {
             q: "How does payment scale for a larger number of requests?",
-            a: "The payment scale is inversely proportional to your usage. As the volume of requests decreases, the cost per request diminishes. For instance, if you utilize 1,000,000 requests, the rate is 0.20 cents per 1,000 requests. However, for a million requests, the price is halved, amounting to 0.10 cents per 1,000 requests."
+            a: "The payment scale is inversely proportional to your usage. As the volume of requests increases, the cost per request diminishes. For instance, if you utilize 1,000,000 requests, the rate is 0.20 cents per 1,000 requests. However, for a million requests, the price is halved, amounting to 0.10 cents per 1,000 requests."
         },
        
     ]

@@ -18,7 +18,7 @@ const PricingSlider = ({ text }) => {
         <input
           type="range"
           min="0"
-          max="1000000"
+          max="50000"
           step="1"
           value={sliderValue}
           onChange={handleSliderChange}
@@ -45,7 +45,8 @@ const Pricing = () => {
 
   // Return the JSX element
   return (
-    <div className=" text-white  w-[100%] md:w-[60%] ">
+    <div className="text-white px-12">
+
         <Priceplan />
         <div className="mt-[6%]">
             <p>The Routes API uses a pay-as-you-go pricing model. The Gebeta maps  APIs  arer billed by usage. Cost is calculated by</p>
@@ -78,8 +79,8 @@ const Ourpricing = () => {
                 <div className="flex justify-center">
                    <Pricing />
                 </div>
-               
-                
+
+
             </div>
     )
 }

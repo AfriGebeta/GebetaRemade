@@ -6,7 +6,7 @@ import JsonViewer from "./JsonViewer";
 import { getRoute } from "../../redux/api/routeAPI";
 import Notify from "../../component/Popup/Notify";
 import { PlayGroundContext } from "../../context/PlayGround";
-import {LOCAL_BASE_URL, TEST_URL} from "../../redux/api/util";
+import {LOCAL_BASE_URL, TEST_URL , BASE_URL} from "../../redux/api/util";
 
 
 const SideBarForm = ({
@@ -35,13 +35,13 @@ const SideBarForm = ({
 
     //url function
     const urlMap = {
-        geocoding : selectedGeocoding == "forward" ? `${TEST_URL}/api/v1/route/geocoding?name=${searchText}&apiKey=${token.token}` :
-            `${TEST_URL}/api/v1/route/revgeocoding?lat=${origin.lat == null ? "" : origin.lat}&lon=${origin.lng == null ? "" : origin.lng}&apiKey=${token.token}`,
+        geocoding : selectedGeocoding == "forward" ? `${BASE_URL}/api/v1/route/geocoding?name=${searchText}&apiKey=${token.token}` :
+            `${BASE_URL}/api/v1/route/revgeocoding?lat=${origin.lat == null ? "" : origin.lat}&lon=${origin.lng == null ? "" : origin.lng}&apiKey=${token.token}`,
 
-        direction :`${TEST_URL}/api/v1/route/driving/direction/?la1=${origin.lat == null ? "{}" : origin.lat}&lo1=${origin.lat == null ? "{}" : origin.lng}&la2=${destination.lat == null ? "{}" : destination.lat}&lo2=${destination.lat == null ? "{}" : destination.lng}&apiKey=${token.token}`,
-        tss : `${TEST_URL}/api/route/tss?${waypointsString}&apiKey=${token.token}`,
-        onm : `${TEST_URL}/api/route/onm?origin=${origin.lat == null ? "{}" : `{${origin.lat},${origin.lng}}`}${waypointsString}&apiKey=${token.token}`,
-        matrix : `${TEST_URL}/api/route/matrix?${waypointsString}&apiKey=${token.token}`,
+        direction :`${BASE_URL}/api/v1/route/driving/direction/?la1=${origin.lat == null ? "{}" : origin.lat}&lo1=${origin.lat == null ? "{}" : origin.lng}&la2=${destination.lat == null ? "{}" : destination.lat}&lo2=${destination.lat == null ? "{}" : destination.lng}&apiKey=${token.token}`,
+        tss : `${BASE_URL}/api/route/tss?${waypointsString}&apiKey=${token.token}`,
+        onm : `${BASE_URL}/api/route/onm?origin=${origin.lat == null ? "{}" : `{${origin.lat},${origin.lng}}`}${waypointsString}&apiKey=${token.token}`,
+        matrix : `${BASE_URL}/api/route/matrix?${waypointsString}&apiKey=${token.token}`,
     }
 
     // helper function

@@ -26,14 +26,37 @@ const introductionObject = {
     pricingText : "The directions API charges you based on the number of requests you make. The price per request decreases as you make more requests. For the first 100,000 requests, you pay 2$ for every 1,000 requests. For the next 400,000 requests, you pay 1.75$ for every 1,000 requests. For the next 500,000 requests, you pay 1.5$ for every 1,000 requests. For any requests above 1,000,000, you pay 1$ for every 1,000 requests. For example, if you make 2,000,000 requests, you will pay 2,000$. For more information check the pricing page" ,
     
     responseTable   : [
-        { status : 200, message : "ok",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoRoute",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoSegment",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - No Token",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - Invalid Token",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 422, message : "InvalidInput",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."}
-
-    ],
+        {
+          "status": 200,
+          "message": "ok",
+          "description": "The request was successful. The route was found and returned."
+        },
+        {
+          "status": 404,
+          "message": "NoRoute",
+          "description": "No route could be found between the given locations."
+        },
+        {
+          "status": 404,
+          "message": "NoSegment",
+          "description": "No road segment could be matched for the given coordinates."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - No Token",
+          "description": "The request lacks a valid authentication token. Please provide a valid token."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - Invalid Token",
+          "description": "The provided authentication token is invalid or has expired. Please provide a valid token."
+        },
+        {
+          "status": 422,
+          "message": "InvalidInput",
+          "description": "The request contains invalid input parameters. Please check your input and try again."
+        }
+      ],
 
     optionalParameter : [
         {
@@ -85,14 +108,37 @@ const DirectionObject = {
     pricingText : "The directions API charges you based on the number of requests you make. The price per request decreases as you make more requests. For the first 100,000 requests, you pay 2$ for every 1,000 requests. For the next 400,000 requests, you pay 1.75$ for every 1,000 requests. For the next 500,000 requests, you pay 1.5$ for every 1,000 requests. For any requests above 1,000,000, you pay 1$ for every 1,000 requests. For example, if you make 2,000,000 requests, you will pay 2,000$. For more information check the pricing page" ,
    
     responseTable : [
-        { status : 200, message : "ok",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoRoute",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoSegment",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - No Token",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - Invalid Token",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 422, message : "InvalidInput",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."}
-
-    ],
+        {
+          "status": 200,
+          "message": "ok",
+          "description": "The request was successful. The route was found and returned."
+        },
+        {
+          "status": 404,
+          "message": "NoRoute",
+          "description": "No route could be found between the given locations."
+        },
+        {
+          "status": 404,
+          "message": "NoSegment",
+          "description": "No road segment could be matched for the given coordinates."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - No Token",
+          "description": "The request lacks a valid authentication token. Please provide a valid token."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - Invalid Token",
+          "description": "The provided authentication token is invalid or has expired. Please provide a valid token."
+        },
+        {
+          "status": 422,
+          "message": "InvalidInput",
+          "description": "The request contains invalid input parameters. Please check your input and try again."
+        }
+      ],
 
     optionalParameter : [
         {
@@ -144,14 +190,37 @@ const TssObject  = {
     pricingHeader : "Route Optmization API pricing",
     pricingText : "The Route Optmization API charges you based on the number of elements you request. An element is the travel time and distance between one origin and one destination. The price per element decreases as you request more elements. For the first 1,000,000 elements, you pay 2$ for every 10,000 elements. For the next 4,000,000 elements, you pay 1.75$ for every 10,000 elements. For the next 5,000,000 elements, you pay 1.5$ for every 10,000 elements. For any elements above 10,000,000, you pay 1$ for every 10,000 elements. For example, if you request 20,000,000 elements, you will pay 20,000$. For more information check the pricing page. Note that one Route Optimization API call is considered by the number of coordinates in the json array, so you will be charged accordingly.",
     responseTable : [
-        { status : 200, message : "ok",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoRoute",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoSegment",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - No Token",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - Invalid Token",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 422, message : "InvalidInput",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."}
-
-    ],
+        {
+          "status": 200,
+          "message": "ok",
+          "description": "The request was successful. The route was found and returned."
+        },
+        {
+          "status": 404,
+          "message": "NoRoute",
+          "description": "No route could be found between the given locations."
+        },
+        {
+          "status": 404,
+          "message": "NoSegment",
+          "description": "No road segment could be matched for the given coordinates."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - No Token",
+          "description": "The request lacks a valid authentication token. Please provide a valid token."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - Invalid Token",
+          "description": "The provided authentication token is invalid or has expired. Please provide a valid token."
+        },
+        {
+          "status": 422,
+          "message": "InvalidInput",
+          "description": "The request contains invalid input parameters. Please check your input and try again."
+        }
+      ],
 
     optionalParameter : [
         {
@@ -198,14 +267,37 @@ const matrixObject = {
     pricingHeader : "Matrix API pricing",
     pricingText : "The matrix API charges you based on the number of elements you request. An element is the travel time and distance between one origin and one destination. The price per element decreases as you request more elements. For the first 1,000,000 elements, you pay 2$ for every 10,000 elements. For the next 4,000,000 elements, you pay 1.75$ for every 10,000 elements. For the next 5,000,000 elements, you pay 1.5$ for every 10,000 elements. For any elements above 10,000,000, you pay 1$ for every 10,000 elements. For example, if you request 20,000,000 elements, you will pay 20,000$. For more information check the pricing page. Note that one matrix API call is considered by the number of coordinates in the json array, so you will be charged accordingly.",
     responseTable : [
-        { status : 200, message : "ok",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoRoute",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoSegment",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - No Token",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - Invalid Token",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 422, message : "InvalidInput",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."}
-
-    ],
+        {
+          "status": 200,
+          "message": "ok",
+          "description": "The request was successful. The route was found and returned."
+        },
+        {
+          "status": 404,
+          "message": "NoRoute",
+          "description": "No route could be found between the given locations."
+        },
+        {
+          "status": 404,
+          "message": "NoSegment",
+          "description": "No road segment could be matched for the given coordinates."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - No Token",
+          "description": "The request lacks a valid authentication token. Please provide a valid token."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - Invalid Token",
+          "description": "The provided authentication token is invalid or has expired. Please provide a valid token."
+        },
+        {
+          "status": 422,
+          "message": "InvalidInput",
+          "description": "The request contains invalid input parameters. Please check your input and try again."
+        }
+      ],
 
     optionalParameter : [
         {
@@ -251,14 +343,37 @@ const onmObject = {
     pricingHeader : "ONM API pricing",
     pricingText : "The ONM API charges you based on the number of elements you request. An element is the travel time and distance between one origin and one destination. The price per element decreases as you request more elements. For the first 1,000,000 elements, you pay 2$ for every 10,000 elements. For the next 4,000,000 elements, you pay 1.75$ for every 10,000 elements. For the next 5,000,000 elements, you pay 1.5$ for every 10,000 elements. For any elements above 10,000,000, you pay 1$ for every 10,000 elements. For example, if you request 20,000,000 elements, you will pay 20,000$. For more information check the pricing page. Note that one matrix API call is considered by the number of coordinates or number of destinations, so you will be charged accordingly.",
     responseTable : [
-        { status : 200, message : "ok",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoRoute",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoSegment",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - No Token",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - Invalid Token",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 422, message : "InvalidInput",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."}
-
-    ],
+        {
+          "status": 200,
+          "message": "ok",
+          "description": "The request was successful. The route was found and returned."
+        },
+        {
+          "status": 404,
+          "message": "NoRoute",
+          "description": "No route could be found between the given locations."
+        },
+        {
+          "status": 404,
+          "message": "NoSegment",
+          "description": "No road segment could be matched for the given coordinates."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - No Token",
+          "description": "The request lacks a valid authentication token. Please provide a valid token."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - Invalid Token",
+          "description": "The provided authentication token is invalid or has expired. Please provide a valid token."
+        },
+        {
+          "status": 422,
+          "message": "InvalidInput",
+          "description": "The request contains invalid input parameters. Please check your input and try again."
+        }
+      ],
 
     optionalParameter : [
         {
@@ -305,17 +420,40 @@ const GeocodingObject = {
         ]
     }, 
     pricingHeader : "Geocoding API pricing",
-    pricingText : "The Geo      coding API charges you based on the number of requests you make. The price per request decreases as you make more requests. For the first 100,000 requests, you pay 2$ for every 1,000 requests. For the next 400,000 requests, you pay 1.75$ for every 1,000 requests. For the next 500,000 requests, you pay 1.5$ for every 1,000 requests. For any requests above 1,000,000, you pay 1$ for every 1,000 requests. For example, if you make 2,000,000 requests, you will pay 2,000$. For more information check the pricing page" ,
+    pricingText : "The Geocoding API charges you based on the number of requests you make. The price per request decreases as you make more requests. For the first 100,000 requests, you pay 2$ for every 1,000 requests. For the next 400,000 requests, you pay 1.75$ for every 1,000 requests. For the next 500,000 requests, you pay 1.5$ for every 1,000 requests. For any requests above 1,000,000, you pay 1$ for every 1,000 requests. For example, if you make 2,000,000 requests, you will pay 2,000$. For more information check the pricing page" ,
    
     responseTable : [
-        { status : 200, message : "ok",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoRoute",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 200, message : "NoSegment",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - No Token",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 401, message : "Not Authorized - Invalid Token",	description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."},
-        { status : 422, message : "InvalidInput",description : "Whether to return SSML marked-up text for voice guidance along the route (true) or not (false, default). Must be used in conjunction with steps=true."}
-
-    ],
+        {
+          "status": 200,
+          "message": "ok",
+          "description": "The request was successful. The route was found and returned."
+        },
+        {
+          "status": 404,
+          "message": "NoRoute",
+          "description": "No route could be found between the given locations."
+        },
+        {
+          "status": 404,
+          "message": "NoSegment",
+          "description": "No road segment could be matched for the given coordinates."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - No Token",
+          "description": "The request lacks a valid authentication token. Please provide a valid token."
+        },
+        {
+          "status": 401,
+          "message": "Not Authorized - Invalid Token",
+          "description": "The provided authentication token is invalid or has expired. Please provide a valid token."
+        },
+        {
+          "status": 422,
+          "message": "InvalidInput",
+          "description": "The request contains invalid input parameters. Please check your input and try again."
+        }
+      ],
 
     optionalParameter : [
         {

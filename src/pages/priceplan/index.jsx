@@ -9,17 +9,16 @@ import ApiToken from "./";
 
 
 function Priceplan() {
-
     return (
         <div className="bg-Dark min-h-screen">
-            <div className="container mx-auto px-6 py-8">
-                <div className="grid grid-cols-1 text-[#ccc] lg:grid-cols-3 gap-4">
+            <div className="w-[95%] mx-auto py-8">
+                <div className="grid grid-cols-1 text-[#ccc] lg:grid-cols-2 gap-4">
                     <div className="lg:col-span-2 space-y-4">
-                        <ApiDetail />
-                        <Plans />
+                        <ApiDetail/>
+                        <Plans/>
                     </div>
-                    <div className="lg:col-span-1">
-                        <BillingHistory />
+                    <div className="col-span-2">
+                        <BillingHistory/>
                     </div>
                 </div>
             </div>
