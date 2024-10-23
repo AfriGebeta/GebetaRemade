@@ -1,4 +1,4 @@
-import { CopyOutlined, EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
+import {CopyFilled, CopyOutlined, EyeFilled, EyeInvisibleFilled, PaperClipOutlined} from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Notify from "../../component/Popup/Notify";
@@ -11,7 +11,7 @@ function APIToken() {
     const [notify, setNotify] = useState({ visible: false });
     const dispatch = useDispatch();
 
-    const [currentProfile, _] = useLocalStorage({
+    const [currentProfile, setCurrentProfile] = useLocalStorage({
         key: 'currentProfile',
         defaultValue: null,
     })
@@ -41,14 +41,7 @@ function APIToken() {
     const createToken = async () => {
         try {
             const response = await setToken(currentProfile.token);
-
-            dispatch(setUserData({
-                token: currentProfile.token,
-                user: {
-                    ...currentProfile.user,
-                    token: [...currentProfile.user.token, response.token]
-                }
-            }));
+            setCurrentProfile({ ...currentProfile, user: { ...currentProfile.user, token: [...currentProfile.user.token, response.token] } });
 
             setTokenValue(response.token)
 
@@ -78,7 +71,10 @@ function APIToken() {
                         className="flex-grow min-w-0 text-gray-500 bg-transparent border-none shadow-sm rounded-lg"
                     />
                     <div className='flex gap-6 items-center'>
-                        <CopyOutlined onClick={copyToClipboard} />
+                        <span className="flex gap-2 items-center p-2 rounded-md bg-gray-700 hover:bg-gray-600 cursor-pointer text-sm" onClick={copyToClipboard}>
+                            <CopyFilled/>
+                            Copy
+                        </span>
                         {!showToken ? <EyeInvisibleFilled onClick={handleEyeVisible} /> :
                             <EyeFilled onClick={handleEyeVisible} />}
                     </div>
