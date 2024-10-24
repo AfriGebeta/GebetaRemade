@@ -25,6 +25,7 @@ import "@fontsource/zen-dots";
 import Contact from "./pages/Contact";
 import Signin from "./pages/Signin/SignIn";
 import Signup from "./pages/Signup/Signup";
+import OTPVerification from "./pages/RequestOtp";
 
 
 // tod do fix this route error  
@@ -42,10 +43,10 @@ function App() {
              {/* <Route path="/products" element={<Products />} />  */}
             <Route path="/auth/sign-up" element={<Signup />} />
             <Route path="/auth/sign-in" element={<Signin />} />
+            <Route path = "/reset-password" element={<ResetPassword/>} />
+            <Route path = "/request-otp" element={<OTPVerification/>} />
             <Route path = "/privacy" element={<Privacy/>} />
             <Route path = "/terms" element={<Terms/>} />
-            <Route path = "/reset-password" element={<ResetPassword/>} />
-            
             <Route path = "/confirm" element = {<Confirm/>} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

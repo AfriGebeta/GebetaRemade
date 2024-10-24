@@ -83,7 +83,7 @@ const Pricing = () => {
                 <h2 className="text-2xl font-bold mb-4">Pricing Comparison</h2>
                 <p className="mb-4">Compare Gebeta Maps pricing with other providers. Use our Pricing and Usage calculator to estimate your usage cost per API.</p>
                 <div className="mt-8">
-                    <div className="bg-gray-800 rounded-lg p-8">
+                    <div className="bg-gray-900 rounded-lg p-8">
                         <PricingSlider text="Directions API" mapboxRate={0.00045} googleRate={0.005} gebetaRate={0.0002} />
                         <PricingSlider text="Matrix API" mapboxRate={0.00135} googleRate={0.01} gebetaRate={0.0006} />
                         <PricingSlider text="Optimization API" mapboxRate={0.0054} googleRate={0.01} gebetaRate={0.0024} />

@@ -34,7 +34,7 @@ export const userLogin = createAsyncThunk(
 
       return data.data;
     } catch (error) {
-      return handleApiError(error);
+      return error;
     }
   }
 );
@@ -53,7 +53,7 @@ export const userEmailConfirm = createAsyncThunk(
 
 //http://localhost:8080/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRlIjoiMjAyMy0xMi0xMSAxODoxNjoyMC4yODAiLCJlbWFpbCI6ImFiZW5lemVyLnNlaWZ1LmtpbmZ1QGdtYWlsLmNvbSJ9.4dMfcdjUb3o6BtqNrX7AAWBIulSNXL5hg5p7W_Mj8eA
 
-export const userLogoutEndPointCaller = async (formData) => {
+export const register = async (formData) => {
   try {
     const { data } = await API.post(`/api/auth/register`, formData, {
       headers: {
@@ -98,3 +98,28 @@ export const updateprofile = async (formData, apiToken) => {
     return handleApiError(error);
   }
 };
+
+export const postOTP = async (contactType, contact) => {
+    try {
+        const data = await API.post(`/api/auth/request/otp`, { contactType,contact }, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        return data.data;
+    } catch (e) {
+        return e
+    }
+}
+export const resetPassword = async (newPassword, otp, email) => {
+    try {
+        const data = await API.post(`/api/auth/reset/pass`, { newPassword, otp, email }, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        return data.data;
+    } catch (e) {
+        return e
+    }
+}
