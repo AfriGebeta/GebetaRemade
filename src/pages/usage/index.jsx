@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import "./custom.css";
-import { useSelector } from "react-redux";
 import ApiDetail from "../../component/Card/ApiDetail";
 import APIUsage from "./APIUsage";
-import { getUserUsage } from "../../redux/api/usageAPI";
-import {
-  getUserUsageForGraph,
-  getSpecifcUserUsageForGraph,
-} from "./../../redux/api/apiCallApi";
-import ClipLoader from "react-spinners/ClipLoader";
-import { useQuery } from "@tanstack/react-query";
+import {getUserUsage} from "../../redux/api/usageAPI";
+import {getUserUsageForGraph,} from "./../../redux/api/apiCallApi";
+import {useQuery} from "@tanstack/react-query";
 import useLocalStorage from "../../hooks/use-local-storage";
-import { jsPDF } from "jspdf";
+import {jsPDF} from "jspdf";
 import "jspdf-autotable";
 import logo from "../../assets/img/gebeta-image.png"
 

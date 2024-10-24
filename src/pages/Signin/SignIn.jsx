@@ -1,14 +1,10 @@
-import React, { useState, useContext } from "react";
-import { useDispatch } from "react-redux"
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import the eye icons
-import { AuthContext } from "./../../context/AuthProvider";
+import React, {useContext, useState} from "react";
+import {useDispatch} from "react-redux"
+import {FaEye, FaEyeSlash} from 'react-icons/fa'; // Import the eye icons
+import {AuthContext} from "./../../context/AuthProvider";
 import {Link, useNavigate} from "react-router-dom";
-import { userLogin, fireBaseLogin } from "../../redux/api/userApi";
-import EmailConfirmationForgotPassword from "../EmailConfirmation/EmailConfirmationForgotPassword";
-import { auth, provider } from "./../../firebase/Firebase"
+import {userLogin} from "../../redux/api/userApi";
 import ClipLoader from "react-spinners/ClipLoader";
-import Loading from "../Loading";
-import { GithubAuthProvider, getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {buyCredit} from "../../redux/api/buyCreditApi";
 import useLocalStorage from "../../hooks/use-local-storage";
 import {setUserData} from "../../redux/reducers/userSlice";

@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from "react";
-import runningman from "./../../assets/img/RunningMan.png";
+import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import Modal from "../../component/Modal/Modal";
-import Signin from "../Signin/SignIn";
-import Signup from "../Signup/Signup";
-import SVGAnimation from "./SVGAnim";
-import OurCustomers from "./OurCustomers";
 
 const Hero = () => {
   const [state, setState] = useState(false);

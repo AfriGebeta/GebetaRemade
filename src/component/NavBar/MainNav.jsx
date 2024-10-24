@@ -1,10 +1,10 @@
-import React ,{ useState , useEffect ,useRef} from 'react'
+import React, {useEffect, useState} from 'react'
 import logo from "./../../assets/img/icon/logo.svg";
 import DualDropdowns from '../DropDown/DualDropdowns';
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 const MainNav =  ({color  ,textColor}) => {

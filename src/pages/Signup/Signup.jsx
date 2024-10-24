@@ -1,17 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import React, {useContext, useEffect, useState} from "react";
+import {FaEye, FaEyeSlash} from 'react-icons/fa';
 // import { userLogoutEndPointCaller } from "../../redux/api/userApi";
 // import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {Link, useNavigate} from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-import { userLogin } from "../../redux/api/userApi";
+import {postOTP, register, userLogin} from "../../redux/api/userApi";
 // import { auth, provider } from "./../../firebase/Firebase";
-import { AuthContext } from "../../context/AuthProvider"
-import { buyCredit } from "../../redux/api/buyCreditApi";
+import {AuthContext} from "../../context/AuthProvider"
 import useLocalStorage from "../../hooks/use-local-storage";
-import { setUserData } from "../../redux/reducers/userSlice";
-import { postOTP, register } from "../../redux/api/userApi";
+import {setUserData} from "../../redux/reducers/userSlice";
 import PhoneInput from "react-phone-input-2";
 import 'react-phone-input-2/lib/style.css';
 

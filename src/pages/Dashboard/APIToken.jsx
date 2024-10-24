@@ -1,15 +1,11 @@
-import {CopyFilled, CopyOutlined, EyeFilled, EyeInvisibleFilled, PaperClipOutlined} from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Notify from "../../component/Popup/Notify";
-import { setToken } from "../../redux/api/userApi";
-import { setUserData } from "../../redux/reducers/userSlice";
+import {CopyFilled, EyeFilled, EyeInvisibleFilled} from "@ant-design/icons";
+import React, {useState} from "react";
+import {setToken} from "../../redux/api/userApi";
 import useLocalStorage from "../../hooks/use-local-storage";
+import toast from "react-hot-toast";
 
 function APIToken() {
     const [showToken, setShowToken] = useState(false);
-    const [notify, setNotify] = useState({ visible: false });
-    const dispatch = useDispatch();
 
     const [currentProfile, setCurrentProfile] = useLocalStorage({
         key: 'currentProfile',
@@ -18,19 +14,13 @@ function APIToken() {
 
     const [tokenValue, setTokenValue] = useState(currentProfile?.user?.token ? currentProfile.user.token[currentProfile.user.token.length - 1] : "");
 
-    const showNotification = (msg, type) => {
-        setNotify({ visible: true, msg, type });
-        setTimeout(() => setNotify({ visible: false }), 2000);
-    };
-
-
     const copyToClipboard = () => {
         try {
             navigator.clipboard.writeText(tokenValue);
-            showNotification("Copied", "success");
+            toast.success("Copied to clipboard");
         } catch (err) {
             console.error('Failed to copy: ', err);
-            showNotification("Failed to copy", "error");
+            toast.error("Failed to copy to clipboard");
         }
     };
 
@@ -44,17 +34,15 @@ function APIToken() {
             setCurrentProfile({ ...currentProfile, user: { ...currentProfile.user, token: [...currentProfile.user.token, response.token] } });
 
             setTokenValue(response.token)
-
-            showNotification("Token created successfully", "success");
+            toast.success("Token created successfully");
         } catch (err) {
             console.error('Failed to create token: ', err);
-            showNotification("Failed to create token", "error");
+            toast.error("Failed to create token");
         }
     };
 
     return (
         <>
-            <Notify value={notify} />
             <div className="bg-[#202022] rounded text-[#aaa] px-6 py-5 mt-2">
                 <div className="flex flex-wrap items-center gap-4">
                     <p className="text-sm font-medium text-white whitespace-nowrap">API Token</p>

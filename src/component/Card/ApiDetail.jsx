@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getCredit } from "../../redux/api/creditsApi";
+import React, {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {getUserUsage} from "../../redux/api/usageAPI";
 import useLocalStorage from "../../hooks/use-local-storage";

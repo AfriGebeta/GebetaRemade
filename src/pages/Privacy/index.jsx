@@ -1,5 +1,4 @@
 import React from "react";
-import africa5 from "./../../assets/img/africa5.jpeg"
 import Hero from "./Hero";
 
 

@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { CategoryScale } from "chart.js";
-import Chart from "chart.js/auto";
-import { Line } from "react-chartjs-2";
-import { getUserUsageForGraph } from "../../redux/api/usageAPI";
+import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
+import {Line} from "react-chartjs-2";
 import {ScaleLoader} from "react-spinners";
 
 function APIUsage({ graphData, isLoading }) {

@@ -1,6 +1,6 @@
-import { API, handleApiError } from "./util";
+import {API, handleApiError} from "./util";
 
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 
 export const fireBaseLogin = createAsyncThunk(
   "user/fireBaseLogin",

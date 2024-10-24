@@ -1,18 +1,7 @@
 import React from "react";
-import displayImage from "./../../assets/img/display.png";
-import onmVid from "./../../assets/vid/onm.mp4";
-import geoVid from "./../../assets/vid/gc.mp4";
-import routeVid from "./../../assets/vid/ro.mp4";
 import onmgif from "./../../assets/vid/onm.gif";
 import geogif from "./../../assets/vid/gc.gif";
 import routegif from "./../../assets/vid/ro.gif";
-import geoPhoto from "./../../assets/vid/videophoto/geocoding.png"
-import onmPhoto from "./../../assets/vid/videophoto/onm.png"
-import roPhoto from "./../../assets/vid/videophoto/ro.png"
-
-
-
-import { useEffect, useRef } from "react";
 // import ReactPlayer from "react-player";
 
 // const VideoPlayer = ({ className, url , thumbnail }) => {

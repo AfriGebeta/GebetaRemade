@@ -1,10 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { FaFacebook } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { AuthContext } from "./../../context/AuthProvider";
-import { useNavigate } from "react-router-dom";
-import { userLogin } from "../../redux/api/userApi";
+import React, {useRef, useState} from "react";
 
 import ClipLoader from "react-spinners/ClipLoader";
 

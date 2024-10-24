@@ -1,11 +1,9 @@
-import React ,{useEffect  } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import NavBar from "../../component/NavBar/NavBar";
-import Footer from "../../component/Footer/Footer";
+import React from "react";
+import {useSelector} from "react-redux"
 import Sidebar from "./Sidebar";
 import DocumentationHeader from "./DocumentationHeader";
 import Content from "./Content";
-import { returnDocumentationObject } from "../../data/documentation";
+import {returnDocumentationObject} from "../../data/documentation";
 import "./index.css"
 
 

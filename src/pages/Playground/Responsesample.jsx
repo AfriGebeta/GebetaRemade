@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 
 const ResponseSample = (props) => {
   const [requestLanguage, setRequestLanguage] = useState(0)

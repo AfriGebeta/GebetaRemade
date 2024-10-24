@@ -1,4 +1,4 @@
-import { API, handleApiError } from "./util";
+import {API, handleApiError} from "./util";
 
 export const getAllBilling = async (apiToken, page, limit) => {
   try {
@@ -16,3 +16,4 @@ export const getAllBilling = async (apiToken, page, limit) => {
     return handleApiError(error);
   }
 };
+

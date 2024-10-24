@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import React, {useState} from "react";
 import {getAllCredits} from "../../redux/api/creditsApi";
 import {buyCredit} from "../../redux/api/buyCreditApi";
 import {FaCheck} from "react-icons/fa6";
@@ -9,6 +8,7 @@ import Signin from "../Signin/SignIn";
 import Modal from "../../component/Modal/Modal";
 import Signup from "../Signup/Signup";
 import useLocalStorage from "../../hooks/use-local-storage";
+import {query} from "../../index";
 
 function Plan({data, index}) {
     const [currentProfile, _] = useLocalStorage({
@@ -39,6 +39,7 @@ function Plan({data, index}) {
             if (data.name !== "Custom") {
                 buyCredit(currentProfile?.token, id)
                     .then(response => {
+                        query.invalidateQueries('history')
                         if (response.data.data.status === "success") {
                             window.open(response.data.data.Data.checkout_url, '_blank');
                         }

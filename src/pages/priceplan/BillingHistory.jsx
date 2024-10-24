@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {getAllBilling} from "../../redux/api/billingAPI";
-import {useSelector} from "react-redux";
 import billing from '../../assets/img/billing.svg'
 import {useQuery} from "@tanstack/react-query";
 import chapa from '../../assets/img/chapa.png'
 import useLocalStorage from "../../hooks/use-local-storage";
+import {verifyPayment} from "../../redux/api/buyCreditApi";
+import {query} from "../../index";
+import toast from "react-hot-toast";
 
 function BillingHistory() {
     const [currentProfile, _] = useLocalStorage({
@@ -31,6 +33,17 @@ function BillingHistory() {
     })
 
     const totalPages = Math.ceil(data?.count / limit)
+
+    const handleVerifyPayment = (id) => async () => {
+        const response = await verifyPayment(currentProfile.token, id)
+        if (response.data === "Payment Successful") {
+            query.invalidateQueries('history')
+            toast.success("Successfully Verified")
+        }
+        else {
+            toast.error("Payment not verified")
+        }
+    }
 
     const SkeletonCard = () => (
         <div className='flex flex-col gap-6 pb-4 pt-5 animate-pulse'>
@@ -70,7 +83,7 @@ function BillingHistory() {
                                 <div className='flex justify-between text-sm'>
                                     <h4 className="font-semibold">Payment Status</h4>
                                     {item?.installments?.map((installment) => (
-                                        <div className='flex flex-col justify-between gap-4'>
+                                        <div className='flex flex-col justify-between items-end gap-4'>
                                             <div className='flex items-center gap-2'>
                                                 <h4 className='text-GebetaMain font-semibold'>{installment.status}</h4>
                                             </div>
@@ -81,6 +94,9 @@ function BillingHistory() {
                                                 <span className='bg-green-700 w-1 h-4'></span>
                                                 <h4 className='text-sm font-semibold text-GebetaMain'>{installment.amount} ETB</h4>
                                             </div>
+                                            {installment.status === "PENDING" && <button
+                                                onClick={handleVerifyPayment(installment.id)}
+                                                className="self-end w-fit bg-GebetaMain text-white px-4 py-2 rounded-md disabled:opacity-50">Verify</button>}
                                         </div>
                                     ))
                                     }
@@ -88,7 +104,7 @@ function BillingHistory() {
                             </div>
                         ))}
                     </div>
-                    <div className='flex justify-between'>
+                    <div className='mt-6 flex justify-between'>
                         <button
                             onClick={() => setCurrentPage((page) => page - 1)}
                             disabled={currentPage === 1 || data.billing.length === 0}

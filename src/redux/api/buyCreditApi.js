@@ -1,4 +1,4 @@
-import { API, handleApiError } from "./util";
+import {API, handleApiError} from "./util";
 
 export const buyCredit = async (apiToken, id) => {
   try {
@@ -17,3 +17,18 @@ export const buyCredit = async (apiToken, id) => {
     return handleApiError(error);
   }
 };
+
+export const verifyPayment = async (apiToken, id) => {
+    try {
+      const response = await API.get(`/api/payment/verify/${id}`, {
+        headers: {
+          Authorization: `Bearer ${apiToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    }
+    catch (e) {
+        return e;
+    }
+}

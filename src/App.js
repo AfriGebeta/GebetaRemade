@@ -1,6 +1,6 @@
-import React , {useState} from 'react'
-import { HashRouter as Router , Routes, Route, Link } from "react-router-dom";
-import { AuthContext, AuthProvider } from './context/AuthProvider';
+import React from 'react'
+import {HashRouter as Router, Route, Routes} from "react-router-dom";
+import {AuthProvider} from './context/AuthProvider';
 import './App.css';
 import Billing from "./pages/Billing/index"
 import Main from './pages/Main/index';
@@ -15,7 +15,6 @@ import Footer from './component/Footer/Footer';
 import FoF from "./pages/404"
 import PrivateRoute from './routes/PrivateRoute';
 import About from './pages/About';
-import Products from './pages/Products';
 import Pricing from './pages/Pricing';
 import Privacy from './pages/Privacy';
 import Confirm from './pages/EmailConfirmation/Confirm';

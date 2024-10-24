@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
+import React, {useState} from "react";
+import {FaFacebook, FaGoogle} from "react-icons/fa";
 
 function Signin({ footer }) {
   const [username, setUserName] = useState("");

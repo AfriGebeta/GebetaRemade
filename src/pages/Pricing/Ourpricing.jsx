@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Priceplan from "../priceplan/Priceplan";
 import {Link} from "react-router-dom";
-import { RightOutlined} from "@ant-design/icons";
+import {RightOutlined} from "@ant-design/icons";
 
 const PricingSlider = ({ text, mapboxRate, googleRate, gebetaRate }) => {
     const [sliderValue, setSliderValue] = useState(0);

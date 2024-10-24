@@ -1,8 +1,6 @@
-import React, { useRef, useState }  from "react";
+import React, {useRef, useState} from "react";
 import Ourpricing from "./Ourpricing";
 import Hero from "./Hero";
-
-
 
 
 const FaqsCard = (props) => {

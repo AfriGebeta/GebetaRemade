@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { userLogin, setToken, updateprofile, userEmailConfirm, fireBaseLogin } from '../api/userApi'
+import {createSlice} from '@reduxjs/toolkit'
+import {fireBaseLogin, userEmailConfirm, userLogin} from '../api/userApi'
 
 const initialState = {
    data: {},

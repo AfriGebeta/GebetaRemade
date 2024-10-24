@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
-import { postOTP, resetPassword } from "../../redux/api/userApi"
+import {postOTP, resetPassword} from "../../redux/api/userApi"
 
 function OTPVerification() {
     const [email, setEmail] = useState('');

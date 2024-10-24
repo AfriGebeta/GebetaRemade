@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useContext, useState} from "react";
 import logo from "./../../assets/img/icon/logo.svg";
-import {Link, NavLink, useLocation} from "react-router-dom";
+import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
 import ProfileDropDown from "../DropDown/ProfileDropdown";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthProvider";
-import { useSelector } from "react-redux";
+import {AuthContext} from "../../context/AuthProvider";
+import {useSelector} from "react-redux";
 import useLocalStorage from "../../hooks/use-local-storage";
 
 const DashBoardNav = ({ color, textColor }) => {
