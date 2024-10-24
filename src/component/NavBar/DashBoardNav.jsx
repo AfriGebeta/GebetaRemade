@@ -8,11 +8,17 @@ import ProfileDropDown from "../DropDown/ProfileDropdown";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { useSelector } from "react-redux";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 const DashBoardNav = ({ color, textColor }) => {
   const [state, setState] = useState(false);
   const [signinModal, setSigninModal] = useState(false);
   const [signupModal, setSignUpModal] = useState(false);
+
+  const [currentProfile, _] = useLocalStorage({
+    key: 'currentProfile',
+    defaultValue: null,
+  })
 
   const user = useSelector((state) => state).user;
   const authContext = useContext(AuthContext);
@@ -114,7 +120,7 @@ const DashBoardNav = ({ color, textColor }) => {
 
                 <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
                 <p className={`${path.pathname === '/documentation' ? 'text-black' : 'text-white'} mt-[5px]`}>
-                  {user.data.username}
+                  {currentProfile.user.username}
                 </p>
                 <div className="flex flex-col">
                   <ProfileDropDown onLogout={handleLogout}/>
