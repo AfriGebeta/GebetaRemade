@@ -111,6 +111,16 @@ export const postOTP = async (contactType, contact) => {
         return e
     }
 }
+
+export const verifyOTP = async (otp) => {
+    try {
+        const data = await API.get(`/api/auth/otp/${otp}`);
+        return data.data;
+    } catch (e) {
+        return e
+    }
+}
+
 export const resetPassword = async (newPassword, otp, email) => {
     try {
         const data = await API.post(`/api/auth/reset/pass`, { newPassword, otp, email }, {
