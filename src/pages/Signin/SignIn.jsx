@@ -36,8 +36,11 @@ function Signin() {
                 console.log(resultAction)
                 if (userLogin.fulfilled.match(resultAction)) {
                     if (resultAction.payload.response?.data?.error) {
-                        if(resultAction.payload.response?.data?.error.status === 404) {
-                            setErrorMessage("Invalid email or password")
+                        if(resultAction.payload.response?.status === 404) {
+                            setErrorMessage("No user found with this username")
+                        }
+                        else if(resultAction.payload.response?.status === 401){
+                            setErrorMessage("Invalid password or username")
                         }
                         else{
                             setErrorMessage("Unexpected error occurred")
