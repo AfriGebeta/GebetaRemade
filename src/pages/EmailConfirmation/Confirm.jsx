@@ -1,8 +1,8 @@
-import React , {useState , useEffect , useContext} from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom";
-import { userEmailConfirm } from "../../redux/api/userApi";
-import { AuthContext } from "./../../context/AuthProvider";
+import React, {useContext, useEffect, useState} from "react";
+import {useDispatch} from "react-redux"
+import {useNavigate} from "react-router-dom";
+import {userEmailConfirm} from "../../redux/api/userApi";
+import {AuthContext} from "./../../context/AuthProvider";
 // get the token 
 // send to confirm 
 // if accepted change the context to login then login user 

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { FaCircleCheck } from "react-icons/fa6";
-import { FaCircleXmark } from "react-icons/fa6";
+import React, {useEffect, useState} from "react";
+import {FaCircleCheck, FaCircleXmark} from "react-icons/fa6";
 
 
 function Notify({value}) {

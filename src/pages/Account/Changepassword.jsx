@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {updateprofile} from '../../redux/api/userApi'
-import {useSelector, useDispatch} from 'react-redux'
 import Notify from '../../component/Popup/Notify'
 import ClipLoader from "react-spinners/ClipLoader";
 import useLocalStorage from "../../hooks/use-local-storage";

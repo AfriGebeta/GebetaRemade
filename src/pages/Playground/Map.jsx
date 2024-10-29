@@ -1,11 +1,11 @@
-import React , {useState , useContext} from "react";
-import { MapContainer, TileLayer, Marker, Popup , useMapEvents , Polyline } from 'react-leaflet';
+import React, {useContext} from "react";
+import {MapContainer, Marker, Polyline, TileLayer, useMapEvents} from 'react-leaflet';
 import L from 'leaflet';
 import redIcon from "./../../assets/img/red.png"
 import greenIcon from "./../../assets/img/green.png"
 import blackIcon from "./../../assets/img/black.png"
 import 'leaflet/dist/leaflet.css';
-import { PlayGroundContext } from "../../context/PlayGround";
+import {PlayGroundContext} from "../../context/PlayGround";
 import LogoControl from "./LogoControl";
 
 const Map = ({selectedButton}) => {

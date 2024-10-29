@@ -1,10 +1,7 @@
-import React , {useState,  useEffect }   from "react";
-import { useLocation } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import { FaTelegram } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, useLocation} from 'react-router-dom';
+import {FaInstagram, FaLinkedin, FaTelegram, FaTwitter, FaYoutube} from "react-icons/fa";
+
 const Footer = () => {
 
     const [color, setColor] = useState("Dark");

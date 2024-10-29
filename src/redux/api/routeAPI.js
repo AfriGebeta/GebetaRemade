@@ -1,6 +1,4 @@
-import { API , handleApiError } from "./util";
-
-
+import {API, handleApiError} from "./util";
 
 
 export const getRoute = async (url) => {

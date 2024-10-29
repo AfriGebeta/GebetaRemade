@@ -1,5 +1,4 @@
 import React from "react";
-import runningman from "./../../assets/img/RunningMan.png"
 
 const Hero = () => {
     return (

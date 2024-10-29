@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import biruk from "./../../assets/img/output.png";
 import habtamu from "./../../assets/img/habtamu.jpg";
 import niduser from "./../../assets/img/niduser.jpeg";

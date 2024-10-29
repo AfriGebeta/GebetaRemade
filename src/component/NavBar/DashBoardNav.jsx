@@ -1,18 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
-import logo from "./../../assets/img/icon/logo.png";
-import {Link, NavLink, useLocation} from "react-router-dom";
+import React, {useContext, useState} from "react";
+import logo from "./../../assets/img/icon/logo.svg";
+import {Link, NavLink, useLocation, useNavigate} from "react-router-dom";
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
 import ProfileDropDown from "../DropDown/ProfileDropdown";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthProvider";
-import { useSelector } from "react-redux";
+import {AuthContext} from "../../context/AuthProvider";
+import {useSelector} from "react-redux";
+import useLocalStorage from "../../hooks/use-local-storage";
 
 const DashBoardNav = ({ color, textColor }) => {
   const [state, setState] = useState(false);
   const [signinModal, setSigninModal] = useState(false);
   const [signupModal, setSignUpModal] = useState(false);
+
+  const [currentProfile, _] = useLocalStorage({
+    key: 'currentProfile',
+    defaultValue: null,
+  })
 
   const user = useSelector((state) => state).user;
   const authContext = useContext(AuthContext);
@@ -65,8 +70,8 @@ const DashBoardNav = ({ color, textColor }) => {
         >
           <div className="items-center px-4 mx-auto md:flex md:px-8">
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
-              <Link to='/'>
-                <img src={logo} width={120} height={50} alt="Logo"/>
+              <Link to='/' className='text-GebetaMain flex items-center gap-2'>
+                <img src={logo} width={30} height={25} alt="Logo"/>{" "} GebetaMaps
               </Link>
               <div className="md:hidden">
                 <button
@@ -114,7 +119,7 @@ const DashBoardNav = ({ color, textColor }) => {
 
                 <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
                 <p className={`${path.pathname === '/documentation' ? 'text-black' : 'text-white'} mt-[5px]`}>
-                  {user.data.username}
+                  {currentProfile.user.username}
                 </p>
                 <div className="flex flex-col">
                   <ProfileDropDown onLogout={handleLogout}/>

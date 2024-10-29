@@ -1,8 +1,8 @@
-import React , {useState} from "react"
+import React, {useState} from "react"
 import Map from "./Map";
 import SideBarForm from "./SideBarForm";
-import { returnPlaygroundObject } from "../../data/playground";
-import { useSelector, useDispatch } from "react-redux"
+import {returnPlaygroundObject} from "../../data/playground";
+import {useSelector} from "react-redux"
 
 const MapView = () => {
 

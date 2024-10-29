@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-
 const introductionObject = {
     introduction : "A route is a navigable path between a start location, or origin, and an end location, or destination. You can choose to get a route for different modes of transportation, such as walking, biking, or different types of vehicles. You can also request route details such as distance, estimated time to navigate the route, expected tolls, and step-by-step instructions to navigate the route.", 
     usecase : "Use Case of Introduction" , 

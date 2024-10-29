@@ -1,7 +1,6 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthProvider";
-import { useSelector } from "react-redux";
+import React, {useContext, useEffect, useRef, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../context/AuthProvider";
 import useLocalStorage from "../../hooks/use-local-storage";
 
 const ProfileDropDown = (props) => {

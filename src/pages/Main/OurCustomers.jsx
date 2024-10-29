@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import adika from "./../../assets/img/adika.webp";
 import nid from "./../../assets/img/nid.webp";
 import zayride from "./../../assets/img/zayride.webp";

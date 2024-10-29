@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DocCard from "../../component/Card/DocCard";
 import {useQuery} from "@tanstack/react-query";
 import {getUserUsage} from "../../redux/api/usageAPI";
-import {useSelector} from "react-redux";
 import useLocalStorage from "../../hooks/use-local-storage";
 
 const Cards = ({ metrics }) => {

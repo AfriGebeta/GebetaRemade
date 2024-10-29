@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import banner from '../../assets/img/banner.png';
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown";
 import '@leenguyen/react-flip-clock-countdown/dist/index.css';
