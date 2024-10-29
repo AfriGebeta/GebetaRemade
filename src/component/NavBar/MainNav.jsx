@@ -1,10 +1,10 @@
-import React ,{ useState , useEffect ,useRef} from 'react'
-import logo from "./../../assets/img/icon/logo.png";
+import React, {useEffect, useState} from 'react'
+import logo from "./../../assets/img/icon/logo.svg";
 import DualDropdowns from '../DropDown/DualDropdowns';
 import Signin from "../../pages/Signin/SignIn";
 import Signup from "../../pages/Signup/Signup";
 import Modal from "../Modal/Modal";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 const MainNav =  ({color  ,textColor}) => {
@@ -79,16 +79,8 @@ const MainNav =  ({color  ,textColor}) => {
         <nav className={`bg-${color} border-b border-gray-700 p-2 md:p-4 w-full font-bold  md:static md:text-sm md:border-none`}>
             <div className="items-center px-4  mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                <Link 
-                    to="/">
-                    <a href="">
-                        <img
-                            src={logo}
-                            width={120}
-                            height={50}
-                            
-                        />
-                    </a>
+                    <Link to='/' className='text-GebetaMain flex items-center'>
+                        <img src={logo} width={30} height={25} alt="Logo"/>{" "} GebetaMaps
                     </Link>
                     <div className="md:hidden">
                         <button className="text-gray-500 hover:text-gray-800"
@@ -129,18 +121,15 @@ const MainNav =  ({color  ,textColor}) => {
                         <span className='hidden w-px h-6 bg-gray-300 md:block'></span>
                         <div className='space-y-3 items-center gap-x-6 md:flex md:space-y-0'>
                             <li>
-                                <p className={`hover:text-GebetaMain block py-3 text-center text-${textColor} hover:text-GebetaMain border rounded-lg md:border-none`}
-                                    onClick={() => setSigninModal(true)}
-                                >
+                                <Link to="/auth/sign-in" className={`hover:text-GebetaMain block py-3 text-center text-${textColor} hover:text-GebetaMain border rounded-lg md:border-none`}>
                                     Log in
-                                </p>
+                                </Link>
                             </li>
                             <li>
-                                <p 
-                                onClick={() => setSignUpModal(true)}
-                                className=" py-3 px-4 font-medium text-center text-white bg-GebetaMain hover:bg-GebetaMain-200 active:bg-GebetaMain-200 active:shadow-none rounded-lg shadow  ">
+                                <Link to='/auth/sign-up'
+                                      className=" py-3 px-4 text-center text-white bg-GebetaMain hover:bg-GebetaMain/200 active:bg-GebetaMain-200 active:shadow-none rounded-lg shadow">
                                     Sign up
-                                </p>
+                                </Link>
                             </li>
                         </div>
                      

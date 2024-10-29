@@ -1,7 +1,7 @@
 import './svgAnim.css';
 
-import React, { useEffect, useRef } from 'react';
-import { ReactComponent as RunningManSVG } from "./../../assets/img/runningMan.svg";
+import React, {useEffect, useRef} from 'react';
+import {ReactComponent as RunningManSVG} from "./../../assets/img/runningMan.svg";
 
 const SVGAnimation = () => {
   const svgRef = useRef(null);

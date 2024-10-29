@@ -1,4 +1,4 @@
-import { API } from "./util";
+import {API} from "./util";
 
 export const getUserUsage = async (apiToken) => {
     const { data } = await API.get(`/api/usage/matrix`, {

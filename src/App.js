@@ -1,6 +1,6 @@
-import React , {useState} from 'react'
-import { HashRouter as Router , Routes, Route, Link } from "react-router-dom";
-import { AuthContext, AuthProvider } from './context/AuthProvider';
+import React from 'react'
+import {HashRouter as Router, Route, Routes} from "react-router-dom";
+import {AuthProvider} from './context/AuthProvider';
 import './App.css';
 import Billing from "./pages/Billing/index"
 import Main from './pages/Main/index';
@@ -15,7 +15,6 @@ import Footer from './component/Footer/Footer';
 import FoF from "./pages/404"
 import PrivateRoute from './routes/PrivateRoute';
 import About from './pages/About';
-import Products from './pages/Products';
 import Pricing from './pages/Pricing';
 import Privacy from './pages/Privacy';
 import Confirm from './pages/EmailConfirmation/Confirm';
@@ -23,6 +22,9 @@ import Terms from './pages/Terms';
 import ResetPassword from './pages/ResetPassword'
 import "@fontsource/zen-dots";
 import Contact from "./pages/Contact";
+import Signin from "./pages/Signin/SignIn";
+import Signup from "./pages/Signup/Signup";
+import OTPVerification from "./pages/RequestOtp";
 
 
 // tod do fix this route error  
@@ -38,10 +40,12 @@ function App() {
              <Route path="/documentation" element={<Documentation />} />
              <Route path="/playground" element={<PlayGround />} /> 
              {/* <Route path="/products" element={<Products />} />  */}
+            <Route path="/auth/sign-up" element={<Signup />} />
+            <Route path="/auth/sign-in" element={<Signin />} />
+            <Route path = "/reset-password" element={<ResetPassword/>} />
+            <Route path = "/request-otp" element={<OTPVerification/>} />
             <Route path = "/privacy" element={<Privacy/>} />
             <Route path = "/terms" element={<Terms/>} />
-            <Route path = "/reset-password" element={<ResetPassword/>} />
-            
             <Route path = "/confirm" element = {<Confirm/>} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

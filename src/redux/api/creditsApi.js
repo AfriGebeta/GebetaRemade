@@ -1,4 +1,4 @@
-import { API, handleApiError } from "./util";
+import {API, handleApiError} from "./util";
 
 export const getAllCredits = async ({ page, limit }) => {
   try {

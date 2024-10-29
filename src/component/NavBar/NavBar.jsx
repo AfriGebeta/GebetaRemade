@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/AuthProvider';
-import { useLocation } from 'react-router-dom';
+import {useContext, useEffect, useState} from 'react';
+import {AuthContext} from '../../context/AuthProvider';
+import {useLocation} from 'react-router-dom';
 import MainNav from './MainNav';
 import DashBoardNav from './DashBoardNav';
 

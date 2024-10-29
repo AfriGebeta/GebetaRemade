@@ -1,8 +1,6 @@
 // src/redux/store.js
-import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers } from 'redux';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import {configureStore} from "@reduxjs/toolkit";
+import {combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import documentationReducer from "./reducers/documentationSlice"
 import playGroundReducer from "./reducers/playgroundSlice"
@@ -16,16 +14,16 @@ const rootReducer = combineReducers({
    user : userReducer
 })
 
-const persistConfig = {
- key: 'root',
- storage,
-}
+// const persistConfig = {
+//  key: 'root',
+//  storage,
+// }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+// const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
-   reducer: persistedReducer,
+   reducer: rootReducer,
    middleware: [thunk],
 })
 
-export const persistor = persistStore(store)
+// export const persistor = persistStore(store)

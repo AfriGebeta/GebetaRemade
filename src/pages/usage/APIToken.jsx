@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { CopyOutlined, DeleteFilled, EyeInvisibleFilled } from "@ant-design/icons";
-import { useSelector, useDispatch } from "react-redux";
+import React, {useState} from "react";
+import {CopyOutlined, DeleteFilled} from "@ant-design/icons";
 
 function APIToken() {
   const [showTokenModal, setTokenModal] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 const JsonViewer = ({ data, name , alwaysExpand }) => {
   const [expanded, setExpanded] = useState(alwaysExpand);

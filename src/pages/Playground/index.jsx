@@ -1,10 +1,7 @@
-import React ,{useEffect , useState  } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import NavBar from "../../component/NavBar/NavBar";
-import Footer from "../../component/Footer/Footer";
+import React from "react";
 import PlayGroundHeader from "./PlayGroundHeader";
 import MapView from "./MapView";
-import { PlayGroundProvider } from "../../context/PlayGround";
+import {PlayGroundProvider} from "../../context/PlayGround";
 import "./index.css"
 
 const PlayGround = () => {

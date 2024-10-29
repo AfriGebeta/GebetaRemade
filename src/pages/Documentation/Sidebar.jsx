@@ -1,11 +1,8 @@
-import React , {useState} from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { changeTopic } from "../../redux/reducers/documentationSlice";
-import { Link } from "react-router-dom";
-import { documentationSideBarLinks } from "../../data/documentation";
-
-
-
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux"
+import {changeTopic} from "../../redux/reducers/documentationSlice";
+import {Link} from "react-router-dom";
+import {documentationSideBarLinks} from "../../data/documentation";
 
 
 const Sidebar = () => {

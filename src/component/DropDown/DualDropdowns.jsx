@@ -1,7 +1,5 @@
-
-import React ,{ useState , useEffect ,useRef} from 'react'
-import { Link } from 'react-router-dom';
-
+import React, {useEffect, useRef, useState} from 'react'
+import {Link} from 'react-router-dom';
 
 
 const DualDropdowns = ({color, textColor ,dropdown1 , dropdown2}) => {
